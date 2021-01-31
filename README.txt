@@ -1,8 +1,8 @@
 This proect is originqlly by HTML5 UP html5up.net | @ajlkn
 
-Photos and sass actions were manipulated lightly for the sole purpose of trying different sliders in teh CSS.
+Photos and sass actions were manipulated lightly for the sole purpose of trying different sliders in tHE CSS.
 
-The scrolling backgrounds were all edited to match the original HTML bu man was that hard!
+The scrolling backgrounds were all edited to match the original HTML buTman was that hard!
 
 
 
@@ -25,10 +25,6 @@ The scrolling backgrounds were all edited to match the original HTML bu man was 
 Credits:
 
         Original HTML by html5up.net | @ajlkn
-	
-	Background Image:
-		Ryan Schroeder via Unsplash (unsplash.com - CC0 licensed)
-			"Icefields" (flickr.com/photos/ryanschroeder/11876741703)
 
 	Icons:
 		Font Awesome (fontawesome.io)
