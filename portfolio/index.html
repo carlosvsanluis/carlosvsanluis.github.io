@@ -106,6 +106,52 @@ section{padding:72px 0 0}
 .demo-mods a:hover{border-color:#7b61ff;background:rgba(123,97,255,.12)}
 .demo-mods i{font-style:normal;display:grid;place-items:center;flex:none;width:26px;height:26px;border-radius:8px;background:rgba(123,97,255,.25);color:#cfc5ff;font:700 13px "Space Grotesk"}
 .demo .status{display:inline-block;margin-top:14px;font-size:12.5px;font-weight:600;padding:3px 10px;border-radius:999px;border:1px solid #f0a35e;color:#f0a35e}
+#cynthia{margin-top:22px}
+.demo .status.ok{border-color:#4fd1c5;color:#4fd1c5}
+.cyn-cols{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:22px;position:relative;z-index:1}
+@media (max-width:860px){.cyn-cols{grid-template-columns:1fr}}
+.cyn-h{font:600 13px "Space Grotesk";letter-spacing:.06em;text-transform:uppercase;color:#4fd1c5;margin:0 0 10px}
+.cyn-steps{list-style:none;margin:0;padding:0;counter-reset:s}
+.cyn-steps li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;margin:0 0 10px;font-size:14.5px;color:var(--hero-ink-2)}
+.cyn-steps li::before{content:counter(s);flex:none;display:grid;place-items:center;width:24px;height:24px;border-radius:7px;background:rgba(79,209,197,.2);color:#9ff0e8;font:700 12.5px "Space Grotesk"}
+.cyn-steps b{color:var(--hero-ink)}
+.cyn-users{display:grid;gap:10px}
+.cyn-user{border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:12px 14px;background:rgba(255,255,255,.03)}
+.cyn-user h4{font-size:15px;margin:0 0 4px;color:var(--hero-ink)}
+.demo .cyn-user p{font-size:14px;margin:0}
+.cyn-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.cyn-tags > span{font-size:12.5px;padding:3px 9px;border-radius:999px;border:1px solid rgba(255,255,255,.2);color:var(--hero-ink)}
+.cyn-shots{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px;position:relative;z-index:1}
+@media (max-width:600px){.cyn-shots{grid-template-columns:1fr}}
+.cyn-shots figure{margin:0}
+.cyn-shots a{display:block;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.16);background:#fafafa}
+.cyn-shots a:hover{border-color:#4fd1c5}
+.cyn-shots img{display:block;width:100%;height:150px;object-fit:cover;object-position:center top}
+.cyn-shots figcaption{font-size:13px;color:var(--hero-ink-2);margin-top:6px}
+.demo .cyn-note{font-size:13px;margin-top:14px}
+#dynamicscustom{margin-top:22px}
+.dc-mock{position:relative;z-index:1;background:#fff;color:#242424;border-radius:12px;overflow:hidden;font:13px/1.4 "Segoe UI",Inter,system-ui,sans-serif;border:1px solid rgba(255,255,255,.16)}
+.dc-bar{display:flex;align-items:center;gap:5px;padding:7px 10px;background:#e9ebf0}
+.dc-dot{width:8px;height:8px;border-radius:50%;background:#c4c8d2}
+.dc-url{flex:1;margin-left:6px;background:#fff;border-radius:6px;padding:2px 8px;font-size:11.5px;color:#666}
+.dc-ext{font:700 10.5px "Space Grotesk";background:#7b61ff;color:#fff;border-radius:5px;padding:2px 5px}
+.dc-head{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;padding:10px 14px;background:#ffe9c7;border-left:4px solid #f0a35e}
+.dc-head b{font-weight:600}
+.dc-head > span{font-size:12px;color:#7a5520}
+.dc-tabs{display:flex;gap:14px;padding:8px 14px 0;border-bottom:1px solid #e3e5ea;font-size:12.5px;color:#555}
+.dc-tabs span{padding-bottom:6px}
+.dc-tabs .on{color:#242424;font-weight:600;border-bottom:2px solid #7b61ff}
+.dc-sec{margin:10px 12px;border-radius:8px;padding:8px 10px;border-left:4px solid}
+.dc-a{background:#e2f5f3;border-color:#0e8f8a}
+.dc-b{background:#ece8ff;border-color:#5b3fd6}
+.dc-sec-t{font-weight:600;font-size:12px;margin-bottom:4px;color:#333}
+.dc-row{display:grid;grid-template-columns:minmax(90px,38%) 1fr auto;gap:8px;align-items:center;padding:3px 0}
+.dc-l{color:#616161;font-size:12px}
+.dc-v{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dc-mono{font-family:Consolas,monospace;font-size:12px}
+.dc-cp{display:grid;place-items:center;width:22px;height:22px;border-radius:6px;background:#fff;border:1px solid #cfd3dc;font-size:12px;color:#5b3fd6}
+.dc-cp.done{background:#0e8f8a;border-color:#0e8f8a;color:#fff}
+.dc-toast{margin:2px 12px 12px auto;width:max-content;max-width:calc(100% - 24px);background:#242424;color:#fff;font-size:12px;border-radius:6px;padding:5px 10px}
 
 /* case studies */
 .case{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px;box-shadow:var(--shadow);margin-bottom:18px}
@@ -189,6 +235,7 @@ footer{padding:0 0 32px;color:var(--ink-2);font-size:13px;text-align:center}
     <nav class="nav">
       <a href="#expertise"><span class="en">Expertise</span><span class="fr">Expertise</span></a>
       <a href="#demo">Demo</a>
+      <a href="#cynthia">Cynth-ia</a>
       <a href="#projects"><span class="en">Projects</span><span class="fr">Projets</span></a>
       <a href="#stack"><span class="en">Stack</span><span class="fr">Technologies</span></a>
       <a href="#experience"><span class="en">Experience</span><span class="fr">Parcours</span></a>
@@ -292,7 +339,114 @@ footer{padding:0 0 32px;color:var(--ink-2);font-size:13px;text-align:center}
         <a href="demo/5-ai-file-analysis.html"><i>5</i><span class="en">AI photo analysis</span><span class="fr">Analyse IA des photos</span></a>
         <a href="demo/6-pdf-extraction-approval.html"><i>6</i><span class="en">PDF forms + approval</span><span class="fr">PDF + validation humaine</span></a>
       </div>
-      <div class="cta"><a class="btn primary" href="demo/"><span class="en">Explore the demo</span><span class="fr">Découvrir la démo</span></a></div>
+      <div class="cta"><a class="btn primary" href="demo/index.html"><span class="en">Explore the demo</span><span class="fr">Découvrir la démo</span></a></div>
+    </div>
+  </section>
+
+  <!-- CYNTH-IA -->
+  <section id="cynthia">
+    <div class="demo">
+      <div class="k"><span class="en">Personal project · Health tech</span><span class="fr">Projet personnel · Santé</span></div>
+      <h2><span class="en">Cynth-ia: from X-ray findings to a rehab plan the clinician signs</span><span class="fr">Cynth-ia : du compte rendu radio au plan de rééducation signé par le soignant</span></h2>
+      <p class="en">An AI wrapper for healthcare providers. Cynth-ia reads X-ray and MRI findings and drafts a personalised rehabilitation plan with exercises, restrictions, duration and reminders. A physiotherapist or nurse reviews the draft, edits it, and signs it as their own. Nothing reaches the patient before that signature.</p>
+      <p class="fr">Une surcouche IA pour les professionnels de santé. Cynth-ia lit les comptes rendus de radiographie et d'IRM et rédige un plan de rééducation personnalisé : exercices, restrictions, durée et rappels. Un kinésithérapeute ou un infirmier relit le brouillon, le modifie et le signe en son nom. Rien n'arrive au patient avant cette signature.</p>
+      <span class="status ok">Prototype</span>
+
+      <div class="cyn-cols">
+        <div>
+          <p class="cyn-h"><span class="en">How it works</span><span class="fr">Fonctionnement</span></p>
+          <ol class="cyn-steps en">
+            <li><span>The clinician <b>loads the X-ray or MRI report</b> and picks a treatment duration.</span></li>
+            <li><span><b>The AI structures the findings</b> and drafts the plan: exercises, restrictions and a reminder schedule.</span></li>
+            <li><span>The clinician <b>reviews, edits and signs</b>. The plan becomes theirs.</span></li>
+            <li><span><b>Both users get notifications.</b> The patient confirms each exercise in one tap, and the clinician sees adherence.</span></li>
+          </ol>
+          <ol class="cyn-steps fr">
+            <li><span>Le soignant <b>charge le compte rendu radio ou IRM</b> et choisit une durée de traitement.</span></li>
+            <li><span><b>L'IA structure les constats</b> et rédige le plan : exercices, restrictions et calendrier de rappels.</span></li>
+            <li><span>Le soignant <b>relit, modifie et signe</b>. Le plan devient le sien.</span></li>
+            <li><span><b>Les deux utilisateurs reçoivent des notifications.</b> Le patient valide chaque exercice d'un geste, le soignant suit l'observance.</span></li>
+          </ol>
+        </div>
+        <div>
+          <p class="cyn-h"><span class="en">Two kinds of users</span><span class="fr">Deux profils d'utilisateurs</span></p>
+          <div class="cyn-users">
+            <div class="cyn-user">
+              <h4><span class="en">Healthcare professionals</span><span class="fr">Professionnels de santé</span></h4>
+              <p class="en">Physiotherapists and nurses. They review the AI drafts in a verification queue, sign them, and get alerts when a patient misses a session.</p>
+              <p class="fr">Kinésithérapeutes et infirmiers. Ils relisent les brouillons de l'IA dans une file de validation, les signent, et sont alertés quand un patient manque une séance.</p>
+            </div>
+            <div class="cyn-user">
+              <h4>Patients</h4>
+              <p class="en">They get timed reminders for exercises and medication, confirm each one, and follow their week in a simple adherence view.</p>
+              <p class="fr">Ils reçoivent des rappels à heure fixe pour leurs exercices et leurs médicaments, valident chacun, et suivent leur semaine dans une vue d'observance simple.</p>
+            </div>
+          </div>
+          <div class="cyn-tags"><span>Python</span><span><span class="en">AWS (Linux servers)</span><span class="fr">AWS (serveurs Linux)</span></span><span><span class="en">OVHcloud (secure database)</span><span class="fr">OVHcloud (base de données sécurisée)</span></span><span><span class="en">LLM API</span><span class="fr">API LLM</span></span><span><span class="en">Push &amp; e-mail notifications</span><span class="fr">Notifications push et e-mail</span></span><span>FR / EN</span></div>
+        </div>
+      </div>
+
+      <div class="cyn-shots">
+        <figure><a href="cynthia/img/1-accueil.jpg" target="_blank" rel="noopener"><img src="cynthia/img/1-accueil.jpg" alt="Cynth-ia home page" loading="lazy"></a><figcaption><span class="en">Home page</span><span class="fr">Page d'accueil</span></figcaption></figure>
+        <figure><a href="cynthia/img/2-validation-medecin.jpg" target="_blank" rel="noopener"><img src="cynthia/img/2-validation-medecin.jpg" alt="Clinician verification queue with Approve buttons" loading="lazy"></a><figcaption><span class="en">Clinician verification queue: sign before sending</span><span class="fr">File de validation du soignant : signer avant envoi</span></figcaption></figure>
+        <figure><a href="cynthia/img/3-rappel-patient.jpg" target="_blank" rel="noopener"><img src="cynthia/img/3-rappel-patient.jpg" alt="Patient reminder with a confirm button" loading="lazy"></a><figcaption><span class="en">Patient reminder, confirmed in one tap</span><span class="fr">Rappel patient, validé d'un geste</span></figcaption></figure>
+        <figure><a href="cynthia/img/4-paliers.jpg" target="_blank" rel="noopener"><img src="cynthia/img/4-paliers.jpg" alt="Three reminder tiers: strict, recommended, normal" loading="lazy"></a><figcaption><span class="en">Reminders taper as the patient recovers</span><span class="fr">Les rappels s'espacent avec la guérison</span></figcaption></figure>
+      </div>
+
+      <p class="cyn-note en">Health data stays in France and is shared only between clinician and patient. The demo uses fictional cases and is not a medical device.</p>
+      <p class="cyn-note fr">Les données de santé restent en France et ne sont partagées qu'entre le soignant et le patient. La démo utilise des cas fictifs et n'est pas un dispositif médical.</p>
+      <div class="cta"><a class="btn primary" href="cynthia/index.html"><span class="en">Open the interactive demo</span><span class="fr">Ouvrir la démo interactive</span></a></div>
+    </div>
+  </section>
+
+  <!-- DYNAMICSCUSTOM -->
+  <section id="dynamicscustom">
+    <div class="demo">
+      <div class="k"><span class="en">Personal project · Browser extension</span><span class="fr">Projet personnel · Extension navigateur</span></div>
+      <h2><span class="en">DynamicsCustom: colour and one-click copy for model-driven apps</span><span class="fr">DynamicsCustom : couleurs et copie en un clic pour les applications pilotées par modèle</span></h2>
+      <p class="en">A browser extension that sits on top of Dynamics 365 and Power Apps model-driven apps. It colours chosen areas of the form so users see at once where they are, and adds quick copy and paste on the values they handle all day.</p>
+      <p class="fr">Une extension de navigateur qui se pose sur Dynamics 365 et les applications Power Apps pilotées par modèle. Elle colore les zones choisies du formulaire pour que l'utilisateur sache tout de suite où il se trouve, et ajoute la copie et le collage rapides sur les valeurs qu'il manipule toute la journée.</p>
+
+      <div class="cyn-cols">
+        <div>
+          <p class="cyn-h"><span class="en">What it does</span><span class="fr">Fonctionnalités</span></p>
+          <ol class="cyn-steps en">
+            <li><span><b>Colour-codes areas</b> of the app: header, tabs, sections or key fields.</span></li>
+            <li><span><b>Copies a value in one click</b>, such as a record ID, case number or e-mail, with no need to select text.</span></li>
+            <li><span><b>Pastes quickly</b> into the next form or into another tool.</span></li>
+          </ol>
+          <ol class="cyn-steps fr">
+            <li><span><b>Colore les zones</b> de l'application : en-tête, onglets, sections ou champs clés.</span></li>
+            <li><span><b>Copie une valeur en un clic</b> (identifiant d'enregistrement, numéro de dossier, e-mail) sans sélectionner le texte.</span></li>
+            <li><span><b>Colle rapidement</b> dans le formulaire suivant ou dans un autre outil.</span></li>
+          </ol>
+          <p class="cyn-h" style="margin-top:18px"><span class="en">Why at browser level</span><span class="fr">Pourquoi dans le navigateur</span></p>
+          <div class="cyn-user">
+            <p class="en">The extension runs in the user's browser, not on the server. When a platform bug takes a long time to be fixed, a workaround reaches users straight away: no solution to deploy and no release to wait for. The same approach works on other SaaS web applications.</p>
+            <p class="fr">L'extension tourne dans le navigateur de l'utilisateur, pas sur le serveur. Quand un bug de la plateforme met du temps à être corrigé, un contournement arrive tout de suite chez les utilisateurs : aucune solution à déployer, aucune mise en production à attendre. La même approche fonctionne sur d'autres applications SaaS.</p>
+          </div>
+          <div class="cyn-tags"><span>JavaScript</span><span><span class="en">Browser extension</span><span class="fr">Extension navigateur</span></span><span>Dynamics 365</span><span><span class="en">Model-driven apps</span><span class="fr">Applications pilotées par modèle</span></span><span><span class="en">Other SaaS apps</span><span class="fr">Autres applications SaaS</span></span></div>
+        </div>
+        <div>
+          <div class="dc-mock" role="img" aria-label="Mockup: a model-driven form with a coloured header and sections, and copy buttons next to the case number, record ID and e-mail fields">
+            <div class="dc-bar"><span class="dc-dot"></span><span class="dc-dot"></span><span class="dc-dot"></span><span class="dc-url">org.crm4.dynamics.com</span><span class="dc-ext">DC</span></div>
+            <div class="dc-head"><b><span class="en">Case</span><span class="fr">Incident</span> · CAS-01482</b><span><span class="en">Status: Open</span><span class="fr">Statut : ouvert</span></span></div>
+            <div class="dc-tabs"><span class="on"><span class="en">Summary</span><span class="fr">Résumé</span></span><span><span class="en">Details</span><span class="fr">Détails</span></span><span><span class="en">Related</span><span class="fr">Associés</span></span></div>
+            <div class="dc-sec dc-a">
+              <div class="dc-sec-t"><span class="en">Customer</span><span class="fr">Client</span></div>
+              <div class="dc-row"><span class="dc-l">E-mail</span><span class="dc-v">j.martin@example.com</span><span class="dc-cp" aria-hidden="true">⧉</span></div>
+              <div class="dc-row"><span class="dc-l"><span class="en">Account no.</span><span class="fr">N° de compte</span></span><span class="dc-v">AC-208311</span><span class="dc-cp" aria-hidden="true">⧉</span></div>
+            </div>
+            <div class="dc-sec dc-b">
+              <div class="dc-sec-t"><span class="en">Case</span><span class="fr">Incident</span></div>
+              <div class="dc-row"><span class="dc-l"><span class="en">Case number</span><span class="fr">N° d'incident</span></span><span class="dc-v">CAS-01482</span><span class="dc-cp done" aria-hidden="true">✓</span></div>
+              <div class="dc-row"><span class="dc-l"><span class="en">Record ID</span><span class="fr">ID d'enregistrement</span></span><span class="dc-v dc-mono">3f2a…9c41</span><span class="dc-cp" aria-hidden="true">⧉</span></div>
+            </div>
+            <div class="dc-toast"><span class="en">Copied: CAS-01482</span><span class="fr">Copié : CAS-01482</span></div>
+          </div>
+          <p class="cyn-note"><span class="en">Mockup · fictional data</span><span class="fr">Maquette · données fictives</span></p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -545,7 +699,7 @@ footer{padding:0 0 32px;color:var(--ink-2);font-size:13px;text-align:center}
       <div class="card"><h3>Dynamics 365</h3><div class="tags"><span class="tag">Customer Service</span><span class="tag">Customer Service Workspace</span><span class="tag">Omnichannel</span><span class="tag">Sales</span><span class="tag">Customer Insights</span><span class="tag">Customer Voice</span><span class="tag">Knowledge Base</span></div></div>
       <div class="card"><h3>Azure & Microsoft 365</h3><div class="tags"><span class="tag">Entra ID</span><span class="tag">Key Vault</span><span class="tag">Managed Identity</span><span class="tag">API Management</span><span class="tag">Application Insights</span><span class="tag">Azure Bot</span><span class="tag">Azure DevOps</span><span class="tag">SharePoint</span></div></div>
       <div class="card"><h3><span class="en">Development</span><span class="fr">Développement</span></h3><div class="tags"><span class="tag">C# / .NET</span><span class="tag">Dataverse plug-ins</span><span class="tag">Custom APIs</span><span class="tag">JavaScript</span><span class="tag">SQL</span><span class="tag">PHP</span><span class="tag">Java</span><span class="tag">Python</span><span class="tag">Postman</span><span class="tag">XrmToolBox</span></div></div>
-      <div class="card"><h3><span class="en">Web & infrastructure</span><span class="fr">Web & infrastructure</span></h3><div class="tags"><span class="tag">Magento</span><span class="tag">WordPress</span><span class="tag">AWS (Lightsail, S3, CloudFront)</span><span class="tag">Linux / Windows Server</span><span class="tag">Virtualisation</span><span class="tag">Grafana</span></div></div>
+      <div class="card"><h3><span class="en">Web & infrastructure</span><span class="fr">Web & infrastructure</span></h3><div class="tags"><span class="tag">Magento</span><span class="tag">WordPress</span><span class="tag">AWS (Lightsail, S3, CloudFront)</span><span class="tag">OVHcloud</span><span class="tag">Linux / Windows Server</span><span class="tag">Virtualisation</span><span class="tag">Grafana</span></div></div>
       <div class="card"><h3>AI</h3><div class="tags"><span class="tag">OpenAI integration</span><span class="tag">Conversational bots</span><span class="tag">Bot-to-agent handover</span><span class="tag">Microsoft Copilot (governance)</span></div></div>
     </div>
   </section>
