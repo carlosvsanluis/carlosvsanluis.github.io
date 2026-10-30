@@ -89,6 +89,13 @@ h2:first-child{margin-top:0}
 .card h3{font-size:16px;margin-bottom:6px}
 .card p,.card li{color:var(--ink-2);font-size:15px}
 .card ul{margin:6px 0 0;padding-left:18px}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface);box-shadow:var(--shadow)}
+.cmp{width:100%;border-collapse:collapse;font-size:14.5px;min-width:560px}
+.cmp th,.cmp td{text-align:left;vertical-align:top;padding:11px 14px;border-bottom:1px solid var(--line)}
+.cmp thead th{font-family:"Space Grotesk";font-size:14.5px;background:var(--surface-2)}
+.cmp tbody th{font-weight:600;width:22%;color:var(--ink)}
+.cmp td{color:var(--ink-2)}
+.cmp tr:last-child th,.cmp tr:last-child td{border-bottom:0}
 .steps{list-style:none;counter-reset:s;padding:0;margin:0}
 .steps li{counter-increment:s;position:relative;padding:14px 16px 14px 58px;margin-bottom:10px;background:var(--surface);border:1px solid var(--line);border-radius:12px}
 .steps li::before{content:counter(s);position:absolute;left:14px;top:13px;width:30px;height:30px;border-radius:9px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font:700 14px "Space Grotesk"}

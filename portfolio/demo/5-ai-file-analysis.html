@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-lang="en">
+<html lang="fr" data-lang="fr">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="demo.css" />
+<link rel="stylesheet" href="mock.css" />
 <style>
 .json{background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:14px;font:13px/1.55 ui-monospace,Consolas,monospace;overflow-x:auto;color:var(--ink);margin:0}
 </style>
@@ -17,7 +18,7 @@
 <header class="top"><div class="wrap">
   <a class="brand" href="../">CSL</a>
   <span class="crumbs"><a href="./">AssurDemo</a> / <span class="en">5. AI photo analysis</span><span class="fr">5. Analyse IA des photos</span></span>
-  <div class="toggles"><button class="tbtn" id="langBtn" aria-label="Switch language">FR</button><button class="tbtn" id="themeBtn" aria-label="Toggle dark mode">◐</button></div>
+  <div class="toggles"><button class="tbtn" id="langBtn" aria-label="Switch language">EN</button><button class="tbtn" id="themeBtn" aria-label="Toggle dark mode">◐</button></div>
 </div></header>
 
 <div class="hero"><div class="wrap">
@@ -29,7 +30,54 @@
 </div></div>
 
 <main class="wrap">
-  <div class="grid2">
+  <h2><span class="en">Interface preview</span><span class="fr">Aperçu de l'interface</span></h2>
+  <span class="mocklabel"><span class="en">Mockup of the planned interface. Real screenshots will replace it once built.</span><span class="fr">Maquette de l'interface prévue. Elle sera remplacée par de vraies captures une fois réalisée.</span></span>
+  <div class="shots">
+    <figure class="shot" style="width:100%">
+      <div class="browser"><div class="bar"><span class="dt"></span><span class="dt"></span><span class="dt"></span><span class="url">assurdemo.crm.dynamics.com · Back-office conseiller</span></div>
+        <div class="scr">
+          <div class="bo-top"><span class="m-logo">A</span>AssurDemo · Back-office<span>Julien R. · Conseiller</span></div>
+          <div class="bo-crumb">Sinistres › <b>SIN-2026-00042</b> · Accident auto · Camille Martin</div>
+          <div class="bo-body">
+            <div>
+              <div class="bo-photo"><svg viewBox="0 0 240 160"><rect width="240" height="160" fill="#cfd8e3"/><rect y="122" width="240" height="38" fill="#9aa4b1"/><rect x="40" y="38" width="160" height="90" rx="18" fill="#5d7290"/><path d="M64 44h112l-12 26H76z" fill="#26364d"/><rect x="46" y="76" width="26" height="11" rx="3" fill="#e2574c"/><rect x="168" y="76" width="26" height="11" rx="3" fill="#e2574c"/><rect x="98" y="82" width="44" height="12" rx="2" fill="#eef1f6"/><rect x="36" y="100" width="168" height="22" rx="8" fill="#465873"/><ellipse cx="152" cy="111" rx="20" ry="7" fill="#2f3d55"/><path d="M136 106l30 9M140 114l22-6" stroke="#dfe4ec" stroke-width="1.5"/><rect x="124" y="96" width="58" height="30" rx="4" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5 3"/><rect x="124" y="128" width="58" height="12" rx="2" fill="#f59e0b"/><text x="153" y="137" text-anchor="middle" font-size="8" font-family="Inter,sans-serif" font-weight="700" fill="#fff">ZONE DÉTECTÉE</text></svg></div>
+              <div class="m-muted" style="margin-top:6px">photo_arriere_1.jpg · 1 / 2</div>
+            </div>
+            <div class="bo-panel">
+              <h4>Analyse IA <span class="m-bd wa">À valider</span></h4>
+              <div class="bo-f"><span>Zone endommagée</span><span class="v">Pare-chocs arrière<span class="bo-acts"><i>✓</i><i>✎</i></span></span></div>
+              <div class="bo-f"><span>Type de dégât</span><span class="v">Enfoncement + rayures<span class="bo-acts"><i>✓</i><i>✎</i></span></span></div>
+              <div class="bo-f"><span>Gravité</span><span class="v"><span class="m-bd wa">Moyenne</span><span class="bo-acts"><i>✓</i><i>✎</i></span></span></div>
+              <div class="bo-f"><span>Cohérent avec la déclaration</span><span class="v">Oui<span class="bo-acts"><i>✓</i><i>✎</i></span></span></div>
+              <div class="bo-f"><span>Qualité de la photo</span><span class="v">Bonne<span class="bo-acts"><i>✓</i><i>✎</i></span></span></div>
+              <p class="m-muted" style="margin:6px 0 0">« Choc arrière compatible avec un recul contre un poteau. »</p>
+              <div class="m-row" style="gap:8px"><div class="m-btn" style="flex:1">Tout confirmer</div><div class="m-btn2" style="flex:1;margin-top:12px">Corriger</div></div>
+              <div class="m-fine">Prompt v1.3 · analysé le 24/10/2026 à 18:22 · l'IA ne décide pas</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <figcaption><span class="en">The advisor sees the photo next to the AI summary and confirms or corrects each field.</span><span class="fr">Le conseiller voit la photo à côté du résumé IA et confirme ou corrige chaque champ.</span></figcaption>
+    </figure>
+    <figure class="shot" style="width:100%">
+      <div class="browser"><div class="bar"><span class="dt"></span><span class="dt"></span><span class="dt"></span><span class="url">assurdemo.crm.dynamics.com · File des sinistres</span></div>
+        <div class="scr bo-wrap">
+          <div class="bo-top"><span class="m-logo">A</span>File des sinistres · à traiter<span>3 dossiers</span></div>
+          <table class="bo-tbl">
+            <thead><tr><th>Sinistre</th><th>Type</th><th>Gravité IA</th><th>Contrôle IA</th><th>Priorité</th></tr></thead>
+            <tbody>
+              <tr><td><b>SIN-2026-00043</b></td><td>Dégât des eaux</td><td><span class="m-bd er">Forte</span></td><td><span class="m-bd er">Photo incohérente</span></td><td><b style="color:#b42318">▲ Prioritaire</b></td></tr>
+              <tr><td><b>SIN-2026-00042</b></td><td>Accident auto</td><td><span class="m-bd wa">Moyenne</span></td><td><span class="m-bd ok">Cohérent</span></td><td>Normale</td></tr>
+              <tr><td><b>SIN-2026-00044</b></td><td>Vol</td><td><span class="m-bd ok">Faible</span></td><td><span class="m-bd wa">Photo floue</span></td><td>Normale</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <figcaption><span class="en">AI flags drive the queue: inconsistent or severe claims go to senior advisors first.</span><span class="fr">Les signaux de l'IA organisent la file : les dossiers graves ou incohérents vont d'abord aux conseillers seniors.</span></figcaption>
+    </figure>
+  </div>
+
+  <div class="grid2" style="margin-top:28px">
     <div class="card"><h3><span class="en">The prompt asks for structured output</span><span class="fr">Le prompt demande une sortie structurée</span></h3>
       <p class="en">The AI returns JSON, not free text, so every result can be stored, filtered and checked.</p>
       <p class="fr">L'IA renvoie du JSON, pas du texte libre, pour que chaque résultat puisse être stocké, filtré et vérifié.</p>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-lang="en">
+<html lang="fr" data-lang="fr">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,12 +9,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="demo.css" />
+<link rel="stylesheet" href="mock.css" />
 </head>
 <body>
 <header class="top"><div class="wrap">
   <a class="brand" href="../">CSL</a>
   <span class="crumbs"><a href="./">AssurDemo</a> / <span class="en">1. AI chatbot</span><span class="fr">1. Chatbot IA</span></span>
-  <div class="toggles"><button class="tbtn" id="langBtn" aria-label="Switch language">FR</button><button class="tbtn" id="themeBtn" aria-label="Toggle dark mode">◐</button></div>
+  <div class="toggles"><button class="tbtn" id="langBtn" aria-label="Switch language">EN</button><button class="tbtn" id="themeBtn" aria-label="Toggle dark mode">◐</button></div>
 </div></header>
 
 <div class="hero"><div class="wrap">
@@ -26,7 +27,43 @@
 </div></div>
 
 <main class="wrap">
-  <div class="grid2">
+  <h2><span class="en">Interface preview</span><span class="fr">Aperçu de l'interface</span></h2>
+  <span class="mocklabel"><span class="en">Mockup of the planned interface. Real screenshots will replace it once built.</span><span class="fr">Maquette de l'interface prévue. Elle sera remplacée par de vraies captures une fois réalisée.</span></span>
+  <div class="shots">
+    <figure class="shot">
+      <div class="phone"><div class="scr">
+        <div class="sb"><span>9:41</span><span>5G ▮▮▮</span></div>
+        <div class="m-top"><span class="m-logo">A</span><div>AssurDemo<small>Assistant virtuel</small></div><span class="m-pill">IA</span></div>
+        <div class="m-msgs">
+          <div class="m-b">Bonjour, je suis l'assistant d'AssurDemo. Comment puis-je vous aider ?</div>
+          <div class="m-u">Le dégât des eaux est-il couvert par mon assurance habitation ?</div>
+          <div class="m-b">Oui. Les dégâts des eaux sont couverts par les formules <b>Confort</b> et <b>Intégrale</b>, avec une franchise de 150 €. Les infiltrations par la toiture non entretenue sont exclues.<br><span class="m-cite">📄 Conditions générales Habitation · art. 4.2</span></div>
+          <div class="m-qr"><span>Déclarer un sinistre</span><span>Demander un devis</span><span>Parler à un conseiller</span></div>
+        </div>
+        <div class="m-input">Écrivez votre message…<i>➤</i></div>
+      </div></div>
+      <figcaption><span class="en">Answers come from the insurer's documents, with the source shown.</span><span class="fr">Les réponses viennent des documents de l'assureur, avec la source affichée.</span></figcaption>
+    </figure>
+    <figure class="shot">
+      <div class="phone"><div class="scr">
+        <div class="sb"><span>9:43</span><span>5G ▮▮▮</span></div>
+        <div class="m-top"><span class="m-logo">A</span><div>AssurDemo<small>Assistant virtuel</small></div><span class="m-pill">IA</span></div>
+        <div class="m-msgs">
+          <div class="m-u">Je voudrais parler à un conseiller.</div>
+          <div class="m-b">Bien sûr. Où et quand pouvons-nous vous rappeler ?
+            <div class="m-l">Téléphone</div><div class="m-in">06 •• •• •• 42</div>
+            <div class="m-l">Créneau</div><div class="m-qr"><span class="on">Aujourd'hui 14h–16h</span><span>Demain 9h–12h</span></div>
+            <div class="m-btn">Confirmer le rappel</div>
+          </div>
+          <div class="m-b">C'est noté ✓ Un conseiller vous rappellera <b>aujourd'hui entre 14h et 16h</b>.<br><span class="m-muted">Référence : RAP-2026-0187</span></div>
+        </div>
+        <div class="m-input">Écrivez votre message…<i>➤</i></div>
+      </div></div>
+      <figcaption><span class="en">Handover: a callback request goes straight to the advisors' queue.</span><span class="fr">Transfert : la demande de rappel part directement dans la file des conseillers.</span></figcaption>
+    </figure>
+  </div>
+
+  <div class="grid2" style="margin-top:28px">
     <div class="card"><h3><span class="en">What the customer can do</span><span class="fr">Ce que le client peut faire</span></h3>
       <ul class="en"><li>Ask "Is water damage covered by my home insurance?" and get an answer that cites the source document</li><li>Start a home, car or legal-protection quote</li><li>Start a claim</li><li>Ask to speak to an advisor</li></ul>
       <ul class="fr"><li>Demander « Le dégât des eaux est-il couvert par mon assurance habitation ? » et obtenir une réponse qui cite le document source</li><li>Lancer un devis habitation, auto ou protection juridique</li><li>Démarrer une déclaration de sinistre</li><li>Demander à parler à un conseiller</li></ul></div>

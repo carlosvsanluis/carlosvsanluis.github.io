@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-lang="en">
+<html lang="fr" data-lang="fr">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,12 +9,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="demo.css" />
+<link rel="stylesheet" href="mock.css" />
 </head>
 <body>
 <header class="top"><div class="wrap">
   <a class="brand" href="../">CSL</a>
   <span class="crumbs"><a href="./">AssurDemo</a> / <span class="en">3. Quote request</span><span class="fr">3. Demande de devis</span></span>
-  <div class="toggles"><button class="tbtn" id="langBtn" aria-label="Switch language">FR</button><button class="tbtn" id="themeBtn" aria-label="Toggle dark mode">◐</button></div>
+  <div class="toggles"><button class="tbtn" id="langBtn" aria-label="Switch language">EN</button><button class="tbtn" id="themeBtn" aria-label="Toggle dark mode">◐</button></div>
 </div></header>
 
 <div class="hero"><div class="wrap">
@@ -26,6 +27,65 @@
 </div></div>
 
 <main class="wrap">
+  <h2><span class="en">Interface preview</span><span class="fr">Aperçu de l'interface</span></h2>
+  <span class="mocklabel"><span class="en">Mockup of the planned interface. Real screenshots will replace it once built.</span><span class="fr">Maquette de l'interface prévue. Elle sera remplacée par de vraies captures une fois réalisée.</span></span>
+  <div class="shots">
+    <figure class="shot">
+      <div class="phone"><div class="scr">
+        <div class="sb"><span>10:05</span><span>5G ▮▮▮</span></div>
+        <div class="m-top"><span class="m-logo">A</span><div>Demande de devis<small>Étape 1 sur 3</small></div></div>
+        <div class="m-body">
+          <div class="m-step"><span class="on"></span><span></span><span></span></div>
+          <div class="m-h">Quel produit vous intéresse ?</div>
+          <p class="m-sub">Réponse en 2 minutes, sans engagement.</p>
+          <div class="m-prod">
+            <div><svg viewBox="0 0 24 24" fill="none" stroke="#1f5fbf" stroke-width="2"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></svg>Habitation</div>
+            <div class="sel"><svg viewBox="0 0 24 24" fill="none" stroke="#1f5fbf" stroke-width="2"><path d="M5 16l1.5-5a2 2 0 012-1.4h7a2 2 0 012 1.4L19 16M4 16h16v3H4z"/><circle cx="7.5" cy="19" r="1.5"/><circle cx="16.5" cy="19" r="1.5"/></svg>Auto <span class="m-bd in" style="margin-left:auto">Sélectionné</span></div>
+            <div><svg viewBox="0 0 24 24" fill="none" stroke="#1f5fbf" stroke-width="2"><path d="M12 3v18M5 7h14M7 7l-3 7a3 3 0 006 0zM17 7l-3 7a3 3 0 006 0z"/></svg>Protection juridique</div>
+          </div>
+          <div class="m-btn" style="margin-top:22px">Continuer</div>
+        </div>
+      </div></div>
+      <figcaption><span class="en">Step 1: the customer picks a product. The chatbot can open this page with the product preselected.</span><span class="fr">Étape 1 : le client choisit un produit. Le chatbot peut ouvrir cette page avec le produit présélectionné.</span></figcaption>
+    </figure>
+    <figure class="shot">
+      <div class="phone"><div class="scr">
+        <div class="sb"><span>10:06</span><span>5G ▮▮▮</span></div>
+        <div class="m-top"><span class="m-logo">A</span><div>Devis Auto<small>Étape 2 sur 3</small></div></div>
+        <div class="m-body">
+          <div class="m-step"><span class="on"></span><span class="on"></span><span></span></div>
+          <div class="m-h">Votre véhicule</div>
+          <div class="m-l">Marque et modèle</div><div class="m-in">Peugeot 208</div>
+          <div class="m-row" style="gap:8px"><div style="flex:1"><div class="m-l">Année</div><div class="m-in">2021</div></div><div style="flex:1"><div class="m-l">Permis depuis</div><div class="m-in">03/2012</div></div></div>
+          <div class="m-l">Coefficient bonus-malus</div><div class="m-in f">0,68</div>
+          <div class="m-l">Usage</div><div class="m-qr"><span class="on">Privé</span><span>Trajet travail</span><span>Professionnel</span></div>
+          <div class="m-l">Stationnement la nuit</div><div class="m-in">Garage fermé ▾</div>
+          <div class="m-btn">Calculer mon tarif</div>
+        </div>
+      </div></div>
+      <figcaption><span class="en">Step 2: only the questions for that product, checked as they're typed.</span><span class="fr">Étape 2 : uniquement les questions du produit, contrôlées à la saisie.</span></figcaption>
+    </figure>
+    <figure class="shot">
+      <div class="phone"><div class="scr">
+        <div class="sb"><span>10:07</span><span>5G ▮▮▮</span></div>
+        <div class="m-top"><span class="m-logo">A</span><div>Votre estimation<small>Étape 3 sur 3</small></div></div>
+        <div class="m-body">
+          <div class="m-step"><span class="on"></span><span class="on"></span><span class="on"></span></div>
+          <div class="m-card" style="text-align:center;padding:12px">
+            <div class="m-muted">Formule Auto Tiers +</div>
+            <div class="m-price">38,40 €<small> /mois</small></div>
+            <div class="m-bd wa" style="display:inline-block">Tarif indicatif, non contractuel</div>
+          </div>
+          <ul class="m-check"><li>Responsabilité civile</li><li>Bris de glace</li><li>Vol et incendie</li><li>Assistance 0 km</li></ul>
+          <div class="m-btn">Recevoir mon devis PDF</div>
+          <div class="m-btn2">Être rappelé par un conseiller</div>
+          <div class="m-fine">Devis n° DEV-2026-01133 · enregistré dans votre espace</div>
+        </div>
+      </div></div>
+      <figcaption><span class="en">Step 3: an indicative price from the rate tables, a PDF quote, or a callback.</span><span class="fr">Étape 3 : un prix indicatif issu des grilles tarifaires, un devis PDF ou un rappel.</span></figcaption>
+    </figure>
+  </div>
+
   <h2><span class="en">Questions per product</span><span class="fr">Questions par produit</span></h2>
   <div class="grid3">
     <div class="card"><h3><span class="en">Home</span><span class="fr">Habitation</span></h3>

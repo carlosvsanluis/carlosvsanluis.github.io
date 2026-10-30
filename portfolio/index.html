@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-lang="en">
+<html lang="fr" data-lang="fr">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -195,7 +195,7 @@ footer{padding:0 0 32px;color:var(--ink-2);font-size:13px;text-align:center}
       <a href="#contact">Contact</a>
     </nav>
     <div class="toggles">
-      <button class="tbtn" id="langBtn" aria-label="Switch language">FR</button>
+      <button class="tbtn" id="langBtn" aria-label="Switch language">EN</button>
       <button class="tbtn" id="themeBtn" aria-label="Toggle dark mode">◐</button>
     </div>
   </div>
@@ -645,7 +645,7 @@ footer{padding:0 0 32px;color:var(--ink-2);font-size:13px;text-align:center}
   function get(k){try{return localStorage.getItem(k)}catch(e){return null}}
   function set(k,v){try{localStorage.setItem(k,v)}catch(e){}}
   function applyLang(l){root.setAttribute('data-lang',l);root.lang=l;langBtn.textContent=l==='en'?'FR':'EN';}
-  var lang=get('lang')||((navigator.language||'en').toLowerCase().indexOf('fr')===0?'fr':'en');
+  var lang=get('lang')||'fr';
   applyLang(lang);
   langBtn.onclick=function(){lang=lang==='en'?'fr':'en';applyLang(lang);set('lang',lang);};
   var theme=get('theme'); if(theme) root.setAttribute('data-theme',theme);

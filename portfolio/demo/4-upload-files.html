@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-lang="en">
+<html lang="fr" data-lang="fr">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,12 +9,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="demo.css" />
+<link rel="stylesheet" href="mock.css" />
 </head>
 <body>
 <header class="top"><div class="wrap">
   <a class="brand" href="../">CSL</a>
   <span class="crumbs"><a href="./">AssurDemo</a> / <span class="en">4. File upload</span><span class="fr">4. Dépôt de fichiers</span></span>
-  <div class="toggles"><button class="tbtn" id="langBtn" aria-label="Switch language">FR</button><button class="tbtn" id="themeBtn" aria-label="Toggle dark mode">◐</button></div>
+  <div class="toggles"><button class="tbtn" id="langBtn" aria-label="Switch language">EN</button><button class="tbtn" id="themeBtn" aria-label="Toggle dark mode">◐</button></div>
 </div></header>
 
 <div class="hero"><div class="wrap">
@@ -26,7 +27,48 @@
 </div></div>
 
 <main class="wrap">
-  <div class="grid2">
+  <h2><span class="en">Interface preview</span><span class="fr">Aperçu de l'interface</span></h2>
+  <span class="mocklabel"><span class="en">Mockup of the planned interface. Real screenshots will replace it once built.</span><span class="fr">Maquette de l'interface prévue. Elle sera remplacée par de vraies captures une fois réalisée.</span></span>
+  <div class="shots">
+    <figure class="shot">
+      <div class="phone"><div class="scr">
+        <div class="sb"><span>18:20</span><span>5G ▮▮▮</span></div>
+        <div class="m-top"><span class="m-logo">A</span><div>Déclarer un sinistre<small>Contrat AUT-559871</small></div></div>
+        <div class="m-body">
+          <div class="m-row" style="gap:8px"><div style="flex:1"><div class="m-l" style="margin-top:0">Type</div><div class="m-in">Auto ▾</div></div><div style="flex:1"><div class="m-l" style="margin-top:0">Date</div><div class="m-in">24/10/2026</div></div></div>
+          <div class="m-l">Que s'est-il passé ?</div>
+          <div class="m-in ta">J'ai reculé contre un poteau sur un parking. Le pare-chocs arrière est enfoncé.</div>
+          <div class="m-l">Photos et documents</div>
+          <div class="m-thumbs">
+            <div class="m-thumb"><svg viewBox="0 0 240 160" preserveAspectRatio="xMidYMid slice"><rect width="240" height="160" fill="#cfd8e3"/><rect y="122" width="240" height="38" fill="#9aa4b1"/><rect x="40" y="38" width="160" height="90" rx="18" fill="#5d7290"/><path d="M64 44h112l-12 26H76z" fill="#26364d"/><rect x="46" y="76" width="26" height="11" rx="3" fill="#e2574c"/><rect x="168" y="76" width="26" height="11" rx="3" fill="#e2574c"/><rect x="98" y="82" width="44" height="12" rx="2" fill="#eef1f6"/><rect x="36" y="100" width="168" height="22" rx="8" fill="#465873"/><ellipse cx="152" cy="111" rx="20" ry="7" fill="#2f3d55"/><path d="M136 106l30 9M140 114l22-6" stroke="#dfe4ec" stroke-width="1.5"/></svg><b>✓</b></div>
+            <div class="m-thumb"><svg viewBox="0 0 240 160" preserveAspectRatio="xMidYMid slice"><rect width="240" height="160" fill="#c9d2dd"/><rect x="20" y="30" width="200" height="110" rx="10" fill="#465873"/><ellipse cx="120" cy="86" rx="46" ry="20" fill="#2f3d55"/><path d="M88 78l60 16M92 96l52-14M100 70l36 30" stroke="#dfe4ec" stroke-width="2"/></svg><b>✓</b></div>
+            <div class="m-thumb" style="background:#fff"><div style="text-align:center;font-size:10px;color:#5b6477"><div style="font:800 13px Inter;color:#b42318">PDF</div>constat.pdf</div><span class="m-prog"><i></i></span></div>
+          </div>
+          <div class="m-err">✕ « facture.exe » refusé : formats acceptés JPG, PNG, PDF (10 Mo max).</div>
+          <div class="m-btn2">📷 Prendre une photo / ajouter</div>
+          <div class="m-btn">Envoyer ma déclaration</div>
+        </div>
+      </div></div>
+      <figcaption><span class="en">Photos straight from the phone camera. Forbidden file types are refused immediately.</span><span class="fr">Photos prises directement avec le téléphone. Les types de fichiers interdits sont refusés immédiatement.</span></figcaption>
+    </figure>
+    <figure class="shot">
+      <div class="phone"><div class="scr">
+        <div class="sb"><span>18:22</span><span>5G ▮▮▮</span></div>
+        <div class="m-top"><span class="m-logo">A</span><div>Sinistre déclaré<small>Merci Camille</small></div></div>
+        <div class="m-body" style="text-align:center">
+          <div class="m-ok">✓</div>
+          <div class="m-h">Déclaration reçue</div>
+          <p class="m-sub">N° <b>SIN-2026-00042</b> · confirmation envoyée par e-mail</p>
+          <div class="m-card" style="text-align:left"><div class="m-muted" style="margin-bottom:4px">3 fichiers reçus</div><div>✓ photo_arriere_1.jpg</div><div>✓ photo_arriere_2.jpg</div><div>✓ constat.pdf</div></div>
+          <ul class="m-tl" style="text-align:left"><li class="d">Déclaration reçue</li><li class="c">En cours d'analyse</li><li>Pris en charge par un conseiller</li><li>Clôturé</li></ul>
+          <div class="m-btn">Suivre mon sinistre</div>
+        </div>
+      </div></div>
+      <figcaption><span class="en">Confirmation with a claim number and a status the customer can follow.</span><span class="fr">Confirmation avec un numéro de sinistre et un statut que le client peut suivre.</span></figcaption>
+    </figure>
+  </div>
+
+  <div class="grid2" style="margin-top:28px">
     <div class="card"><h3><span class="en">Design choice: where files live</span><span class="fr">Choix d'architecture : où vivent les fichiers</span></h3>
       <p class="en">Files go in a <b>SharePoint document library</b>, one folder per claim, through Power Pages document management. Their metadata stays in <b>Dataverse</b>. SharePoint storage is much cheaper than Dataverse storage, a lesson from my €70k storage optimisation, and advisors can open the files directly.</p>
       <p class="fr">Les fichiers vont dans une <b>bibliothèque SharePoint</b>, un dossier par sinistre, via la gestion documentaire Power Pages. Leurs métadonnées restent dans <b>Dataverse</b>. Le stockage SharePoint coûte beaucoup moins cher que celui de Dataverse, une leçon de mon optimisation de stockage à 70 k€, et les conseillers ouvrent les fichiers directement.</p></div>

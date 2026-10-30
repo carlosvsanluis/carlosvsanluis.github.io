@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-lang="en">
+<html lang="fr" data-lang="fr">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="demo.css" />
+<link rel="stylesheet" href="mock.css" />
 <style>
 .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:4px}
 .flow div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px;font-size:13px;text-align:center}
@@ -21,7 +22,7 @@
 <header class="top"><div class="wrap">
   <a class="brand" href="../">CSL</a>
   <span class="crumbs"><a href="./">AssurDemo</a> / <span class="en">6. PDF forms + approval</span><span class="fr">6. Formulaires PDF + validation</span></span>
-  <div class="toggles"><button class="tbtn" id="langBtn" aria-label="Switch language">FR</button><button class="tbtn" id="themeBtn" aria-label="Toggle dark mode">◐</button></div>
+  <div class="toggles"><button class="tbtn" id="langBtn" aria-label="Switch language">EN</button><button class="tbtn" id="themeBtn" aria-label="Toggle dark mode">◐</button></div>
 </div></header>
 
 <div class="hero"><div class="wrap">
@@ -33,6 +34,62 @@
 </div></div>
 
 <main class="wrap">
+  <h2><span class="en">Interface preview</span><span class="fr">Aperçu de l'interface</span></h2>
+  <span class="mocklabel"><span class="en">Mockup of the planned interface. Real screenshots will replace it once built.</span><span class="fr">Maquette de l'interface prévue. Elle sera remplacée par de vraies captures une fois réalisée.</span></span>
+  <div class="shots">
+    <figure class="shot">
+      <div class="phone"><div class="scr">
+        <div class="sb" style="background:#4b53bc"><span>11:12</span><span>5G ▮▮▮</span></div>
+        <div class="teams-top">Approbations</div>
+        <div class="m-body">
+          <div class="m-card" style="border-left:4px solid #4b53bc">
+            <div class="m-muted">AssurDemo · Power Automate</div>
+            <div class="m-h" style="font-size:14px">Valider l'extraction PDF</div>
+            <div class="m-muted">Sinistre <b>SIN-2026-00045</b> · Accident auto</div>
+            <div class="m-card" style="margin:8px 0 0;background:#fff5e8;border-color:#f3d3a8"><b style="color:#b25e00">⚠ 2 champs à vérifier</b><div class="m-muted">Montant estimé (62 %) · Tiers impliqué (71 %)</div></div>
+            <div class="m-btn">Ouvrir l'écran de contrôle</div>
+            <div class="m-row" style="gap:8px"><div class="m-btn2" style="flex:1">Approuver</div><div class="m-btn red" style="flex:1;margin-top:8px;padding:8px">Rejeter</div></div>
+          </div>
+          <div class="m-fine">Demandé à 11:10 · délai : 24 h</div>
+          <div class="m-l" style="margin-top:16px">Traitées récemment</div>
+          <div class="m-card"><div class="m-row"><b>SIN-2026-00041</b><span class="m-bd ok">Approuvé</span></div><div class="m-muted">1 champ corrigé · hier 16:40</div></div>
+          <div class="m-card"><div class="m-row"><b>SIN-2026-00039</b><span class="m-bd er">Rejeté</span></div><div class="m-muted">Document illisible · client relancé</div></div>
+        </div>
+      </div></div>
+      <figcaption><span class="en">The advisor gets an approval request in Teams or Outlook.</span><span class="fr">Le conseiller reçoit une demande d'approbation dans Teams ou Outlook.</span></figcaption>
+    </figure>
+    <figure class="shot" style="flex:1 1 560px">
+      <div class="browser"><div class="bar"><span class="dt"></span><span class="dt"></span><span class="dt"></span><span class="url">assurdemo.crm.dynamics.com · Contrôle d'extraction</span></div>
+        <div class="scr">
+          <div class="bo-top"><span class="m-logo">A</span>Contrôle d'extraction · SIN-2026-00045<span>Seuil de confiance : 80 %</span></div>
+          <div class="bo-body">
+            <div class="pdf">
+              <h5>DÉCLARATION DE SINISTRE</h5>
+              <div class="ln"><span>N° de contrat</span><span class="hw">AUT-559871</span></div>
+              <div class="ln"><span>Date</span><span class="hw">22/10/2026</span></div>
+              <div class="ln"><span>Lieu</span><span class="hw">Rennes, parking Colombier</span></div>
+              <div class="ln"><span>Tiers impliqué</span><span class="hw blur">oui ?</span></div>
+              <div class="ln"><span>Montant estimé</span><span class="hw blur">1 2_0 €</span></div>
+              <div class="ln" style="border:0;margin-top:6px"><span>Signature</span><svg width="70" height="22" viewBox="0 0 70 22"><path d="M2 16c8-14 12 6 18-4s8 8 14-2 10 6 16-2 8 4 18-6" fill="none" stroke="#1b3a8a" stroke-width="1.6"/></svg></div>
+            </div>
+            <div class="bo-panel">
+              <h4>Champs extraits <span class="m-bd in">6 champs</span></h4>
+              <div class="bo-f"><span>N° de contrat</span><span class="v">AUT-559871<span class="conf"><i style="width:98%"></i></span></span></div>
+              <div class="bo-f"><span>Date</span><span class="v">22/10/2026<span class="conf"><i style="width:96%"></i></span></span></div>
+              <div class="bo-f"><span>Lieu</span><span class="v">Rennes<span class="conf"><i style="width:93%"></i></span></span></div>
+              <div class="bo-f low"><span>Tiers impliqué</span><span class="v">Oui ▾<span class="conf lo"><i style="width:71%"></i></span></span></div>
+              <div class="bo-f low"><span>Montant estimé</span><span class="v"><span class="m-in f" style="padding:2px 6px;display:inline-block">1 280 €</span><span class="conf lo"><i style="width:62%"></i></span></span></div>
+              <div class="bo-f"><span>Signature présente</span><span class="v">Oui<span class="conf"><i style="width:99%"></i></span></span></div>
+              <div class="m-row" style="gap:8px"><div class="m-btn" style="flex:1">Approuver et enregistrer</div><div class="m-btn red" style="flex:1;padding:8px">Rejeter</div></div>
+              <div class="m-fine">Valeurs d'origine et corrections conservées pour l'audit</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <figcaption><span class="en">The PDF beside the extracted fields. Low-confidence fields are highlighted and can be corrected before approval.</span><span class="fr">Le PDF à côté des champs extraits. Les champs peu fiables sont mis en évidence et corrigés avant validation.</span></figcaption>
+    </figure>
+  </div>
+
   <h2><span class="en">The flow at a glance</span><span class="fr">Le processus en un coup d'œil</span></h2>
   <div class="flow en">
     <div><b>1. PDF</b>uploaded in module 4</div>
