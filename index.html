@@ -93,6 +93,20 @@ section{padding:72px 0 0}
 .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
 .tag{font-size:12px;font-weight:500;padding:3px 9px;border-radius:999px;background:var(--surface-2);color:var(--ink-2);border:1px solid var(--line)}
 
+/* demo banner */
+.demo{background:var(--hero-bg);color:var(--hero-ink);border-radius:18px;padding:32px;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.demo::after{content:"";position:absolute;left:-100px;bottom:-160px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(79,209,197,.22),transparent 70%)}
+.demo .k{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#4fd1c5}
+.demo h2{font-size:clamp(24px,3.4vw,32px);margin-top:6px;max-width:26ch}
+.demo p{color:var(--hero-ink-2);max-width:64ch;margin:12px 0 0}
+.demo-mods{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px;position:relative;z-index:1}
+@media (max-width:760px){.demo-mods{grid-template-columns:1fr 1fr}}
+@media (max-width:460px){.demo-mods{grid-template-columns:1fr}}
+.demo-mods a{display:flex;gap:10px;align-items:center;text-decoration:none;color:var(--hero-ink);border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:10px 12px;font-size:14.5px;font-weight:500;background:rgba(255,255,255,.03)}
+.demo-mods a:hover{border-color:#7b61ff;background:rgba(123,97,255,.12)}
+.demo-mods i{font-style:normal;display:grid;place-items:center;flex:none;width:26px;height:26px;border-radius:8px;background:rgba(123,97,255,.25);color:#cfc5ff;font:700 13px "Space Grotesk"}
+.demo .status{display:inline-block;margin-top:14px;font-size:12.5px;font-weight:600;padding:3px 10px;border-radius:999px;border:1px solid #f0a35e;color:#f0a35e}
+
 /* case studies */
 .case{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px;box-shadow:var(--shadow);margin-bottom:18px}
 .case-top{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;justify-content:space-between}
@@ -174,6 +188,7 @@ footer{padding:0 0 32px;color:var(--ink-2);font-size:13px;text-align:center}
     <a class="brand" href="#">CSL</a>
     <nav class="nav">
       <a href="#expertise"><span class="en">Expertise</span><span class="fr">Expertise</span></a>
+      <a href="#demo">Demo</a>
       <a href="#projects"><span class="en">Projects</span><span class="fr">Projets</span></a>
       <a href="#stack"><span class="en">Stack</span><span class="fr">Technologies</span></a>
       <a href="#experience"><span class="en">Experience</span><span class="fr">Parcours</span></a>
@@ -258,6 +273,26 @@ footer{padding:0 0 32px;color:var(--ink-2);font-size:13px;text-align:center}
         <p class="fr">Co-auteur de la charte de développement appliquée par cinq entités. Je rédige les procédures de livraison et la documentation, et je travaille directement avec le SAV, le marketing et la logistique.</p>
         <div class="tags"><span class="tag">Change management</span><span class="tag">Documentation</span><span class="tag">Azure DevOps</span></div>
       </div>
+    </div>
+  </section>
+
+  <!-- DEMO -->
+  <section id="demo">
+    <div class="demo">
+      <div class="k"><span class="en">Demo project</span><span class="fr">Projet de démonstration</span></div>
+      <h2><span class="en">AssurDemo: an insurance customer portal on Power Platform</span><span class="fr">AssurDemo : un portail client d'assurance sur la Power Platform</span></h2>
+      <p class="en">A fictional insurer's portal, built end to end in my own Microsoft tenant. It combines a Copilot Studio assistant, secure sign-in, quotes, claims with AI photo analysis, and PDF form reading with advisor approval. Each module has its own build plan.</p>
+      <p class="fr">Le portail d'un assureur fictif, construit de bout en bout dans mon propre tenant Microsoft. Il combine un assistant Copilot Studio, une connexion sécurisée, des devis, des sinistres avec analyse IA des photos, et la lecture de formulaires PDF validée par un conseiller. Chaque module a son plan de réalisation.</p>
+      <span class="status"><span class="en">Build in progress</span><span class="fr">En cours de réalisation</span></span>
+      <div class="demo-mods">
+        <a href="demo/1-chatbot.html"><i>1</i><span class="en">AI chatbot</span><span class="fr">Chatbot IA</span></a>
+        <a href="demo/2-secure-login.html"><i>2</i><span class="en">Secure login</span><span class="fr">Connexion sécurisée</span></a>
+        <a href="demo/3-quotes.html"><i>3</i><span class="en">Quotes: home, car, legal</span><span class="fr">Devis habitation, auto, PJ</span></a>
+        <a href="demo/4-upload-files.html"><i>4</i><span class="en">File upload</span><span class="fr">Dépôt de fichiers</span></a>
+        <a href="demo/5-ai-file-analysis.html"><i>5</i><span class="en">AI photo analysis</span><span class="fr">Analyse IA des photos</span></a>
+        <a href="demo/6-pdf-extraction-approval.html"><i>6</i><span class="en">PDF forms + approval</span><span class="fr">PDF + validation humaine</span></a>
+      </div>
+      <div class="cta"><a class="btn primary" href="demo/"><span class="en">Explore the demo</span><span class="fr">Découvrir la démo</span></a></div>
     </div>
   </section>
 
