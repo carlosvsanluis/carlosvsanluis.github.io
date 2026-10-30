@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>File Upload — AssurDemo</title>
+<meta name="description" content="Build plan: secure claim photo and document upload on Power Pages with SharePoint document management and Dataverse permissions." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="demo.css" />
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="../">CSL</a>
+  <span class="crumbs"><a href="./">AssurDemo</a> / <span class="en">4. File upload</span><span class="fr">4. Dépôt de fichiers</span></span>
+  <div class="toggles"><button class="tbtn" id="langBtn" aria-label="Switch language">FR</button><button class="tbtn" id="themeBtn" aria-label="Toggle dark mode">◐</button></div>
+</div></header>
+
+<div class="hero"><div class="wrap">
+  <div class="eyebrow"><span class="en">Module 4 of 6</span><span class="fr">Module 4 sur 6</span></div>
+  <h1><span class="en">Claim declaration with file upload</span><span class="fr">Déclaration de sinistre avec dépôt de fichiers</span></h1>
+  <p class="en">The customer reports a claim and attaches photos or a claim form straight from their phone or computer. Each file is stored securely against the claim, and its type decides which AI analysis runs next.</p>
+  <p class="fr">Le client déclare un sinistre et joint photos ou formulaire depuis son téléphone ou son ordinateur. Chaque fichier est stocké de façon sécurisée avec le sinistre, et son type décide de l'analyse IA qui suit.</p>
+  <div class="chips"><span class="chip plan"><span class="en">Build plan</span><span class="fr">Plan de réalisation</span></span><span class="chip">Power Pages</span><span class="chip">SharePoint</span><span class="chip">Dataverse</span><span class="chip">Power Automate</span></div>
+</div></div>
+
+<main class="wrap">
+  <div class="grid2">
+    <div class="card"><h3><span class="en">Design choice: where files live</span><span class="fr">Choix d'architecture : où vivent les fichiers</span></h3>
+      <p class="en">Files go in a <b>SharePoint document library</b>, one folder per claim, through Power Pages document management. Their metadata stays in <b>Dataverse</b>. SharePoint storage is much cheaper than Dataverse storage, a lesson from my €70k storage optimisation, and advisors can open the files directly.</p>
+      <p class="fr">Les fichiers vont dans une <b>bibliothèque SharePoint</b>, un dossier par sinistre, via la gestion documentaire Power Pages. Leurs métadonnées restent dans <b>Dataverse</b>. Le stockage SharePoint coûte beaucoup moins cher que celui de Dataverse, une leçon de mon optimisation de stockage à 70 k€, et les conseillers ouvrent les fichiers directement.</p></div>
+    <div class="card"><h3><span class="en">Rules</span><span class="fr">Règles</span></h3>
+      <ul class="en"><li>Accepted types: JPG, PNG and PDF only</li><li>Size limit per file, and several files allowed</li><li>Customers see files on their own claims only</li><li>Files are deleted on schedule once the retention period after closure ends</li></ul>
+      <ul class="fr"><li>Types acceptés : JPG, PNG et PDF uniquement</li><li>Taille limitée par fichier, plusieurs fichiers possibles</li><li>Le client ne voit que les fichiers de ses propres sinistres</li><li>Suppression planifiée à la fin de la durée de conservation après clôture</li></ul></div>
+  </div>
+
+  <h2><span class="en">Build steps</span><span class="fr">Étapes de réalisation</span></h2>
+  <ol class="steps en">
+    <li><b>Claim table</b><span class="d">A <code>Claim</code> table with the type (water damage, car accident, theft, and so on), date, description, status and a link to the contact. The claim number is generated automatically.</span></li>
+    <li><b>Turn on SharePoint document management</b><span class="d">I connect Dataverse to SharePoint and enable document management on the Claim table, so each claim gets its own folder automatically.</span></li>
+    <li><b>Declaration form in Power Pages</b><span class="d">A short form with a file-upload area. On a phone, the browser offers to take a photo directly.</span></li>
+    <li><b>Lock down types and sizes</b><span class="d">I set the allowed extensions and maximum size on the form and check them again on the server side, so the browser isn't the only line of defence.</span></li>
+    <li><b>Table permissions</b><span class="d">"Signed-in customer" can create claims and add files only on their own claims, using the contact scope from module 2.</span></li>
+    <li><b>Route each file</b><span class="d">A flow runs when a file arrives. An image goes to AI photo analysis (module 5) and a PDF to form extraction (module 6). The claim status becomes "Received – being analysed".</span></li>
+    <li><b>Customer confirmation</b><span class="d">An email confirms the claim number and the list of files received. The customer can track the status in "My space".</span></li>
+    <li><b>Retention</b><span class="d">A scheduled flow deletes files a set number of years after a claim closes. This is the same pattern I run in production today.</span></li>
+  </ol>
+  <ol class="steps fr">
+    <li><b>Table des sinistres</b><span class="d">Une table <code>Sinistre</code> avec le type (dégât des eaux, accident auto, vol, etc.), la date, la description, le statut et le lien au contact. Le numéro de sinistre est généré automatiquement.</span></li>
+    <li><b>Activer la gestion documentaire SharePoint</b><span class="d">Je relie Dataverse à SharePoint et j'active la gestion documentaire sur la table Sinistre, pour que chaque sinistre ait automatiquement son dossier.</span></li>
+    <li><b>Formulaire de déclaration Power Pages</b><span class="d">Un formulaire court avec une zone de dépôt. Sur mobile, le navigateur propose de prendre une photo directement.</span></li>
+    <li><b>Verrouiller types et tailles</b><span class="d">Je fixe les extensions autorisées et la taille maximale sur le formulaire, et je les vérifie de nouveau côté serveur, pour que le navigateur ne soit pas la seule protection.</span></li>
+    <li><b>Autorisations de table</b><span class="d">« Client connecté » peut créer des sinistres et ajouter des fichiers uniquement sur ses propres sinistres, grâce à la portée contact du module 2.</span></li>
+    <li><b>Orienter chaque fichier</b><span class="d">Un flux se déclenche à l'arrivée d'un fichier. Une image part vers l'analyse photo (module 5), un PDF vers la lecture de formulaire (module 6). Le sinistre passe au statut « Reçu – en cours d'analyse ».</span></li>
+    <li><b>Confirmation au client</b><span class="d">Un e-mail confirme le numéro de sinistre et la liste des fichiers reçus. Le client suit le statut dans « Mon espace ».</span></li>
+    <li><b>Conservation</b><span class="d">Un flux planifié supprime les fichiers un nombre d'années défini après la clôture du sinistre. C'est le même mécanisme que j'exploite aujourd'hui en production.</span></li>
+  </ol>
+
+  <h2><span class="en">What the video will show</span><span class="fr">Ce que montrera la vidéo</span></h2>
+  <p class="lead en">A claim reported from a phone with two photos and a PDF, the files arriving in the claim's SharePoint folder, a blocked upload of a forbidden file type, and the status changing to "being analysed".</p>
+  <p class="lead fr">Un sinistre déclaré depuis un téléphone avec deux photos et un PDF, les fichiers qui arrivent dans le dossier SharePoint du sinistre, le refus d'un type de fichier interdit, et le statut qui passe à « en cours d'analyse ».</p>
+
+  <nav class="pager">
+    <a href="3-quotes.html"><small><span class="en">Previous</span><span class="fr">Précédent</span></small><span class="en">← 3. Quote request</span><span class="fr">← 3. Demande de devis</span></a>
+    <a class="next" href="5-ai-file-analysis.html"><small><span class="en">Next</span><span class="fr">Suivant</span></small><span class="en">5. AI photo analysis →</span><span class="fr">5. Analyse IA des photos →</span></a>
+  </nav>
+</main>
+<footer>© Carlos San Luis · <a href="./">AssurDemo</a></footer>
+<script src="demo.js"></script>
+</body>
+</html>

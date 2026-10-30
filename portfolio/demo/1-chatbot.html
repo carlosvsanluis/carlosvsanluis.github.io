@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AI Chatbot — AssurDemo</title>
+<meta name="description" content="Build plan: a Copilot Studio insurance assistant with knowledge sources, topics and handover to a human advisor." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="demo.css" />
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="../">CSL</a>
+  <span class="crumbs"><a href="./">AssurDemo</a> / <span class="en">1. AI chatbot</span><span class="fr">1. Chatbot IA</span></span>
+  <div class="toggles"><button class="tbtn" id="langBtn" aria-label="Switch language">FR</button><button class="tbtn" id="themeBtn" aria-label="Toggle dark mode">◐</button></div>
+</div></header>
+
+<div class="hero"><div class="wrap">
+  <div class="eyebrow"><span class="en">Module 1 of 6</span><span class="fr">Module 1 sur 6</span></div>
+  <h1><span class="en">AI chatbot with Copilot Studio</span><span class="fr">Chatbot IA avec Copilot Studio</span></h1>
+  <p class="en">A 24/7 assistant on the portal. It answers questions from the insurer's own documents, starts a quote or a claim, and hands over to a human advisor when needed.</p>
+  <p class="fr">Un assistant disponible 24h/24 sur le portail. Il répond à partir des documents de l'assureur, lance un devis ou une déclaration de sinistre, et transfère vers un conseiller si besoin.</p>
+  <div class="chips"><span class="chip plan"><span class="en">Build plan</span><span class="fr">Plan de réalisation</span></span><span class="chip">Copilot Studio</span><span class="chip">SharePoint</span><span class="chip">Power Automate</span><span class="chip">Power Pages</span></div>
+</div></div>
+
+<main class="wrap">
+  <div class="grid2">
+    <div class="card"><h3><span class="en">What the customer can do</span><span class="fr">Ce que le client peut faire</span></h3>
+      <ul class="en"><li>Ask "Is water damage covered by my home insurance?" and get an answer that cites the source document</li><li>Start a home, car or legal-protection quote</li><li>Start a claim</li><li>Ask to speak to an advisor</li></ul>
+      <ul class="fr"><li>Demander « Le dégât des eaux est-il couvert par mon assurance habitation ? » et obtenir une réponse qui cite le document source</li><li>Lancer un devis habitation, auto ou protection juridique</li><li>Démarrer une déclaration de sinistre</li><li>Demander à parler à un conseiller</li></ul></div>
+    <div class="card"><h3><span class="en">Components</span><span class="fr">Composants</span></h3>
+      <ul class="en"><li><b>Copilot Studio</b> agent with generative answers</li><li><b>SharePoint</b> library as the knowledge source (general conditions, FAQ)</li><li><b>Topics</b> for quotes, claims and handover</li><li><b>Power Automate</b> agent flow that creates a callback request</li><li><b>Power Pages</b> web channel</li></ul>
+      <ul class="fr"><li>Agent <b>Copilot Studio</b> avec réponses génératives</li><li>Bibliothèque <b>SharePoint</b> comme source de connaissances (conditions générales, FAQ)</li><li><b>Rubriques</b> devis, sinistre et transfert</li><li>Flux d'agent <b>Power Automate</b> qui crée une demande de rappel</li><li>Canal web <b>Power Pages</b></li></ul></div>
+  </div>
+
+  <h2><span class="en">Build steps</span><span class="fr">Étapes de réalisation</span></h2>
+  <ol class="steps en">
+    <li><b>Create the solution first</b><span class="d">In my development environment, I create a solution called <code>AssurDemo</code> with its own publisher prefix. The agent, flows and tables all go inside it, so the project can move to test like a real one.</span></li>
+    <li><b>Create the agent and write its instructions</b><span class="d">Tone: polite and clear, in French or English. It never promises cover or gives a binding price. It suggests an advisor whenever it isn't sure.</span></li>
+    <li><b>Add the knowledge</b><span class="d">I write fictional general conditions (home, car, legal protection) and an FAQ, store them in SharePoint, and connect that library as the only knowledge source. Answers must cite the document they come from.</span></li>
+    <li><b>Build the topics</b><span class="d">"Get a quote" asks which product and sends the customer to the pre-filled form (module 3). "Report a claim" opens the claim form (module 4). "Talk to an advisor" collects a phone number and preferred time slot.</span></li>
+    <li><b>Handover flow</b><span class="d">A Power Automate agent flow creates a callback request in Dataverse, emails the advisors' queue and tells the customer when to expect a call.</span></li>
+    <li><b>Split anonymous and signed-in conversations</b><span class="d">General questions work without signing in. Anything about "my policy" or "my claim" requires the secure login from module 2.</span></li>
+    <li><b>Test with a question set</b><span class="d">I write 20 real-world questions, some deliberately off-topic or tricky, and check each answer, its citation and its handover behaviour.</span></li>
+    <li><b>Publish and monitor</b><span class="d">I embed the agent in the Power Pages site with the insurer's colours and welcome message, then use Copilot Studio analytics (resolution rate, escalations, unanswered questions) to improve the knowledge.</span></li>
+  </ol>
+  <ol class="steps fr">
+    <li><b>Créer d'abord la solution</b><span class="d">Dans mon environnement de développement, je crée une solution <code>AssurDemo</code> avec son propre préfixe d'éditeur. Agent, flux et tables y sont tous, pour que le projet passe en recette comme un vrai.</span></li>
+    <li><b>Créer l'agent et rédiger ses instructions</b><span class="d">Ton poli et clair, en français ou en anglais. Il ne promet jamais une garantie ni un prix ferme. Il propose un conseiller dès qu'il a un doute.</span></li>
+    <li><b>Ajouter les connaissances</b><span class="d">Je rédige des conditions générales fictives (habitation, auto, protection juridique) et une FAQ, je les stocke dans SharePoint et je relie cette bibliothèque comme seule source. Chaque réponse doit citer son document.</span></li>
+    <li><b>Créer les rubriques</b><span class="d">« Demander un devis » demande le produit et renvoie vers le formulaire pré-rempli (module 3). « Déclarer un sinistre » ouvre le formulaire de sinistre (module 4). « Parler à un conseiller » recueille un numéro et un créneau.</span></li>
+    <li><b>Flux de transfert</b><span class="d">Un flux d'agent Power Automate crée une demande de rappel dans Dataverse, prévient la file des conseillers par e-mail et indique au client quand il sera rappelé.</span></li>
+    <li><b>Séparer conversations anonymes et connectées</b><span class="d">Les questions générales fonctionnent sans connexion. Tout ce qui concerne « mon contrat » ou « mon sinistre » exige la connexion sécurisée du module 2.</span></li>
+    <li><b>Tester avec un jeu de questions</b><span class="d">Je rédige 20 questions réalistes, dont certaines hors sujet ou pièges, et je vérifie chaque réponse, sa citation et le transfert.</span></li>
+    <li><b>Publier et suivre</b><span class="d">J'intègre l'agent au site Power Pages, aux couleurs de l'assureur et avec un message d'accueil, puis j'utilise les analyses de Copilot Studio (taux de résolution, transferts, questions sans réponse) pour améliorer les connaissances.</span></li>
+  </ol>
+
+  <h2><span class="en">Security and compliance</span><span class="fr">Sécurité et conformité</span></h2>
+  <div class="good en">No personal data is collected in anonymous chats. Answers come only from the approved documents, and content moderation stays on. Conversation transcripts have a retention period, and the customer is told they're talking to an AI.</div>
+  <div class="good fr">Aucune donnée personnelle n'est collectée en conversation anonyme. Les réponses viennent uniquement des documents validés, et la modération du contenu reste activée. Les transcriptions ont une durée de conservation, et le client sait qu'il parle à une IA.</div>
+
+  <h2><span class="en">What the video will show</span><span class="fr">Ce que montrera la vidéo</span></h2>
+  <p class="lead en">A coverage question answered with its citation, an off-topic question politely refused, a quote started from the chat, and a handover to an advisor.</p>
+  <p class="lead fr">Une question de garantie avec sa citation, une question hors sujet poliment refusée, un devis lancé depuis le chat, et un transfert vers un conseiller.</p>
+
+  <nav class="pager">
+    <a href="./"><small><span class="en">Back</span><span class="fr">Retour</span></small><span class="en">Demo overview</span><span class="fr">Vue d'ensemble</span></a>
+    <a class="next" href="2-secure-login.html"><small><span class="en">Next</span><span class="fr">Suivant</span></small><span class="en">2. Secure login →</span><span class="fr">2. Connexion sécurisée →</span></a>
+  </nav>
+</main>
+<footer>© Carlos San Luis · <a href="../"><span class="en">Portfolio</span><span class="fr">Portfolio</span></a></footer>
+<script src="demo.js"></script>
+</body>
+</html>

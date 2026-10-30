@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>PDF Forms + Approval — AssurDemo</title>
+<meta name="description" content="Build plan: AI Builder document processing reads claim PDF forms; an advisor approves or corrects extracted fields before they are written to Dataverse." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="demo.css" />
+<style>
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:4px}
+.flow div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px;font-size:13px;text-align:center}
+.flow b{display:block;font-family:"Space Grotesk";font-size:14px;margin-bottom:2px}
+.flow .h{border-color:var(--accent-2);background:var(--teal-soft)}
+@media (max-width:760px){.flow{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="../">CSL</a>
+  <span class="crumbs"><a href="./">AssurDemo</a> / <span class="en">6. PDF forms + approval</span><span class="fr">6. Formulaires PDF + validation</span></span>
+  <div class="toggles"><button class="tbtn" id="langBtn" aria-label="Switch language">FR</button><button class="tbtn" id="themeBtn" aria-label="Toggle dark mode">◐</button></div>
+</div></header>
+
+<div class="hero"><div class="wrap">
+  <div class="eyebrow"><span class="en">Module 6 of 6</span><span class="fr">Module 6 sur 6</span></div>
+  <h1><span class="en">Reading PDF forms, with a human approval step</span><span class="fr">Lecture de formulaires PDF, avec validation humaine</span></h1>
+  <p class="en">AI reads a filled-in claim form and pulls out the fields. Nothing goes into the database until an advisor has checked the values, corrected any mistakes and approved them.</p>
+  <p class="fr">L'IA lit un formulaire de sinistre rempli et en extrait les champs. Rien n'entre en base tant qu'un conseiller n'a pas vérifié les valeurs, corrigé les erreurs et validé.</p>
+  <div class="chips"><span class="chip plan"><span class="en">Build plan</span><span class="fr">Plan de réalisation</span></span><span class="chip">AI Builder document processing</span><span class="chip">Power Automate Approvals</span><span class="chip">Dataverse</span><span class="chip">Teams / Outlook</span></div>
+</div></div>
+
+<main class="wrap">
+  <h2><span class="en">The flow at a glance</span><span class="fr">Le processus en un coup d'œil</span></h2>
+  <div class="flow en">
+    <div><b>1. PDF</b>uploaded in module 4</div>
+    <div><b>2. Extract</b>fields + confidence</div>
+    <div><b>3. Staging</b>"pending" record</div>
+    <div class="h"><b>4. Human</b>checks, corrects, approves</div>
+    <div><b>5. Save</b>to the Claim table</div>
+  </div>
+  <div class="flow fr">
+    <div><b>1. PDF</b>déposé au module 4</div>
+    <div><b>2. Extraction</b>champs + confiance</div>
+    <div><b>3. Attente</b>fiche « en attente »</div>
+    <div class="h"><b>4. Humain</b>vérifie, corrige, valide</div>
+    <div><b>5. Enregistrement</b>dans la table Sinistre</div>
+  </div>
+
+  <h2><span class="en">Build steps</span><span class="fr">Étapes de réalisation</span></h2>
+  <ol class="steps en">
+    <li><b>Design a sample claim form</b><span class="d">I create a fictional fillable "Claim declaration" PDF: policy number, date and place, circumstances, third party, estimated amount, and signature. Then I fill in about ten versions with different handwriting and typing.</span></li>
+    <li><b>Train a document processing model</b><span class="d">In AI Builder I define the fields, tag them on the sample documents, train the model and publish it. I note the accuracy score for each field.</span></li>
+    <li><b>Extraction flow</b><span class="d">Triggered for each PDF from module 4. It runs the model and gets every field value with its confidence score.</span></li>
+    <li><b>Staging record, not the real table</b><span class="d">The values go into an <code>Extraction pending</code> table. Any field below a confidence threshold, held in an environment variable such as 0.80, is marked "to check".</span></li>
+    <li><b>Approval</b><span class="d">The flow starts an approval: the advisor gets a Teams or Outlook card with a link to a review screen. That screen shows the PDF next to the extracted fields, with the uncertain ones highlighted, and the advisor can correct any value.</span></li>
+    <li><b>Approve or reject</b><span class="d">Approved: the corrected values are written to the Claim and its status moves on. Rejected: the customer is asked for a clearer document, with the reason given.</span></li>
+    <li><b>Audit and improve</b><span class="d">For each field the system stores the original value, the corrected value, who approved and when. Fields that are often corrected show where the model needs retraining.</span></li>
+    <li><b>Package it</b><span class="d">Model, flows, tables and app all go in the <code>AssurDemo</code> solution, with connection references and environment variables, ready to export to test.</span></li>
+  </ol>
+  <ol class="steps fr">
+    <li><b>Concevoir un formulaire d'exemple</b><span class="d">Je crée un PDF fictif et remplissable de « Déclaration de sinistre » : numéro de contrat, date et lieu, circonstances, tiers, montant estimé et signature. Puis j'en remplis une dizaine de versions, manuscrites ou tapées.</span></li>
+    <li><b>Entraîner un modèle de traitement de documents</b><span class="d">Dans AI Builder, je définis les champs, je les identifie sur les documents d'exemple, j'entraîne puis je publie le modèle. Je note le score de précision de chaque champ.</span></li>
+    <li><b>Flux d'extraction</b><span class="d">Déclenché pour chaque PDF du module 4. Il exécute le modèle et récupère chaque valeur avec son score de confiance.</span></li>
+    <li><b>Une fiche d'attente, pas la vraie table</b><span class="d">Les valeurs vont dans une table <code>Extraction en attente</code>. Tout champ sous un seuil de confiance, stocké dans une variable d'environnement, par exemple 0,80, est marqué « à vérifier ».</span></li>
+    <li><b>Validation</b><span class="d">Le flux lance une approbation : le conseiller reçoit une carte Teams ou Outlook avec un lien vers un écran de contrôle. Cet écran montre le PDF à côté des champs extraits, les incertains en surbrillance, et le conseiller peut corriger chaque valeur.</span></li>
+    <li><b>Valider ou refuser</b><span class="d">Validé : les valeurs corrigées sont écrites dans le Sinistre et son statut avance. Refusé : on demande au client un document plus lisible, en indiquant le motif.</span></li>
+    <li><b>Tracer et améliorer</b><span class="d">Pour chaque champ, le système garde la valeur d'origine, la valeur corrigée, qui a validé et quand. Les champs souvent corrigés montrent où le modèle doit être réentraîné.</span></li>
+    <li><b>Packager</b><span class="d">Modèle, flux, tables et application sont dans la solution <code>AssurDemo</code>, avec références de connexion et variables d'environnement, prêts à exporter vers la recette.</span></li>
+  </ol>
+
+  <h2><span class="en">Why the human step matters</span><span class="fr">Pourquoi l'étape humaine compte</span></h2>
+  <div class="good en">Insurance data drives payouts. Automatic extraction saves the advisor from typing, but a wrong policy number or amount is expensive. Keeping a person in the loop, with every correction tracked, gives both the speed and the reliability a regulated insurer needs.</div>
+  <div class="good fr">Les données d'assurance déclenchent des indemnisations. L'extraction automatique évite la saisie au conseiller, mais un numéro de contrat ou un montant erroné coûte cher. Garder un humain dans la boucle, avec chaque correction tracée, apporte à la fois la rapidité et la fiabilité qu'exige un assureur régulé.</div>
+
+  <h2><span class="en">What the video will show</span><span class="fr">Ce que montrera la vidéo</span></h2>
+  <p class="lead en">A PDF uploaded by a customer, the approval card arriving in Teams, an advisor fixing a low-confidence field, and the approved values appearing on the claim, with the audit trail.</p>
+  <p class="lead fr">Un PDF déposé par un client, la carte d'approbation qui arrive dans Teams, un conseiller qui corrige un champ peu fiable, et les valeurs validées qui apparaissent sur le sinistre, avec la traçabilité.</p>
+
+  <nav class="pager">
+    <a href="5-ai-file-analysis.html"><small><span class="en">Previous</span><span class="fr">Précédent</span></small><span class="en">← 5. AI photo analysis</span><span class="fr">← 5. Analyse IA des photos</span></a>
+    <a class="next" href="./"><small><span class="en">Done</span><span class="fr">Terminé</span></small><span class="en">Back to the overview →</span><span class="fr">Retour à la vue d'ensemble →</span></a>
+  </nav>
+</main>
+<footer>© Carlos San Luis · <a href="./">AssurDemo</a></footer>
+<script src="demo.js"></script>
+</body>
+</html>

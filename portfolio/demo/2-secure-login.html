@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Secure Login — AssurDemo</title>
+<meta name="description" content="Build plan: secure customer login on Power Pages with Microsoft Entra External ID, MFA, web roles and table permissions." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="demo.css" />
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="../">CSL</a>
+  <span class="crumbs"><a href="./">AssurDemo</a> / <span class="en">2. Secure login</span><span class="fr">2. Connexion sécurisée</span></span>
+  <div class="toggles"><button class="tbtn" id="langBtn" aria-label="Switch language">FR</button><button class="tbtn" id="themeBtn" aria-label="Toggle dark mode">◐</button></div>
+</div></header>
+
+<div class="hero"><div class="wrap">
+  <div class="eyebrow"><span class="en">Module 2 of 6</span><span class="fr">Module 2 sur 6</span></div>
+  <h1><span class="en">Secure customer login</span><span class="fr">Connexion client sécurisée</span></h1>
+  <p class="en">Customers create an account and sign in with multi-factor authentication. Once signed in, each customer can see only their own quotes, claims and documents. Advisors sign in separately with their company account.</p>
+  <p class="fr">Le client crée son compte et se connecte avec une authentification multifacteur. Une fois connecté, chacun ne voit que ses propres devis, sinistres et documents. Les conseillers se connectent séparément avec leur compte d'entreprise.</p>
+  <div class="chips"><span class="chip plan"><span class="en">Build plan</span><span class="fr">Plan de réalisation</span></span><span class="chip">Power Pages</span><span class="chip">Entra External ID</span><span class="chip">Entra ID</span><span class="chip">Dataverse security</span></div>
+</div></div>
+
+<main class="wrap">
+  <div class="grid2">
+    <div class="card"><h3><span class="en">Two kinds of user</span><span class="fr">Deux types d'utilisateurs</span></h3>
+      <ul class="en"><li><b>Customers:</b> a Microsoft Entra External ID account (email and password, or a one-time code) with MFA, used on the Power Pages portal</li><li><b>Advisors:</b> the company's Entra ID account with Dataverse security roles, used in the back-office app</li></ul>
+      <ul class="fr"><li><b>Clients :</b> compte Microsoft Entra External ID (e-mail et mot de passe, ou code à usage unique) avec MFA, utilisé sur le portail Power Pages</li><li><b>Conseillers :</b> compte Entra ID de l'entreprise avec rôles de sécurité Dataverse, utilisé dans l'application back-office</li></ul></div>
+    <div class="card"><h3><span class="en">Components</span><span class="fr">Composants</span></h3>
+      <ul class="en"><li><b>Power Pages</b> site</li><li><b>Microsoft Entra External ID</b> as the identity provider (OpenID Connect)</li><li><b>Web roles and table permissions</b></li><li><b>Dataverse security roles and column security</b></li><li><b>Copilot Studio</b> authentication</li></ul>
+      <ul class="fr"><li>Site <b>Power Pages</b></li><li><b>Microsoft Entra External ID</b> comme fournisseur d'identité (OpenID Connect)</li><li><b>Rôles web et autorisations de table</b></li><li><b>Rôles de sécurité Dataverse et sécurité de colonne</b></li><li>Authentification <b>Copilot Studio</b></li></ul></div>
+  </div>
+
+  <h2><span class="en">Build steps</span><span class="fr">Étapes de réalisation</span></h2>
+  <ol class="steps en">
+    <li><b>Create the Power Pages site</b><span class="d">I start from a blank template inside the <code>AssurDemo</code> solution and give it Home, My space, Quotes and Claims pages.</span></li>
+    <li><b>Set up Entra External ID</b><span class="d">I create an external tenant and a sign-up / sign-in user flow (email and password, or a one-time code), turn on MFA, and apply the insurer's branding.</span></li>
+    <li><b>Connect it to Power Pages</b><span class="d">I add External ID as an OpenID Connect provider, switch off local logins and the other providers, and set a session timeout.</span></li>
+    <li><b>Link each account to a contact</b><span class="d">On first sign-in, the portal creates or matches a Dataverse contact. That record is what every permission check relies on.</span></li>
+    <li><b>Web roles and table permissions</b><span class="d">A role called "Signed-in customer" has <i>Contact</i>-scope permissions. Customers can read their own quotes, claims and files, create new ones, and nothing more.</span></li>
+    <li><b>Lock down the back office</b><span class="d">Advisors get least-privilege security roles: "Advisor" and "Senior advisor" (who can approve). Sensitive columns such as bank details are protected with column security.</span></li>
+    <li><b>Pass the identity to the chatbot</b><span class="d">I configure authentication in Copilot Studio so that "my policy" questions use the signed-in customer's identity and data.</span></li>
+    <li><b>Try to break it</b><span class="d">I open another customer's record by changing the ID in the URL (it must fail), call the portal's Web API without a role, and check HTTPS, cookie and header settings.</span></li>
+  </ol>
+  <ol class="steps fr">
+    <li><b>Créer le site Power Pages</b><span class="d">Je pars d'un modèle vierge dans la solution <code>AssurDemo</code>, avec les pages Accueil, Mon espace, Devis et Sinistres.</span></li>
+    <li><b>Configurer Entra External ID</b><span class="d">Je crée un tenant externe et un parcours d'inscription / connexion (e-mail et mot de passe, ou code à usage unique), j'active la MFA et j'applique la charte de l'assureur.</span></li>
+    <li><b>Le relier à Power Pages</b><span class="d">J'ajoute External ID comme fournisseur OpenID Connect, je désactive les connexions locales et les autres fournisseurs, et je fixe une durée de session.</span></li>
+    <li><b>Lier chaque compte à un contact</b><span class="d">À la première connexion, le portail crée ou retrouve un contact Dataverse. C'est sur cet enregistrement que reposent tous les contrôles d'accès.</span></li>
+    <li><b>Rôles web et autorisations de table</b><span class="d">Un rôle « Client connecté » a des autorisations de portée <i>Contact</i>. Le client peut lire ses propres devis, sinistres et fichiers, en créer de nouveaux, et rien de plus.</span></li>
+    <li><b>Verrouiller le back-office</b><span class="d">Les conseillers ont des rôles au moindre privilège : « Conseiller » et « Conseiller senior » (qui peut valider). Les colonnes sensibles comme les coordonnées bancaires sont protégées par la sécurité de colonne.</span></li>
+    <li><b>Transmettre l'identité au chatbot</b><span class="d">Je configure l'authentification dans Copilot Studio pour que les questions sur « mon contrat » utilisent l'identité et les données du client connecté.</span></li>
+    <li><b>Essayer de le casser</b><span class="d">J'ouvre le dossier d'un autre client en changeant l'identifiant dans l'URL (cela doit échouer), j'appelle l'API Web du portail sans rôle, et je vérifie HTTPS, cookies et en-têtes.</span></li>
+  </ol>
+
+  <h2><span class="en">Security and compliance</span><span class="fr">Sécurité et conformité</span></h2>
+  <div class="good en">Consent and a privacy notice at sign-up, MFA for every customer, auditing turned on, and no credentials stored in Dataverse: the identity provider holds them. That last point is the lesson from my real-world password migration work.</div>
+  <div class="good fr">Consentement et mention d'information RGPD à l'inscription, MFA pour chaque client, audit activé, et aucun identifiant stocké dans Dataverse : c'est le fournisseur d'identité qui les gère. Ce dernier point est la leçon de mon travail réel de migration des mots de passe.</div>
+
+  <h2><span class="en">What the video will show</span><span class="fr">Ce que montrera la vidéo</span></h2>
+  <p class="lead en">Sign-up with MFA, a customer seeing only their own claims, the URL-tampering test failing, and the chatbot recognising the signed-in customer.</p>
+  <p class="lead fr">Une inscription avec MFA, un client qui ne voit que ses propres sinistres, l'échec du test de manipulation d'URL, et le chatbot qui reconnaît le client connecté.</p>
+
+  <nav class="pager">
+    <a href="1-chatbot.html"><small><span class="en">Previous</span><span class="fr">Précédent</span></small><span class="en">← 1. AI chatbot</span><span class="fr">← 1. Chatbot IA</span></a>
+    <a class="next" href="3-quotes.html"><small><span class="en">Next</span><span class="fr">Suivant</span></small><span class="en">3. Quote request →</span><span class="fr">3. Demande de devis →</span></a>
+  </nav>
+</main>
+<footer>© Carlos San Luis · <a href="./">AssurDemo</a></footer>
+<script src="demo.js"></script>
+</body>
+</html>

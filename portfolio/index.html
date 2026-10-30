@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Carlos San Luis — Power Platform & Dynamics 365 Architect</title>
+<meta name="description" content="Carlos San Luis — Power Platform & Dynamics 365 solution architect and developer near Rennes. Architecture, security (Entra ID, Key Vault), C# plug-ins, Custom APIs, Power Apps, Power Automate, AI." />
+<meta property="og:title" content="Carlos San Luis — Power Platform & Dynamics 365 Architect" />
+<meta property="og:description" content="Architecture, security and pro-code development on Microsoft Power Platform, Dynamics 365 and Azure. Ten years of international customer service." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://carlosvsanluis.github.io/" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#f6f7fb; --surface:#ffffff; --surface-2:#eef1f8; --ink:#141a2b; --ink-2:#4a5470; --line:#dde2ee;
+  --accent:#5b3fd6; --accent-2:#0e8f8a; --accent-soft:#ece8ff; --teal-soft:#e2f5f3;
+  --hero-bg:#141a2b; --hero-ink:#f3f5fb; --hero-ink-2:#b9c1d9;
+  --shadow:0 1px 2px rgba(20,26,43,.06),0 8px 24px rgba(20,26,43,.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e1220; --surface:#161b2d; --surface-2:#1d2338; --ink:#e9ecf6; --ink-2:#a3abc4; --line:#2a3150;
+    --accent:#a593ff; --accent-2:#4fd1c5; --accent-soft:#2a2550; --teal-soft:#123634;
+    --hero-bg:#0a0d18; --hero-ink:#f3f5fb; --hero-ink-2:#a3abc4;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0e1220; --surface:#161b2d; --surface-2:#1d2338; --ink:#e9ecf6; --ink-2:#a3abc4; --line:#2a3150;
+  --accent:#a593ff; --accent-2:#4fd1c5; --accent-soft:#2a2550; --teal-soft:#123634;
+  --hero-bg:#0a0d18; --hero-ink:#f3f5fb; --hero-ink-2:#a3abc4;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:"Space Grotesk",Inter,sans-serif;line-height:1.2;margin:0}
+a{color:var(--accent)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+html[data-lang="en"] .fr, html[data-lang="fr"] .en{display:none !important}
+
+/* top bar */
+.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--hero-bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.08)}
+.top .wrap{display:flex;align-items:center;gap:16px;height:56px}
+.brand{color:var(--hero-ink);font-family:"Space Grotesk";font-weight:700;text-decoration:none;letter-spacing:.02em}
+.nav{display:flex;gap:18px;margin-left:auto}
+.nav a{color:var(--hero-ink-2);text-decoration:none;font-size:14px}
+.nav a:hover{color:var(--hero-ink)}
+.toggles{display:flex;gap:6px}
+.tbtn{background:transparent;border:1px solid rgba(255,255,255,.2);color:var(--hero-ink);border-radius:8px;padding:4px 9px;font:600 12px Inter;cursor:pointer}
+.tbtn:hover{border-color:rgba(255,255,255,.5)}
+@media (max-width:760px){.nav{display:none}.toggles{margin-left:auto}}
+
+/* hero */
+.hero{background:var(--hero-bg);color:var(--hero-ink);padding:72px 0 64px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(123,97,255,.35),transparent 70%)}
+.eyebrow{display:inline-block;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#4fd1c5;margin-bottom:14px}
+.hero h1{font-size:clamp(34px,6vw,56px);max-width:16ch}
+.hero .role{font-size:clamp(18px,2.4vw,22px);color:var(--hero-ink-2);margin:16px 0 0;max-width:46ch}
+.hero .role strong{color:var(--hero-ink);font-weight:600}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;position:relative;z-index:1}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:10px;font-weight:600;font-size:15px;text-decoration:none}
+.btn.primary{background:#7b61ff;color:#fff}
+.btn.primary:hover{background:#6a4ff0}
+.btn.ghost{border:1px solid rgba(255,255,255,.25);color:var(--hero-ink)}
+.btn.ghost:hover{border-color:rgba(255,255,255,.6)}
+.where{margin-top:22px;color:var(--hero-ink-2);font-size:14px}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:-32px;position:relative;z-index:2}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:var(--shadow)}
+.stat b{display:block;font-family:"Space Grotesk";font-size:30px;color:var(--accent);line-height:1.1}
+.stat span{font-size:14px;color:var(--ink-2)}
+@media (max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+section{padding:72px 0 0}
+.sec-head{margin-bottom:28px;max-width:60ch}
+.sec-head .k{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-2)}
+.sec-head h2{font-size:clamp(26px,3.6vw,34px);margin-top:6px}
+.sec-head p{color:var(--ink-2);margin:10px 0 0}
+
+/* pillars */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:900px){.grid3{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:600px){.grid3{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:var(--shadow)}
+.card h3{font-size:18px;margin-bottom:8px;display:flex;align-items:center;gap:10px}
+.card p{margin:0;color:var(--ink-2);font-size:15px}
+.ico{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);flex:none}
+.ico svg{width:18px;height:18px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.tag{font-size:12px;font-weight:500;padding:3px 9px;border-radius:999px;background:var(--surface-2);color:var(--ink-2);border:1px solid var(--line)}
+
+/* demo banner */
+.demo{background:var(--hero-bg);color:var(--hero-ink);border-radius:18px;padding:32px;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.demo::after{content:"";position:absolute;left:-100px;bottom:-160px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(79,209,197,.22),transparent 70%)}
+.demo .k{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#4fd1c5}
+.demo h2{font-size:clamp(24px,3.4vw,32px);margin-top:6px;max-width:26ch}
+.demo p{color:var(--hero-ink-2);max-width:64ch;margin:12px 0 0}
+.demo-mods{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px;position:relative;z-index:1}
+@media (max-width:760px){.demo-mods{grid-template-columns:1fr 1fr}}
+@media (max-width:460px){.demo-mods{grid-template-columns:1fr}}
+.demo-mods a{display:flex;gap:10px;align-items:center;text-decoration:none;color:var(--hero-ink);border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:10px 12px;font-size:14.5px;font-weight:500;background:rgba(255,255,255,.03)}
+.demo-mods a:hover{border-color:#7b61ff;background:rgba(123,97,255,.12)}
+.demo-mods i{font-style:normal;display:grid;place-items:center;flex:none;width:26px;height:26px;border-radius:8px;background:rgba(123,97,255,.25);color:#cfc5ff;font:700 13px "Space Grotesk"}
+.demo .status{display:inline-block;margin-top:14px;font-size:12.5px;font-weight:600;padding:3px 10px;border-radius:999px;border:1px solid #f0a35e;color:#f0a35e}
+
+/* case studies */
+.case{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px;box-shadow:var(--shadow);margin-bottom:18px}
+.case-top{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;justify-content:space-between}
+.case h3{font-size:22px}
+.case .meta{font-size:13px;color:var(--accent-2);font-weight:600}
+.case .lead{color:var(--ink-2);margin:10px 0 0;max-width:72ch}
+.case-body{display:grid;grid-template-columns:1.1fr 1fr;gap:28px;margin-top:20px;align-items:start}
+.case-body.single{grid-template-columns:1fr}
+@media (max-width:860px){.case-body{grid-template-columns:1fr}}
+.case ul{margin:0;padding-left:18px}
+.case li{margin:6px 0;font-size:15px}
+.case li b{color:var(--ink)}
+.outcome{margin-top:16px;padding:12px 14px;border-left:3px solid var(--accent-2);background:var(--teal-soft);border-radius:0 10px 10px 0;font-size:14.5px}
+.diagram{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:12px}
+.diagram svg{width:100%;height:auto;display:block}
+.diagram svg text{font-family:Inter,sans-serif;fill:var(--ink)}
+.diagram .muted{fill:var(--ink-2)}
+.diagram .box{fill:var(--surface);stroke:var(--line);stroke-width:1.2}
+.diagram .box-a{fill:var(--accent-soft);stroke:var(--accent);stroke-width:1.2}
+.diagram .box-t{fill:var(--teal-soft);stroke:var(--accent-2);stroke-width:1.2}
+.diagram .arrow{stroke:var(--ink-2);stroke-width:1.5;fill:none}
+.diagram .arrow-a{stroke:var(--accent);stroke-width:1.5;fill:none;stroke-dasharray:4 3}
+.diagram .ah{fill:var(--ink-2)}
+.diagram .ah-a{fill:var(--accent)}
+.cap{font-size:13px;color:var(--ink-2);margin:8px 2px 0}
+
+/* pipeline */
+.pipe{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:8px;align-items:stretch}
+.stage{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px;font-size:13.5px}
+.stage b{display:block;font-family:"Space Grotesk";font-size:16px;margin-bottom:4px}
+.stage.prod{border-color:var(--accent-2)}
+.parrow{align-self:center;color:var(--ink-2);font-size:20px}
+.pipebar{margin-top:10px;font-size:13px;color:var(--ink-2);text-align:center;border:1px dashed var(--line);border-radius:10px;padding:8px}
+@media (max-width:560px){.pipe{grid-template-columns:1fr}.parrow{transform:rotate(90deg);justify-self:center}}
+
+/* stack */
+.stack{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media (max-width:700px){.stack{grid-template-columns:1fr}}
+.stack .card h3{font-size:16px}
+
+/* timeline */
+.tl{position:relative;padding-left:26px}
+.tl::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:var(--line)}
+.item{position:relative;margin-bottom:22px}
+.item::before{content:"";position:absolute;left:-25px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--surface);border:3px solid var(--accent)}
+.item.svc::before{border-color:var(--accent-2)}
+.item .when{font-size:13px;font-weight:600;color:var(--ink-2)}
+.item h3{font-size:18px;margin:2px 0}
+.item .org{font-size:14px;color:var(--accent-2);font-weight:600}
+.item p{margin:6px 0 0;color:var(--ink-2);font-size:15px;max-width:72ch}
+
+/* service band */
+.band{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px;box-shadow:var(--shadow);display:grid;grid-template-columns:1fr 1fr;gap:28px}
+@media (max-width:800px){.band{grid-template-columns:1fr}}
+.band h3{font-size:20px;margin-bottom:8px}
+.band p{color:var(--ink-2);margin:0 0 10px}
+.chk{list-style:none;padding:0;margin:0}
+.chk li{padding-left:26px;position:relative;margin:8px 0;font-size:15px}
+.chk li::before{content:"";position:absolute;left:0;top:5px;width:16px;height:16px;border-radius:5px;background:var(--teal-soft);border:1.5px solid var(--accent-2)}
+.chk li::after{content:"";position:absolute;left:5px;top:8px;width:6px;height:9px;border:solid var(--accent-2);border-width:0 2px 2px 0;transform:rotate(45deg)}
+
+/* edu */
+.edu{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:800px){.edu{grid-template-columns:1fr}}
+.edu .card h3{font-size:16px}
+.edu .when{font-size:13px;color:var(--ink-2);font-weight:600}
+
+/* contact */
+.contact{background:var(--hero-bg);color:var(--hero-ink);border-radius:18px;padding:36px;margin:72px 0 40px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between}
+.contact h2{font-size:28px}
+.contact p{color:var(--hero-ink-2);margin:6px 0 0}
+footer{padding:0 0 32px;color:var(--ink-2);font-size:13px;text-align:center}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#">CSL</a>
+    <nav class="nav">
+      <a href="#expertise"><span class="en">Expertise</span><span class="fr">Expertise</span></a>
+      <a href="#demo">Demo</a>
+      <a href="#projects"><span class="en">Projects</span><span class="fr">Projets</span></a>
+      <a href="#stack"><span class="en">Stack</span><span class="fr">Technologies</span></a>
+      <a href="#experience"><span class="en">Experience</span><span class="fr">Parcours</span></a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="toggles">
+      <button class="tbtn" id="langBtn" aria-label="Switch language">FR</button>
+      <button class="tbtn" id="themeBtn" aria-label="Toggle dark mode">◐</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="wrap">
+    <span class="eyebrow"><span class="en">Microsoft Power Platform · Dynamics 365 · Azure</span><span class="fr">Microsoft Power Platform · Dynamics 365 · Azure</span></span>
+    <h1>Carlos San Luis</h1>
+    <p class="role en"><strong>Power Platform & Dynamics 365 Solution Architect.</strong> I design, secure and build the Microsoft business platform: Dataverse, Power Apps, Power Automate, C# plug-ins and Custom APIs on Azure. I also have ten years of international customer service behind me.</p>
+    <p class="role fr"><strong>Architecte solutions Power Platform & Dynamics 365.</strong> Je conçois, sécurise et développe la plateforme métier Microsoft : Dataverse, Power Apps, Power Automate, plug-ins C# et Custom APIs sur Azure. J'apporte aussi dix ans d'expérience du service client à l'international.</p>
+    <div class="cta">
+      <a class="btn primary" href="#projects"><span class="en">See my work</span><span class="fr">Voir mes réalisations</span></a>
+      <a class="btn ghost en" href="2025CarlosCVEng.pdf" target="_blank" rel="noopener">Download CV</a>
+      <a class="btn ghost fr" href="2025CarlosCVFRE.pdf" target="_blank" rel="noopener">Télécharger le CV</a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/carlos-s-648057197/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <p class="where"><span class="en">Based near Rennes, Brittany · French, English</span><span class="fr">Basé près de Rennes (35) · Français, anglais</span></p>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat"><b>€70k</b><span class="en">annual savings from licence and Dataverse storage optimisation</span><span class="fr">d'économies annuelles (licences et stockage Dataverse)</span></div>
+    <div class="stat"><b>5</b><span class="en">international entities on one Power Platform governance framework</span><span class="fr">entités internationales sous un même cadre de gouvernance</span></div>
+    <div class="stat"><b>440+</b><span class="en">features, fixes and releases delivered since 2024</span><span class="fr">évolutions, correctifs et livraisons depuis 2024</span></div>
+    <div class="stat"><b>10 <span class="en" style="font-size:18px">yrs</span><span class="fr" style="font-size:18px">ans</span></b><span class="en">of international customer service before IT</span><span class="fr">de service client international avant l'IT</span></div>
+  </div>
+
+  <!-- EXPERTISE -->
+  <section id="expertise">
+    <div class="sec-head">
+      <div class="k"><span class="en">What I do</span><span class="fr">Ce que je fais</span></div>
+      <h2><span class="en">From architecture to adoption</span><span class="fr">De l'architecture à l'adoption</span></h2>
+      <p class="en">I own a multi-entity Dynamics 365 platform end to end. I set the architecture and the security model, write the code, and work with the people who use it.</p>
+      <p class="fr">Je pilote de bout en bout une plateforme Dynamics 365 multi-entités. Je définis l'architecture et le modèle de sécurité, je développe, et je travaille avec les utilisateurs.</p>
+    </div>
+    <div class="grid3">
+      <div class="card">
+        <h3><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="8.5" y="14" width="7" height="7" rx="1"/><path d="M6.5 10v2h11v-2M12 12v2"/></svg></span><span class="en">Solution architecture</span><span class="fr">Architecture solution</span></h3>
+        <p class="en">Dataverse data models, integration patterns, an API layer for websites and software, and an environment strategy. I review external vendors' designs and weigh their cost against the value they bring.</p>
+        <p class="fr">Modèles de données Dataverse, patterns d'intégration, couche d'API pour les sites et logiciels, stratégie d'environnements. Je revois les conceptions des prestataires et j'évalue leur rapport coût/valeur.</p>
+        <div class="tags"><span class="tag">Dataverse</span><span class="tag">Custom APIs</span><span class="tag">API Management</span><span class="tag">ALM</span></div>
+      </div>
+      <div class="card">
+        <h3><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg></span><span class="en">Security & identity</span><span class="fr">Sécurité & identité</span></h3>
+        <p class="en">Least-privilege roles mapped to Entra ID security groups, column-level security, Key Vault secrets reached through Managed Identity, and tenant hardening: isolation, IP firewall, Customer Lockbox and auditing.</p>
+        <p class="fr">Rôles au moindre privilège reliés aux groupes Entra ID, sécurité au niveau colonne, secrets Key Vault via Managed Identity, et durcissement du tenant : isolation, pare-feu IP, Customer Lockbox, audit.</p>
+        <div class="tags"><span class="tag">Entra ID</span><span class="tag">Key Vault</span><span class="tag">Managed Identity</span><span class="tag">RBAC</span></div>
+      </div>
+      <div class="card">
+        <h3><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg></span><span class="en">Pro-code development</span><span class="fr">Développement pro-code</span></h3>
+        <p class="en">C# plug-ins and Dataverse Custom APIs, web resources, and integrations with e-commerce, telephony, chat and ERP systems. All of it tested with Postman and XrmToolBox and traced in Application Insights.</p>
+        <p class="fr">Plug-ins C# et Custom APIs Dataverse, ressources web, intégrations e-commerce, téléphonie, chat et ERP. Le tout testé avec Postman et XrmToolBox et tracé dans Application Insights.</p>
+        <div class="tags"><span class="tag">C# / .NET</span><span class="tag">Plug-ins</span><span class="tag">REST</span><span class="tag">JavaScript</span></div>
+      </div>
+      <div class="card">
+        <h3><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h4l3-8 2 16 3-8h4"/></svg></span><span class="en">Low-code & automation</span><span class="fr">Low-code & automatisation</span></h3>
+        <p class="en">Model-driven and canvas Power Apps and a large Power Automate estate. Flows use connection references and environment variables, raise failure alerts, and run retention jobs that keep storage under control.</p>
+        <p class="fr">Power Apps model-driven et canvas, et un large parc Power Automate : références de connexion, variables d'environnement, alertes en cas d'échec, et purges qui maîtrisent le stockage.</p>
+        <div class="tags"><span class="tag">Power Apps</span><span class="tag">Power Automate</span><span class="tag">Customer Insights</span></div>
+      </div>
+      <div class="card">
+        <h3><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9 16h6"/></svg></span><span class="en">AI & conversational</span><span class="fr">IA & conversationnel</span></h3>
+        <p class="en">An AI support chatbot connected to live chat, with a clean handover to a human agent and protection against bot traffic. I also oversaw OpenAI integrations that automate customer-service work.</p>
+        <p class="fr">Un chatbot de support IA relié au chat en direct, avec bascule vers un agent humain et protection contre les robots. J'ai aussi supervisé des intégrations OpenAI qui automatisent le service client.</p>
+        <div class="tags"><span class="tag">Azure Bot</span><span class="tag">OpenAI</span><span class="tag">Omnichannel</span></div>
+      </div>
+      <div class="card">
+        <h3><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 20c0-2.5 1.5-4.5 4-4.5"/></svg></span><span class="en">Adoption & governance</span><span class="fr">Adoption & gouvernance</span></h3>
+        <p class="en">I co-wrote the development charter used by five entities. I write release procedures and documentation, and I work directly with support, marketing and logistics teams on their day-to-day needs.</p>
+        <p class="fr">Co-auteur de la charte de développement appliquée par cinq entités. Je rédige les procédures de livraison et la documentation, et je travaille directement avec le SAV, le marketing et la logistique.</p>
+        <div class="tags"><span class="tag">Change management</span><span class="tag">Documentation</span><span class="tag">Azure DevOps</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEMO -->
+  <section id="demo">
+    <div class="demo">
+      <div class="k"><span class="en">Demo project</span><span class="fr">Projet de démonstration</span></div>
+      <h2><span class="en">AssurDemo: an insurance customer portal on Power Platform</span><span class="fr">AssurDemo : un portail client d'assurance sur la Power Platform</span></h2>
+      <p class="en">A fictional insurer's portal, built end to end in my own Microsoft tenant. It combines a Copilot Studio assistant, secure sign-in, quotes, claims with AI photo analysis, and PDF form reading with advisor approval. Each module has its own build plan.</p>
+      <p class="fr">Le portail d'un assureur fictif, construit de bout en bout dans mon propre tenant Microsoft. Il combine un assistant Copilot Studio, une connexion sécurisée, des devis, des sinistres avec analyse IA des photos, et la lecture de formulaires PDF validée par un conseiller. Chaque module a son plan de réalisation.</p>
+      <span class="status"><span class="en">Build in progress</span><span class="fr">En cours de réalisation</span></span>
+      <div class="demo-mods">
+        <a href="demo/1-chatbot.html"><i>1</i><span class="en">AI chatbot</span><span class="fr">Chatbot IA</span></a>
+        <a href="demo/2-secure-login.html"><i>2</i><span class="en">Secure login</span><span class="fr">Connexion sécurisée</span></a>
+        <a href="demo/3-quotes.html"><i>3</i><span class="en">Quotes: home, car, legal</span><span class="fr">Devis habitation, auto, PJ</span></a>
+        <a href="demo/4-upload-files.html"><i>4</i><span class="en">File upload</span><span class="fr">Dépôt de fichiers</span></a>
+        <a href="demo/5-ai-file-analysis.html"><i>5</i><span class="en">AI photo analysis</span><span class="fr">Analyse IA des photos</span></a>
+        <a href="demo/6-pdf-extraction-approval.html"><i>6</i><span class="en">PDF forms + approval</span><span class="fr">PDF + validation humaine</span></a>
+      </div>
+      <div class="cta"><a class="btn primary" href="demo/"><span class="en">Explore the demo</span><span class="fr">Découvrir la démo</span></a></div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="sec-head">
+      <div class="k"><span class="en">Selected projects</span><span class="fr">Projets choisis</span></div>
+      <h2><span class="en">Case studies</span><span class="fr">Études de cas</span></h2>
+      <p class="en">Work for an international consumer-electronics group with five entities. Client details are left out.</p>
+      <p class="fr">Réalisations pour un groupe international d'électronique grand public (cinq entités). Les détails du client ne sont pas mentionnés.</p>
+    </div>
+
+    <!-- 1 API layer -->
+    <article class="case">
+      <div class="case-top">
+        <h3><span class="en">An in-house API layer on Dataverse</span><span class="fr">Une couche d'API interne sur Dataverse</span></h3>
+        <span class="meta">Architecture · C# · Azure</span>
+      </div>
+      <p class="lead en">The group's websites, e-shops and desktop software all reached the CRM through a third-party gateway. I designed its replacement: Dataverse Custom APIs, owned in-house and published behind Azure API Management.</p>
+      <p class="lead fr">Les sites, e-shops et logiciels du groupe accédaient au CRM via une passerelle tierce. J'ai conçu son remplacement : des Custom APIs Dataverse, maîtrisées en interne et publiées derrière Azure API Management.</p>
+      <div class="case-body">
+        <div>
+          <ul class="en">
+            <li><b>About 15 Custom APIs</b> covering contacts, sign-in, cases, notes and documents, orders, newsletters and wishlists.</li>
+            <li><b>Separate C# plug-in assemblies</b> for websites and for software, so each can be deployed on its own.</li>
+            <li><b>No secrets in code or configuration.</b> Legacy keys sit in Azure Key Vault, read through Managed Identity.</li>
+            <li><b>Observability:</b> logging through ILogger, a correlation ID between API Management and Dataverse, and INFO / WARN / ERR error codes.</li>
+          </ul>
+          <ul class="fr">
+            <li><b>Une quinzaine de Custom APIs</b> : contacts, connexion, incidents, notes et documents, commandes, newsletters, listes de souhaits.</li>
+            <li><b>Des assemblies de plug-ins C# séparées</b> pour les sites et pour les logiciels, déployables indépendamment.</li>
+            <li><b>Aucun secret dans le code ni la configuration.</b> Les clés historiques sont dans Azure Key Vault, lues via Managed Identity.</li>
+            <li><b>Observabilité :</b> journalisation ILogger, identifiant de corrélation entre API Management et Dataverse, codes d'erreur INFO / WARN / ERR.</li>
+          </ul>
+          <div class="outcome en">The integration contract is now owned in-house. Vendor dependency is gone, and every call can be traced from the website to the CRM record.</div>
+          <div class="outcome fr">Le contrat d'intégration est maîtrisé en interne. La dépendance au prestataire disparaît, et chaque appel est traçable du site jusqu'à l'enregistrement CRM.</div>
+        </div>
+        <div>
+          <div class="diagram" role="img" aria-label="Architecture: websites, e-shops and software call Azure API Management, which calls Dataverse Custom APIs implemented as C# plug-ins. Secrets come from Key Vault via Managed Identity; telemetry goes to Application Insights.">
+            <svg viewBox="0 0 440 300">
+              <defs>
+                <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker>
+                <marker id="aha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="ah-a"/></marker>
+              </defs>
+              <rect class="box" x="10" y="20" width="108" height="44" rx="8"/><text x="64" y="47" text-anchor="middle" font-size="12">Websites & portals</text>
+              <rect class="box" x="10" y="76" width="108" height="44" rx="8"/><text x="64" y="103" text-anchor="middle" font-size="12">E-shops</text>
+              <rect class="box" x="10" y="132" width="108" height="44" rx="8"/><text x="64" y="159" text-anchor="middle" font-size="12">Desktop software</text>
+              <rect class="box-t" x="160" y="70" width="104" height="56" rx="8"/><text x="212" y="94" text-anchor="middle" font-size="12" font-weight="600">Azure API</text><text x="212" y="110" text-anchor="middle" font-size="12" font-weight="600">Management</text>
+              <rect class="box-a" x="306" y="48" width="124" height="100" rx="8"/><text x="368" y="72" text-anchor="middle" font-size="12" font-weight="600">Dataverse</text><text x="368" y="88" text-anchor="middle" font-size="12" font-weight="600">Custom APIs</text><text x="368" y="110" text-anchor="middle" font-size="11" class="muted">C# plug-in</text><text x="368" y="125" text-anchor="middle" font-size="11" class="muted">assemblies</text>
+              <path class="arrow" d="M118 42 C140 42 140 90 158 92" marker-end="url(#ah)"/>
+              <path class="arrow" d="M118 98 L158 98" marker-end="url(#ah)"/>
+              <path class="arrow" d="M118 154 C140 154 140 106 158 104" marker-end="url(#ah)"/>
+              <path class="arrow" d="M264 98 L304 98" marker-end="url(#ah)"/>
+              <rect class="box" x="306" y="214" width="124" height="44" rx="8"/><text x="368" y="241" text-anchor="middle" font-size="12">Azure Key Vault</text>
+              <path class="arrow-a" d="M368 148 L368 212" marker-end="url(#aha)"/>
+              <text x="374" y="178" font-size="11" class="muted">Managed</text><text x="374" y="192" font-size="11" class="muted">Identity</text>
+              <rect class="box" x="160" y="214" width="104" height="44" rx="8"/><text x="212" y="234" text-anchor="middle" font-size="12">Application</text><text x="212" y="249" text-anchor="middle" font-size="12">Insights</text>
+              <path class="arrow-a" d="M212 126 L212 212" marker-end="url(#aha)"/>
+              <path class="arrow-a" d="M330 148 C330 190 290 236 266 236" marker-end="url(#aha)"/>
+              <text x="220" y="176" font-size="11" class="muted">telemetry</text>
+            </svg>
+          </div>
+          <p class="cap en">Every client goes through one gateway. Secrets and telemetry never sit in code.</p>
+          <p class="cap fr">Tous les clients passent par une seule passerelle. Secrets et télémétrie restent hors du code.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- 2 security -->
+    <article class="case">
+      <div class="case-top">
+        <h3><span class="en">Customer credentials and platform security</span><span class="fr">Identifiants clients et sécurité de la plateforme</span></h3>
+        <span class="meta">Security · Entra ID · Power Platform</span>
+      </div>
+      <p class="lead en">An internal audit rated the CRM's security posture "low". I led the remediation, from how passwords are stored up to tenant-wide settings.</p>
+      <p class="lead fr">Un audit interne avait jugé « faible » le niveau de sécurité du CRM. J'ai piloté la remédiation, du stockage des mots de passe jusqu'aux paramètres du tenant.</p>
+      <div class="case-body">
+        <div>
+          <ul class="en">
+            <li><b>Passwords moved from MD5/Base64 to BCrypt.</b> Customers keep signing in during the migration, and the legacy keys sit in Key Vault.</li>
+            <li><b>Column-level security</b> on the seven authentication columns. Anything that could expose secrets in trace logs was removed.</li>
+            <li><b>Unauthenticated HTTP-triggered flows taken out of production.</b> Each website now has its own application account.</li>
+          </ul>
+          <ul class="fr">
+            <li><b>Mots de passe migrés de MD5/Base64 vers BCrypt.</b> Les clients restent connectés pendant la migration, et les clés historiques sont dans Key Vault.</li>
+            <li><b>Sécurité au niveau colonne</b> sur les sept colonnes d'authentification. Tout ce qui pouvait exposer des secrets dans les journaux a été supprimé.</li>
+            <li><b>Flux HTTP non authentifiés retirés de la production.</b> Chaque site dispose désormais de son propre compte applicatif.</li>
+          </ul>
+        </div>
+        <div>
+          <ul class="en">
+            <li><b>Least-privilege roles</b> for agents, managers, developers and service accounts, replacing System Administrator. Roles are kept in sync with Entra ID security groups.</li>
+            <li><b>Tenant hardening:</b> tenant isolation, IP firewall and cookie binding, guest restrictions, Customer Lockbox, Global Secure Access and auditing in production.</li>
+          </ul>
+          <ul class="fr">
+            <li><b>Rôles au moindre privilège</b> pour les agents, managers, développeurs et comptes de service, à la place d'Administrateur système. Les rôles sont synchronisés avec les groupes Entra ID.</li>
+            <li><b>Durcissement du tenant :</b> isolation, pare-feu IP et liaison de cookies, restrictions invités, Customer Lockbox, Global Secure Access, audit en production.</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <!-- 3 ALM -->
+    <article class="case">
+      <div class="case-top">
+        <h3><span class="en">ALM and governance for five entities</span><span class="fr">ALM et gouvernance pour cinq entités</span></h3>
+        <span class="meta">ALM · Azure DevOps · Governance</span>
+      </div>
+      <p class="lead en">Several partners were changing the same environments with no shared rules. I rebuilt how solutions move to production and co-wrote the development charter all five entities follow.</p>
+      <p class="lead fr">Plusieurs prestataires modifiaient les mêmes environnements sans règles communes. J'ai refondu le passage en production des solutions et co-rédigé la charte de développement suivie par les cinq entités.</p>
+      <div class="case-body single">
+        <div class="diagram">
+          <div class="pipe">
+            <div class="stage"><b>DEV</b><span class="en">Unmanaged solutions · partner work isolated</span><span class="fr">Solutions non gérées · travail des prestataires isolé</span></div>
+            <div class="parrow">→</div>
+            <div class="stage"><b><span class="en">TEST</span><span class="fr">RECETTE</span></b><span class="en">Managed import · user acceptance · release checklist</span><span class="fr">Import géré · recette métier · checklist de livraison</span></div>
+            <div class="parrow">→</div>
+            <div class="stage prod"><b>PROD</b><span class="en">Managed only · no unmanaged layers · alerting</span><span class="fr">Géré uniquement · aucune couche non gérée · alertes</span></div>
+          </div>
+          <div class="pipebar en">Azure DevOps pipelines load environment variables and connection references for each environment</div>
+          <div class="pipebar fr">Les pipelines Azure DevOps chargent les variables d'environnement et références de connexion propres à chaque environnement</div>
+        </div>
+        <ul class="en">
+          <li><b>A 12-step clean-up of solution layers</b> brought the three environments back in line.</li>
+          <li><b>Written procedures for every release:</b> solutions, flows and plug-ins.</li>
+          <li><b>A hub-and-spoke model</b> lets internal and partner developers work in parallel.</li>
+          <li><b>I review partner deliveries</b> for code quality and for cost against value.</li>
+        </ul>
+        <ul class="fr">
+          <li><b>Un nettoyage en 12 étapes des couches de solutions</b> a réaligné les trois environnements.</li>
+          <li><b>Des procédures écrites pour chaque livraison :</b> solutions, flux et plug-ins.</li>
+          <li><b>Un modèle hub-and-spoke</b> permet aux développeurs internes et prestataires de travailler en parallèle.</li>
+          <li><b>Je revois les livrables des prestataires</b> : qualité du code et rapport coût/valeur.</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- 4 cost -->
+    <article class="case">
+      <div class="case-top">
+        <h3><span class="en">€70k a year saved on licences and storage</span><span class="fr">70 k€ d'économies annuelles sur les licences et le stockage</span></h3>
+        <span class="meta">FinOps · Dataverse · Power Automate</span>
+      </div>
+      <p class="lead en">I audited how licences were assigned and how storage was used across the group. Then I automated the clean-up so the savings would last.</p>
+      <p class="lead fr">J'ai audité l'attribution des licences et l'usage du stockage dans tout le groupe, puis automatisé le nettoyage pour que les économies durent.</p>
+      <div class="case-body">
+        <ul class="en">
+          <li><b>Licences matched to real use.</b> Team Member licences went to light users, and Premium licences to non-interactive service accounts.</li>
+          <li><b>Scheduled retention jobs</b> for attachments, emails, closed cases and system jobs, plus capacity monitoring of the audit and trace logs.</li>
+        </ul>
+        <ul class="fr">
+          <li><b>Des licences ajustées à l'usage réel.</b> Licences Team Member pour les utilisateurs légers, Premium pour les comptes de service non interactifs.</li>
+          <li><b>Des purges planifiées</b> des pièces jointes, e-mails, incidents clôturés et tâches système, avec suivi de la capacité des journaux d'audit et de trace.</li>
+        </ul>
+        <ul class="en">
+          <li><b>Duplicate and orphan contacts cleaned up.</b> Every new contact now records where it came from.</li>
+          <li><b>Failure alerts</b> on flows, mailboxes and queue rules, so problems surface before users report them.</li>
+        </ul>
+        <ul class="fr">
+          <li><b>Contacts en doublon ou orphelins nettoyés.</b> Chaque nouveau contact enregistre désormais sa provenance.</li>
+          <li><b>Alertes en cas d'échec</b> sur les flux, boîtes mail et règles de files d'attente, avant que les utilisateurs ne remontent le problème.</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- 5 service -->
+    <article class="case">
+      <div class="case-top">
+        <h3><span class="en">Omnichannel customer service and an AI assistant</span><span class="fr">Service client omnicanal et assistant IA</span></h3>
+        <span class="meta">Dynamics 365 Customer Service · AI</span>
+      </div>
+      <p class="lead en">Support agents in several countries handle email, chat, phone and review platforms. I brought those channels into one Customer Service Workspace and added an AI assistant at the front of the chat.</p>
+      <p class="lead fr">Des agents de support dans plusieurs pays traitent e-mails, chat, téléphone et plateformes d'avis. J'ai réuni ces canaux dans un Customer Service Workspace et placé un assistant IA en première ligne du chat.</p>
+      <div class="case-body">
+        <ul class="en">
+          <li><b>Live chat</b> on several support sites and e-shops, with skills-based routing by language.</li>
+          <li><b>Cloud telephony</b> integrated in the agent workspace: calls logged and owners assigned automatically.</li>
+          <li><b>Queues and routing rules</b> for review platforms, marketplace support and a privacy (GDPR) mailbox.</li>
+        </ul>
+        <ul class="fr">
+          <li><b>Chat en direct</b> sur plusieurs sites de support et e-shops, avec routage par compétence linguistique.</li>
+          <li><b>Téléphonie cloud</b> intégrée à l'espace agent : appels enregistrés et propriétaires attribués automatiquement.</li>
+          <li><b>Files d'attente et règles de routage</b> pour les plateformes d'avis, le support marketplace et une boîte RGPD.</li>
+        </ul>
+        <ul class="en">
+          <li><b>An AI chatbot</b> answers first, shows a typing indicator, and hands over to a human agent when needed.</li>
+          <li><b>Protection against bot traffic,</b> multilingual answers, and chat history deleted when the session ends.</li>
+        </ul>
+        <ul class="fr">
+          <li><b>Un chatbot IA</b> répond en premier, affiche un indicateur de saisie et transfère à un agent humain si besoin.</li>
+          <li><b>Protection contre les robots,</b> réponses multilingues, historique effacé en fin de session.</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- 6 commerce -->
+    <article class="case">
+      <div class="case-top">
+        <h3><span class="en">Connecting e-commerce to Dynamics 365</span><span class="fr">Relier l'e-commerce à Dynamics 365</span></h3>
+        <span class="meta">Integration · Sales</span>
+      </div>
+      <p class="lead en">I connected the e-shops to the CRM: orders, shipments, credit notes and invoices flow automatically, and wishlists and abandoned carts become sales opportunities in Dynamics 365 Sales. Grafana dashboards monitor the interfaces.</p>
+      <p class="lead fr">J'ai relié les e-shops au CRM : commandes, expéditions, avoirs et factures remontent automatiquement, et les listes de souhaits et paniers abandonnés deviennent des opportunités dans Dynamics 365 Sales. Des tableaux Grafana surveillent les interfaces.</p>
+    </article>
+  </section>
+
+  <!-- SERVICE & FINANCE -->
+  <section id="service">
+    <div class="sec-head">
+      <div class="k"><span class="en">Beyond the code</span><span class="fr">Au-delà du code</span></div>
+      <h2><span class="en">A service and insurance background</span><span class="fr">Une culture du service et de l'assurance</span></h2>
+    </div>
+    <div class="band">
+      <div>
+        <h3><span class="en">I've been the user</span><span class="fr">J'ai été l'utilisateur</span></h3>
+        <p class="en">I spent ten years as a first-class cabin supervisor with an international airline in Dubai, leading multicultural crews and premium customers. Later I handled priority cases for international clients in English and French. I build tools the way I wanted them when I was on the front line.</p>
+        <p class="fr">Pendant dix ans, j'ai été chef de cabine en première classe dans une compagnie aérienne internationale à Dubaï, à la tête d'équipages multiculturels et au service d'une clientèle premium. J'ai ensuite traité les dossiers prioritaires de clients internationaux, en français et en anglais. Je conçois les outils comme je les aurais voulus en première ligne.</p>
+        <h3 style="margin-top:18px"><span class="en">Insurance and finance</span><span class="fr">Assurance et finance</span></h3>
+        <p class="en">I worked as a life-insurance sales agent: prospecting, needs discovery, risk analysis and closing. I also built and hosted an information website on AWS for a global insurance and assistance group. I understand compliance, risk and how sensitive customer data is.</p>
+        <p class="fr">J'ai été conseiller commercial en assurance vie : prospection, découverte des besoins, analyse des risques, conclusion. J'ai aussi développé et hébergé sur AWS un site d'information pour un groupe international d'assurance et d'assistance. Je connais les exigences de conformité, la notion de risque et la sensibilité des données clients.</p>
+      </div>
+      <div>
+        <h3><span class="en">What this brings to a team</span><span class="fr">Ce que j'apporte à une équipe</span></h3>
+        <ul class="chk en">
+          <li>I can take a vague business request, ask the right questions and turn it into a solution people use</li>
+          <li>Patient, clear training and support for non-technical users</li>
+          <li>Security and data protection designed in from the start, as regulated sectors require</li>
+          <li>Calm under pressure, from a career in a high-stakes service environment</li>
+          <li>Comfortable working across cultures, in French and English</li>
+        </ul>
+        <ul class="chk fr">
+          <li>Transformer une demande métier floue, par les bonnes questions, en une solution réellement utilisée</li>
+          <li>Accompagnement pédagogique et patient des utilisateurs non techniques</li>
+          <li>Sécurité et protection des données intégrées dès la conception, comme l'exigent les secteurs régulés</li>
+          <li>Sang-froid sous pression, acquis dans un environnement de service exigeant</li>
+          <li>Travail interculturel, en français et en anglais</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section id="stack">
+    <div class="sec-head">
+      <div class="k"><span class="en">Toolbox</span><span class="fr">Boîte à outils</span></div>
+      <h2><span class="en">Technologies I use</span><span class="fr">Technologies utilisées</span></h2>
+    </div>
+    <div class="stack">
+      <div class="card"><h3>Power Platform</h3><div class="tags"><span class="tag">Power Apps (model-driven, canvas)</span><span class="tag">Power Automate</span><span class="tag">Dataverse</span><span class="tag">Solutions & ALM</span><span class="tag">Environment variables</span><span class="tag">Connection references</span><span class="tag">Power Platform admin center</span></div></div>
+      <div class="card"><h3>Dynamics 365</h3><div class="tags"><span class="tag">Customer Service</span><span class="tag">Customer Service Workspace</span><span class="tag">Omnichannel</span><span class="tag">Sales</span><span class="tag">Customer Insights</span><span class="tag">Customer Voice</span><span class="tag">Knowledge Base</span></div></div>
+      <div class="card"><h3>Azure & Microsoft 365</h3><div class="tags"><span class="tag">Entra ID</span><span class="tag">Key Vault</span><span class="tag">Managed Identity</span><span class="tag">API Management</span><span class="tag">Application Insights</span><span class="tag">Azure Bot</span><span class="tag">Azure DevOps</span><span class="tag">SharePoint</span></div></div>
+      <div class="card"><h3><span class="en">Development</span><span class="fr">Développement</span></h3><div class="tags"><span class="tag">C# / .NET</span><span class="tag">Dataverse plug-ins</span><span class="tag">Custom APIs</span><span class="tag">JavaScript</span><span class="tag">SQL</span><span class="tag">PHP</span><span class="tag">Java</span><span class="tag">Python</span><span class="tag">Postman</span><span class="tag">XrmToolBox</span></div></div>
+      <div class="card"><h3><span class="en">Web & infrastructure</span><span class="fr">Web & infrastructure</span></h3><div class="tags"><span class="tag">Magento</span><span class="tag">WordPress</span><span class="tag">AWS (Lightsail, S3, CloudFront)</span><span class="tag">Linux / Windows Server</span><span class="tag">Virtualisation</span><span class="tag">Grafana</span></div></div>
+      <div class="card"><h3>AI</h3><div class="tags"><span class="tag">OpenAI integration</span><span class="tag">Conversational bots</span><span class="tag">Bot-to-agent handover</span><span class="tag">Microsoft Copilot (governance)</span></div></div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="sec-head">
+      <div class="k"><span class="en">Career</span><span class="fr">Parcours</span></div>
+      <h2><span class="en">Experience</span><span class="fr">Expérience</span></h2>
+    </div>
+    <div class="tl">
+      <div class="item">
+        <div class="when">2023 – <span class="en">present</span><span class="fr">aujourd'hui</span></div>
+        <h3><span class="en">Web & CRM Developer · Dynamics 365 Solution Architect</span><span class="fr">Développeur Web & CRM · Architecte solutions Dynamics 365</span></h3>
+        <div class="org"><span class="en">International consumer-electronics group (5 entities) · Brittany</span><span class="fr">Groupe international d'électronique grand public (5 entités) · Bretagne</span></div>
+        <p class="en">Technical lead for the group's Microsoft business platform: architecture, security, C# development, ALM, licence management and oversight of external vendors.</p>
+        <p class="fr">Référent technique de la plateforme métier Microsoft du groupe : architecture, sécurité, développement C#, ALM, gestion des licences et pilotage des prestataires.</p>
+      </div>
+      <div class="item svc">
+        <div class="when">2021</div>
+        <h3><span class="en">Technical Support, International Clients</span><span class="fr">Support technique clients internationaux</span></h3>
+        <div class="org"><span class="en">Same group, logistics entity</span><span class="fr">Même groupe, entité logistique</span></div>
+        <p class="en">Handled priority cases and priority products in English and French on Dynamics CRM and a custom ERP. Consistently among the top performers.</p>
+        <p class="fr">Traitement des dossiers et produits prioritaires en français et en anglais, sur Dynamics CRM et un ERP sur mesure. Régulièrement parmi les meilleurs résultats.</p>
+      </div>
+      <div class="item">
+        <div class="when">2020</div>
+        <h3><span class="en">WordPress Developer (part-time)</span><span class="fr">Développeur WordPress (temps partiel)</span></h3>
+        <div class="org"><span class="en">International insurance & assistance group · France</span><span class="fr">Groupe international d'assurance et d'assistance · France</span></div>
+        <p class="en">Built and launched an insurance information website, hosted on AWS (Lightsail, S3, CloudFront, CLI).</p>
+        <p class="fr">Création et mise en ligne d'un site d'information sur l'assurance, hébergé sur AWS (Lightsail, S3, CloudFront, CLI).</p>
+      </div>
+      <div class="item">
+        <div class="when">2019 – 2020</div>
+        <h3><span class="en">Assistant Systems Administrator (internship)</span><span class="fr">Assistant administrateur systèmes (stage)</span></h3>
+        <div class="org"><span class="en">Private school · Brittany</span><span class="fr">Établissement scolaire privé · Bretagne</span></div>
+        <p class="en">Supported the systems administrator and the director with IT governance and day-to-day operations.</p>
+        <p class="fr">Appui à l'administrateur systèmes et à la direction sur la gouvernance et l'exploitation informatique.</p>
+      </div>
+      <div class="item">
+        <div class="when">2015 – 2018</div>
+        <h3><span class="en">Web & Marketing Manager (part-time)</span><span class="fr">Responsable web & marketing (temps partiel)</span></h3>
+        <div class="org"><span class="en">Printing company · Dubai, UAE</span><span class="fr">Imprimerie · Dubaï, Émirats arabes unis</span></div>
+        <p class="en">Built an Android app and WordPress websites, ran SEO, and managed outsourced talent.</p>
+        <p class="fr">Création d'une application Android et de sites WordPress, SEO, pilotage de prestataires.</p>
+      </div>
+      <div class="item svc">
+        <div class="when">2007 – 2017</div>
+        <h3><span class="en">First Class Flight Steward · Cabin Supervisor</span><span class="fr">Steward première classe · Chef de cabine</span></h3>
+        <div class="org"><span class="en">International airline · Dubai, UAE</span><span class="fr">Compagnie aérienne internationale · Dubaï, Émirats arabes unis</span></div>
+        <p class="en">Ten years of premium international customer service. Led multicultural crews and handled safety-critical situations.</p>
+        <p class="fr">Dix ans de service client international haut de gamme. Encadrement d'équipages multiculturels et gestion de situations critiques pour la sécurité.</p>
+      </div>
+      <div class="item svc">
+        <div class="when"><span class="en">Earlier</span><span class="fr">Auparavant</span></div>
+        <h3><span class="en">Life Insurance Sales Agent</span><span class="fr">Conseiller commercial en assurance vie</span></h3>
+        <div class="org"><span class="en">Life insurance company · Philippines</span><span class="fr">Compagnie d'assurance vie · Philippines</span></div>
+        <p class="en">Lead generation, needs discovery, risk analysis, presentation and closing.</p>
+        <p class="fr">Prospection, découverte des besoins, analyse des risques, présentation et conclusion.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="sec-head">
+      <div class="k"><span class="en">Education</span><span class="fr">Formation</span></div>
+      <h2><span class="en">Degrees</span><span class="fr">Diplômes</span></h2>
+    </div>
+    <div class="edu">
+      <div class="card"><div class="when">2020 – 2021</div><h3><span class="en">BTS SIO, Software Development (SLAM)</span><span class="fr">BTS SIO option SLAM</span></h3><p>GRETA Est-Bretagne, Saint-Malo</p><div class="tags"><span class="tag">Java</span><span class="tag">SQL</span><span class="tag">JavaScript</span><span class="tag">PHP</span><span class="tag">Python</span><span class="tag">Linux</span></div></div>
+      <div class="card"><div class="when">2019 – 2020</div><h3><span class="en">State-certified Computer Technician</span><span class="fr">Technicien informatique (titre professionnel)</span></h3><p>GRETA Est-Bretagne, Fougères</p><div class="tags"><span class="tag">Windows / Linux / macOS Server</span><span class="tag"><span class="en">Virtualisation</span><span class="fr">Virtualisation</span></span></div></div>
+      <div class="card"><div class="when">2000 – 2004</div><h3><span class="en">Bachelor's Degree in Business Management (Bac+4 equivalent)</span><span class="fr">Licence en management des entreprises (équivalent Bac+4)</span></h3><p><span class="en">University of Santo Tomas, Manila · Hospitality major · Excellence Award</span><span class="fr">Université de Santo Tomas, Manille · Spécialité hôtellerie · Prix d'excellence</span></p><div class="tags"><span class="tag"><span class="en">Management</span><span class="fr">Management</span></span><span class="tag"><span class="en">Economics</span><span class="fr">Économie</span></span><span class="tag"><span class="en">Customer service</span><span class="fr">Service client</span></span></div></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <div class="contact" id="contact">
+    <div>
+      <h2><span class="en">Let's talk</span><span class="fr">Parlons-en</span></h2>
+      <p class="en">Open to Power Platform architect, expert and lead developer roles in the Rennes area or remote.</p>
+      <p class="fr">Ouvert aux postes d'architecte, d'expert ou de lead developer Power Platform, sur Rennes ou en télétravail.</p>
+    </div>
+    <div class="cta" style="margin-top:0">
+      <a class="btn primary" href="mailto:carlosvsanluis@gmail.com">carlosvsanluis@gmail.com</a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/carlos-s-648057197/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn ghost" href="https://github.com/carlosvsanluis" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</main>
+
+<footer>© <span id="yr">2026</span> Carlos San Luis · <a class="en" href="2025CarlosCVEng.pdf" target="_blank" rel="noopener">CV (EN)</a><a class="fr" href="2025CarlosCVFRE.pdf" target="_blank" rel="noopener">CV (FR)</a></footer>
+
+<script>
+(function(){
+  var root=document.documentElement, langBtn=document.getElementById('langBtn'), themeBtn=document.getElementById('themeBtn');
+  function get(k){try{return localStorage.getItem(k)}catch(e){return null}}
+  function set(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+  function applyLang(l){root.setAttribute('data-lang',l);root.lang=l;langBtn.textContent=l==='en'?'FR':'EN';}
+  var lang=get('lang')||((navigator.language||'en').toLowerCase().indexOf('fr')===0?'fr':'en');
+  applyLang(lang);
+  langBtn.onclick=function(){lang=lang==='en'?'fr':'en';applyLang(lang);set('lang',lang);};
+  var theme=get('theme'); if(theme) root.setAttribute('data-theme',theme);
+  themeBtn.onclick=function(){
+    var dark=root.getAttribute('data-theme')==='dark'||(!root.getAttribute('data-theme')&&matchMedia('(prefers-color-scheme: dark)').matches);
+    theme=dark?'light':'dark';root.setAttribute('data-theme',theme);set('theme',theme);
+  };
+  document.getElementById('yr').textContent=new Date().getFullYear();
+})();
+</script>
+</body>
+</html>

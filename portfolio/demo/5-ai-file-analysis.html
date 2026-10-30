@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AI Photo Analysis — AssurDemo</title>
+<meta name="description" content="Build plan: AI Builder prompt with image input that pre-analyses insurance claim photos, with advisor review and responsible-AI safeguards." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="demo.css" />
+<style>
+.json{background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:14px;font:13px/1.55 ui-monospace,Consolas,monospace;overflow-x:auto;color:var(--ink);margin:0}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="../">CSL</a>
+  <span class="crumbs"><a href="./">AssurDemo</a> / <span class="en">5. AI photo analysis</span><span class="fr">5. Analyse IA des photos</span></span>
+  <div class="toggles"><button class="tbtn" id="langBtn" aria-label="Switch language">FR</button><button class="tbtn" id="themeBtn" aria-label="Toggle dark mode">◐</button></div>
+</div></header>
+
+<div class="hero"><div class="wrap">
+  <div class="eyebrow"><span class="en">Module 5 of 6</span><span class="fr">Module 5 sur 6</span></div>
+  <h1><span class="en">AI analysis of claim photos</span><span class="fr">Analyse IA des photos de sinistre</span></h1>
+  <p class="en">When a photo arrives, AI describes the damage, estimates how serious it is, and checks the photo matches the customer's description. The advisor opens the claim to find a ready-made summary. They decide; the AI doesn't.</p>
+  <p class="fr">À l'arrivée d'une photo, l'IA décrit les dégâts, estime leur gravité et vérifie la cohérence avec la déclaration du client. Le conseiller ouvre le dossier et trouve un résumé prêt à l'emploi. C'est lui qui décide, pas l'IA.</p>
+  <div class="chips"><span class="chip plan"><span class="en">Build plan</span><span class="fr">Plan de réalisation</span></span><span class="chip">AI Builder prompts</span><span class="chip">Power Automate</span><span class="chip">Dataverse</span><span class="chip"><span class="en">Model-driven app</span><span class="fr">Application model-driven</span></span></div>
+</div></div>
+
+<main class="wrap">
+  <div class="grid2">
+    <div class="card"><h3><span class="en">The prompt asks for structured output</span><span class="fr">Le prompt demande une sortie structurée</span></h3>
+      <p class="en">The AI returns JSON, not free text, so every result can be stored, filtered and checked.</p>
+      <p class="fr">L'IA renvoie du JSON, pas du texte libre, pour que chaque résultat puisse être stocké, filtré et vérifié.</p>
+<pre class="json">{
+  "damaged_area": "rear bumper",
+  "damage_type": "dent + scratches",
+  "severity": "medium",
+  "matches_declaration": true,
+  "reason": "rear impact, consistent
+             with 'reversed into a post'",
+  "photo_quality": "good"
+}</pre></div>
+    <div class="card"><h3><span class="en">Components</span><span class="fr">Composants</span></h3>
+      <ul class="en"><li><b>AI Builder prompt</b> with an image input and the claim description as context</li><li><b>Power Automate</b> flow triggered by module 4</li><li>An <b>AI analysis</b> table in Dataverse, linked to the claim</li><li><b>Back-office app:</b> the photo and the AI summary side by side</li></ul>
+      <ul class="fr"><li><b>Prompt AI Builder</b> avec une image en entrée et la description du sinistre en contexte</li><li>Flux <b>Power Automate</b> déclenché par le module 4</li><li>Une table <b>Analyse IA</b> dans Dataverse, liée au sinistre</li><li><b>Application back-office :</b> photo et résumé IA côte à côte</li></ul>
+      <div class="note en" style="margin-top:12px">Image input in prompts is a recent feature, and its availability and AI Builder credits depend on the tenant. I check both before building.</div>
+      <div class="note fr" style="margin-top:12px">L'image en entrée des prompts est une fonctionnalité récente, et sa disponibilité comme les crédits AI Builder dépendent du tenant. Je vérifie les deux avant de construire.</div></div>
+  </div>
+
+  <h2><span class="en">Build steps</span><span class="fr">Étapes de réalisation</span></h2>
+  <ol class="steps en">
+    <li><b>Write the prompt</b><span class="d">Inputs: the photo, the claim type and the customer's description. The instructions ask the model to describe only what is visible, to say "unknown" rather than guess, to answer in the fixed JSON format, and to ignore any text written inside the image (protection against prompt injection).</span></li>
+    <li><b>Test it on a sample set</b><span class="d">I collect 20–30 stock or AI-generated damage photos (no real people or plates), including tricky cases: blurry photos, the wrong object, a photo that doesn't match the story. I refine the prompt until the results are reliable.</span></li>
+    <li><b>Flow</b><span class="d">Triggered for each image from module 4: get the file from SharePoint, run the prompt, parse the JSON. If parsing fails, retry once, then mark the result "needs a manual look".</span></li>
+    <li><b>Store the result</b><span class="d">An <code>AI analysis</code> record linked to the claim holds every field, plus the prompt version and a timestamp, so any result can be traced and audited later.</span></li>
+    <li><b>Prioritise</b><span class="d">High severity, a photo that doesn't match the declaration, or poor photo quality marks the claim "check first" and sends it to the senior advisors' queue.</span></li>
+    <li><b>Advisor screen</b><span class="d">In the model-driven app, the advisor sees the photo next to the AI summary. They confirm or correct each field with one click.</span></li>
+    <li><b>Measure accuracy</b><span class="d">Every correction is recorded. A simple dashboard shows how often the AI and the advisors agree, field by field. That's the evidence for whether the prompt is good enough.</span></li>
+  </ol>
+  <ol class="steps fr">
+    <li><b>Rédiger le prompt</b><span class="d">Entrées : la photo, le type de sinistre et la description du client. Les instructions demandent de décrire uniquement ce qui est visible, de répondre « inconnu » plutôt que de deviner, d'utiliser le format JSON fixé, et d'ignorer tout texte écrit dans l'image (protection contre l'injection de prompt).</span></li>
+    <li><b>Le tester sur un jeu d'exemples</b><span class="d">Je réunis 20 à 30 photos de dégâts libres de droits ou générées par IA (aucune personne ni plaque réelle), dont des cas pièges : photo floue, mauvais objet, photo incohérente avec le récit. J'affine le prompt jusqu'à des résultats fiables.</span></li>
+    <li><b>Flux</b><span class="d">Déclenché pour chaque image du module 4 : récupération du fichier dans SharePoint, exécution du prompt, lecture du JSON. En cas d'échec de lecture, une nouvelle tentative, puis le résultat passe en « à examiner manuellement ».</span></li>
+    <li><b>Enregistrer le résultat</b><span class="d">Un enregistrement <code>Analyse IA</code> lié au sinistre contient chaque champ, la version du prompt et l'horodatage, pour que tout résultat soit traçable et auditable.</span></li>
+    <li><b>Prioriser</b><span class="d">Une gravité forte, une photo incohérente avec la déclaration ou une photo de mauvaise qualité classent le dossier « à traiter en priorité » et l'envoient dans la file des conseillers seniors.</span></li>
+    <li><b>Écran conseiller</b><span class="d">Dans l'application model-driven, le conseiller voit la photo à côté du résumé IA. Il confirme ou corrige chaque champ d'un clic.</span></li>
+    <li><b>Mesurer la fiabilité</b><span class="d">Chaque correction est enregistrée. Un tableau de bord simple montre, champ par champ, à quelle fréquence l'IA et les conseillers sont d'accord. C'est la preuve que le prompt est assez bon, ou non.</span></li>
+  </ol>
+
+  <h2><span class="en">Responsible AI</span><span class="fr">IA responsable</span></h2>
+  <div class="good en">The AI never accepts or refuses a claim. Under GDPR Article 22, a decision with significant effects on a person shouldn't rest only on automated processing, so the advisor always decides. Customers are told their photos are pre-analysed by AI, and the data stays inside the Microsoft tenant.</div>
+  <div class="good fr">L'IA n'accepte ni ne refuse jamais un sinistre. Selon l'article 22 du RGPD, une décision ayant des effets importants sur une personne ne doit pas reposer uniquement sur un traitement automatisé : le conseiller décide toujours. Le client est informé que ses photos sont pré-analysées par IA, et les données restent dans le tenant Microsoft.</div>
+
+  <h2><span class="en">What the video will show</span><span class="fr">Ce que montrera la vidéo</span></h2>
+  <p class="lead en">A photo uploaded on the portal and its analysis appearing in the back office within seconds, a mismatched photo flagged as a priority, and an advisor correcting a field.</p>
+  <p class="lead fr">Une photo déposée sur le portail et son analyse qui apparaît dans le back-office en quelques secondes, une photo incohérente signalée en priorité, et un conseiller qui corrige un champ.</p>
+
+  <nav class="pager">
+    <a href="4-upload-files.html"><small><span class="en">Previous</span><span class="fr">Précédent</span></small><span class="en">← 4. File upload</span><span class="fr">← 4. Dépôt de fichiers</span></a>
+    <a class="next" href="6-pdf-extraction-approval.html"><small><span class="en">Next</span><span class="fr">Suivant</span></small><span class="en">6. PDF forms + approval →</span><span class="fr">6. Formulaires PDF + validation →</span></a>
+  </nav>
+</main>
+<footer>© Carlos San Luis · <a href="./">AssurDemo</a></footer>
+<script src="demo.js"></script>
+</body>
+</html>
