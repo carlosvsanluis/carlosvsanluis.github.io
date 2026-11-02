@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cynth-ia.fr | Built on Trust. Visualized by AI.</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --tiffany: #81D8D0;
+      --sky: #B2EBF2;
+      --navy: #1F4E78;
+      --navy-mid: #2A6496;
+      --warm-white: #FAFAFA;
+      --text: #2C3E50;
+      --muted: #4A6572;
+      --border: #E8ECEE;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --transition: all 0.25s ease;
+    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--warm-white); color: var(--text); overflow-x: hidden; line-height: 1.6; }
+    .container { width: 88%; max-width: 1100px; margin: 0 auto; }
+
+    /* HEADER */
+    header { background: white; padding: 14px 0; position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid var(--border); }
+    .header-inner { display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--navy); text-decoration: none; letter-spacing: -0.3px; cursor: pointer; }
+    .lang-btns button { background: none; border: 1px solid var(--border); padding: 5px 12px; cursor: pointer; border-radius: 20px; font-size: 13px; font-family: 'DM Sans', sans-serif; margin-left: 6px; transition: var(--transition); color: var(--text); }
+    .back-link { font-size: 13px; color: var(--muted); text-decoration: none; margin-right: 8px; }
+    .back-link:hover { color: var(--navy); text-decoration: underline; }
+    .lang-btns button:hover { background: var(--sky); border-color: var(--tiffany); }
+    .lang-btns button.active { background: var(--tiffany); border-color: var(--tiffany); color: var(--navy); font-weight: 700; }
+
+    /* HERO */
+    .hero { padding: 130px 0 80px; background: linear-gradient(135deg, #C8F0ED 0%, #E8F7F6 40%, var(--warm-white) 100%); text-align: center; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: -80px; right: -120px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(129,216,208,0.18) 0%, transparent 70%); border-radius: 50%; }
+    .hero h1 { font-family: 'DM Serif Display', serif; font-size: 46px; color: var(--navy); margin-bottom: 12px; line-height: 1.15; position: relative; }
+    .hero p { font-size: 17px; color: var(--muted); max-width: 560px; margin: 0 auto 28px; }
+    .btn-hero { display: inline-block; padding: 13px 30px; border-radius: 30px; background: var(--tiffany); color: var(--navy); font-weight: 700; font-size: 14px; text-decoration: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: var(--transition); box-shadow: 0 4px 18px rgba(129,216,208,0.4); }
+    .btn-hero:hover { background: #6bc9c1; transform: translateY(-2px); }
+
+    /* PHOTOS */
+    .photos-wrap { padding: 48px 0 40px; }
+    .photos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .photos-grid img { width: 100%; height: 240px; object-fit: cover; border-radius: var(--radius-lg); }
+
+    /* PRIVACY BAR */
+    .priv-wrap { padding: 0 0 48px; }
+    .priv-bar { background: var(--navy); color: white; padding: 44px 48px; border-radius: var(--radius-lg); text-align: center; }
+    .priv-bar h2 { font-family: 'DM Serif Display', serif; color: var(--tiffany); font-size: 22px; margin-bottom: 12px; }
+    .priv-bar p { font-size: 14px; line-height: 1.75; max-width: 620px; margin: 0 auto; opacity: 0.88; }
+
+    /* SECTIONS */
+    .demo-section { padding: 56px 0; border-top: 1px solid var(--border); }
+    .demo-section:nth-child(even) { background: white; }
+    .demo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: center; }
+    .section-badge { display: inline-block; background: #E8F7F6; color: var(--navy-mid); font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 20px; letter-spacing: 0.8px; margin-bottom: 10px; }
+    .demo-title { font-family: 'DM Serif Display', serif; color: var(--navy); font-size: 22px; margin-bottom: 12px; line-height: 1.3; }
+    .demo-body { font-size: 14px; line-height: 1.8; color: var(--muted); }
+
+    /* CTA CARD */
+    .cta-card { background: white; border-radius: var(--radius-md); border: 1px solid var(--border); padding: 28px; box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
+    .status-badge { display: inline-block; padding: 4px 11px; background: #fdecea; color: #c0392b; border-radius: 4px; font-size: 11px; font-weight: 700; margin-bottom: 16px; letter-spacing: 0.3px; }
+    .cta-box { border: 2px dashed #DDE2E6; padding: 20px; border-radius: var(--radius-sm); text-align: center; }
+    .cta-box p { font-size: 13px; color: var(--text); line-height: 1.65; margin-bottom: 14px; }
+    .btn-adhere { display: inline-block; padding: 10px 24px; background: #27ae60; color: white; border-radius: 30px; font-weight: 700; font-size: 13px; text-decoration: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: var(--transition); }
+    .btn-adhere:hover { background: #1e8449; }
+
+    /* QUEUE CARD */
+    .queue-card { background: #F7F9FA; border-radius: var(--radius-md); border: 1px solid var(--border); padding: 24px; }
+    .queue-card h4 { font-size: 13px; color: var(--navy); font-weight: 700; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .draft-item { background: white; padding: 13px 16px; border-radius: var(--radius-sm); margin-bottom: 10px; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    .draft-item strong { font-size: 13px; color: var(--navy); }
+    .draft-item span { font-size: 12px; color: #888; display: block; margin-top: 2px; }
+    .btn-approve { padding: 6px 14px; border-radius: 4px; font-size: 12px; font-weight: 700; border: 1.5px solid #27ae60; color: #27ae60; background: none; cursor: pointer; margin-left: 6px; font-family: 'DM Sans', sans-serif; transition: var(--transition); }
+    .btn-approve:hover { background: #27ae60; color: white; }
+    .btn-edit { padding: 6px 10px; font-size: 12px; color: #aaa; background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+    .sign-footer { margin-top: 16px; text-align: right; }
+    .btn-sign { display: inline-block; padding: 11px 24px; border-radius: 30px; background: var(--navy); color: white; font-weight: 700; font-size: 13px; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: var(--transition); }
+    .btn-sign:hover { background: #163d62; }
+
+    /* PHARMA CARD */
+    .pharma-card { background: white; border-radius: var(--radius-md); border: 1px solid var(--border); padding: 28px; box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
+    .pharma-card h4 { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 18px; }
+    .form-row { display: flex; gap: 12px; margin-bottom: 12px; }
+    .fg { flex: 1; }
+    .fg label { font-size: 12px; color: var(--navy); display: block; margin-bottom: 5px; font-weight: 500; }
+    .fg input, .fg select, .fg textarea { width: 100%; padding: 10px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border); font-size: 13px; background: var(--warm-white); color: var(--text); font-family: 'DM Sans', sans-serif; transition: border-color 0.2s; }
+    .fg input:focus, .fg select:focus, .fg textarea:focus { outline: none; border-color: var(--tiffany); }
+    .fg textarea { resize: vertical; min-height: 90px; }
+    .btn-calc { width: 100%; padding: 14px; border-radius: var(--radius-sm); background: var(--tiffany); color: var(--navy); font-weight: 700; font-size: 14px; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; margin-top: 14px; transition: var(--transition); }
+    .btn-calc:hover { background: #6bc9c1; }
+
+    /* TIERS */
+    .tiers-section { padding: 56px 0; border-top: 1px solid var(--border); }
+    .tiers-header { margin-bottom: 28px; }
+    .tiers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .tier { background: white; border-radius: var(--radius-md); padding: 24px 20px; border: 1px solid #D3EEF0; text-align: center; position: relative; overflow: hidden; }
+    .tier::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--tiffany); }
+    .t-label { font-size: 10px; font-weight: 700; color: var(--navy-mid); letter-spacing: 1px; margin-bottom: 8px; }
+    .t-freq { font-family: 'DM Serif Display', serif; font-size: 28px; color: var(--navy); margin-bottom: 6px; }
+    .t-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+    /* ====== NEW: PLATFORM FLOW SECTION ====== */
+    #platform { scroll-margin-top: 70px; }
+    .flow-section { padding: 70px 0; border-top: 1px solid var(--border); background: white; }
+    .flow-section.alt { background: var(--warm-white); }
+
+    /* Step indicators */
+    .step-indicator { display: flex; align-items: center; gap: 10px; margin-bottom: 32px; }
+    .step-num { width: 32px; height: 32px; border-radius: 50%; background: var(--tiffany); color: var(--navy); font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .step-label { font-size: 12px; font-weight: 700; color: var(--navy-mid); letter-spacing: 0.8px; text-transform: uppercase; }
+
+    /* Track chooser */
+    .track-chooser { text-align: center; padding: 20px 0 40px; }
+    .track-chooser h2 { font-family: 'DM Serif Display', serif; font-size: 30px; color: var(--navy); margin-bottom: 10px; }
+    .track-chooser p { font-size: 15px; color: var(--muted); margin-bottom: 36px; }
+    .track-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 700px; margin: 0 auto 40px; }
+    .track-card { background: white; border: 2px solid var(--border); border-radius: var(--radius-lg); padding: 32px 24px; cursor: pointer; transition: var(--transition); text-align: center; }
+    .track-card:hover { border-color: var(--tiffany); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(129,216,208,0.2); }
+    .track-card.selected { border-color: var(--tiffany); background: #F0FBFA; }
+    .track-icon { font-size: 36px; margin-bottom: 12px; }
+    .track-card h3 { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--navy); margin-bottom: 6px; }
+    .track-card p { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+    /* Role chooser */
+    .role-chooser { display: flex; gap: 14px; max-width: 600px; margin: 0 auto 32px; }
+    .role-btn { flex: 1; padding: 14px 20px; border-radius: var(--radius-md); border: 2px solid var(--border); background: white; cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 700; color: var(--navy); transition: var(--transition); text-align: center; }
+    .role-btn:hover { border-color: var(--tiffany); }
+    .role-btn.selected { border-color: var(--navy); background: var(--navy); color: white; }
+
+    /* Flow panels (show/hide) */
+    .flow-panel { display: none; }
+    .flow-panel.active { display: block; }
+
+    /* Clinical Input Panel */
+    .clinical-panel { background: white; border-radius: var(--radius-lg); border: 1px solid var(--border); padding: 32px; max-width: 800px; margin: 0 auto; box-shadow: 0 6px 24px rgba(0,0,0,0.06); }
+    .clinical-panel h3 { font-family: 'DM Serif Display', serif; color: var(--navy); font-size: 20px; margin-bottom: 6px; }
+    .clinical-panel .subtitle { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+    .report-box { background: #F7F9FA; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px; font-size: 13px; color: #444; line-height: 1.7; font-family: 'Courier New', monospace; margin-bottom: 18px; cursor: pointer; transition: border-color 0.2s; position: relative; }
+    .report-box:hover { border-color: var(--tiffany); }
+    .report-tag { display: inline-block; background: var(--sky); color: var(--navy); font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-bottom: 8px; letter-spacing: 0.5px; font-family: 'DM Sans', sans-serif; }
+    .report-findings { font-size: 12px; color: #555; line-height: 1.8; }
+    .report-findings strong { color: var(--navy); }
+    .treatment-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 18px 0; }
+    .opt-btn { padding: 12px 16px; border: 1.5px solid var(--border); border-radius: var(--radius-sm); background: white; cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--text); transition: var(--transition); text-align: left; }
+    .opt-btn:hover { border-color: var(--tiffany); background: #F0FBFA; }
+    .opt-btn.selected { border-color: var(--navy); background: var(--navy); color: white; }
+    .opt-btn .opt-title { font-weight: 700; display: block; margin-bottom: 2px; }
+    .opt-btn .opt-sub { font-size: 11px; opacity: 0.7; }
+    .btn-ok { display: inline-block; padding: 13px 36px; border-radius: 30px; background: var(--navy); color: white; font-weight: 700; font-size: 14px; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: var(--transition); margin-top: 10px; }
+    .btn-ok:hover { background: #163d62; }
+    .btn-ok.green { background: #27ae60; }
+    .btn-ok.green:hover { background: #1e8449; }
+
+    /* Doctor Approval Panel */
+    .approval-panel { max-width: 800px; margin: 0 auto; }
+    .ai-tag { display: inline-flex; align-items: center; gap: 6px; background: #EEF2FF; color: #4338CA; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; margin-bottom: 16px; }
+    .ai-dot { width: 6px; height: 6px; border-radius: 50%; background: #4338CA; animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+    .plan-block { background: white; border-radius: var(--radius-md); border: 1px solid var(--border); padding: 24px; margin-bottom: 16px; box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
+    .plan-block h4 { color: var(--navy); font-size: 15px; font-weight: 700; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+    .plan-block h4 span.pill { font-size: 10px; padding: 2px 8px; border-radius: 20px; background: #E8F7F6; color: var(--navy-mid); font-weight: 700; }
+    .plan-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid #F0F3F5; font-size: 13px; gap: 12px; }
+    .plan-row:last-child { border-bottom: none; }
+    .plan-row .lbl { color: var(--muted); font-size: 12px; flex-shrink: 0; min-width: 140px; }
+    .plan-row .val { color: var(--text); font-weight: 500; text-align: right; }
+    .plan-row .val.flag { color: #e67e22; font-weight: 700; }
+    .schedule-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin-top: 10px; }
+    .day-chip { background: #E8F7F6; border-radius: 6px; padding: 6px 4px; text-align: center; }
+    .day-chip .d-name { font-size: 9px; color: var(--muted); font-weight: 700; }
+    .day-chip .d-dose { font-size: 10px; color: var(--navy); font-weight: 700; margin-top: 2px; }
+    .sign-block { background: var(--navy); border-radius: var(--radius-md); padding: 24px; color: white; text-align: center; margin-top: 20px; }
+    .sign-block p { font-size: 13px; opacity: 0.8; margin-bottom: 16px; }
+    .btn-sign-ok { display: inline-block; padding: 14px 40px; border-radius: 30px; background: var(--tiffany); color: var(--navy); font-weight: 700; font-size: 15px; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: var(--transition); }
+    .btn-sign-ok:hover { background: #6bc9c1; transform: scale(1.02); }
+    .signed-badge { display: none; align-items: center; gap: 8px; background: #d4edda; color: #155724; border-radius: var(--radius-sm); padding: 12px 20px; font-size: 14px; font-weight: 700; margin-top: 14px; justify-content: center; }
+    .signed-badge.show { display: flex; }
+
+    /* ====== PHONE MOCKUP (Patient App) ====== */
+    .phone-outer { display: flex; justify-content: center; }
+    .phone { width: 320px; background: #1a1a2e; border-radius: 40px; padding: 14px; box-shadow: 0 20px 60px rgba(0,0,0,0.25), inset 0 0 0 2px #333; position: relative; }
+    .phone-notch { width: 120px; height: 28px; background: #1a1a2e; border-radius: 0 0 20px 20px; margin: 0 auto 8px; position: relative; z-index: 2; }
+    .phone-screen { background: #F2F2F7; border-radius: 28px; overflow: hidden; min-height: 560px; }
+    .phone-status { background: white; padding: 8px 16px 4px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; font-weight: 700; color: #333; }
+    .phone-status .time { font-size: 14px; }
+
+    /* Notification banners */
+    .notif-banner { background: white; border-radius: 14px; margin: 8px 10px; padding: 12px 14px; box-shadow: 0 4px 16px rgba(0,0,0,0.12); display: flex; align-items: flex-start; gap: 10px; }
+    .notif-icon { width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+    .notif-icon.tiffany { background: var(--tiffany); }
+    .notif-icon.orange { background: #FF9500; }
+    .notif-content .notif-app { font-size: 10px; font-weight: 700; color: #888; margin-bottom: 2px; letter-spacing: 0.3px; }
+    .notif-content .notif-title { font-size: 13px; font-weight: 700; color: #1a1a1a; margin-bottom: 2px; }
+    .notif-content .notif-body { font-size: 12px; color: #555; line-height: 1.4; }
+    .notif-time { font-size: 10px; color: #aaa; margin-left: auto; flex-shrink: 0; }
+
+    /* App header inside phone */
+    .app-header { background: white; padding: 12px 16px 10px; border-bottom: 1px solid #E8ECEE; }
+    .app-header .app-title { font-family: 'DM Serif Display', serif; font-size: 16px; color: var(--navy); }
+    .app-header .app-sub { font-size: 11px; color: var(--muted); }
+
+    /* Medicine reminder card */
+    .med-card { background: white; border-radius: 14px; margin: 10px 10px 0; padding: 14px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
+    .med-card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .med-pill-icon { width: 28px; height: 28px; border-radius: 50%; background: #FFF3CD; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+    .med-name { font-size: 14px; font-weight: 700; color: var(--navy); }
+    .med-sub { font-size: 11px; color: var(--muted); }
+    .med-dose-row { display: flex; gap: 8px; }
+    .med-dose-chip { flex: 1; background: #F7F9FA; border-radius: 8px; padding: 8px 10px; text-align: center; }
+    .med-dose-chip .dc-label { font-size: 10px; color: var(--muted); margin-bottom: 2px; }
+    .med-dose-chip .dc-val { font-size: 13px; font-weight: 700; color: var(--navy); }
+    .btn-taken { width: 100%; margin-top: 10px; padding: 10px; border-radius: 20px; background: #27ae60; color: white; font-size: 13px; font-weight: 700; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: var(--transition); }
+    .btn-taken:hover { background: #1e8449; }
+
+    /* Adherence week view */
+    .adh-section { margin: 10px 10px 0; }
+    .adh-title { font-size: 12px; font-weight: 700; color: var(--navy); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; padding: 0 2px; }
+    .adh-week { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
+    .adh-day { border-radius: 8px; padding: 6px 3px; text-align: center; }
+    .adh-day .ad-name { font-size: 9px; font-weight: 700; color: #888; margin-bottom: 4px; }
+    .adh-day .ad-status { font-size: 9px; font-weight: 700; border-radius: 4px; padding: 3px 2px; }
+    .adh-day.ok { background: #E8F5E9; }
+    .adh-day.ok .ad-status { background: #27ae60; color: white; }
+    .adh-day.missed { background: #FDECEA; }
+    .adh-day.missed .ad-status { background: #e74c3c; color: white; }
+    .adh-day.pending { background: #F7F9FA; }
+    .adh-day.pending .ad-status { background: #ddd; color: #888; }
+    .adh-legend { display: flex; gap: 12px; margin-top: 8px; padding: 0 2px; }
+    .adh-legend span { font-size: 10px; color: var(--muted); display: flex; align-items: center; gap: 4px; }
+    .adh-legend span::before { content: ''; width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+    .adh-legend .ok-leg::before { background: #27ae60; }
+    .adh-legend .miss-leg::before { background: #e74c3c; }
+    .adh-legend .pend-leg::before { background: #ddd; }
+
+    /* Phone right column description */
+    .phone-desc { display: flex; flex-direction: column; justify-content: center; gap: 20px; }
+    .phone-desc-item { display: flex; gap: 14px; align-items: flex-start; }
+    .phone-desc-icon { width: 36px; height: 36px; border-radius: 10px; background: #E8F7F6; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+    .phone-desc-text h4 { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .phone-desc-text p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    /* FOOTER */
+    footer { background: #F1F3F5; padding: 28px 0; text-align: center; font-size: 13px; color: #888; border-top: 1px solid var(--border); }
+
+    /* Utility */
+    .hidden { display: none !important; }
+    .center { text-align: center; }
+    .mt16 { margin-top: 16px; }
+    .mt24 { margin-top: 24px; }
+
+    @media (max-width: 720px) {
+      .hero h1 { font-size: 30px; }
+      .demo-grid, .track-cards, .treatment-opts, .tiers-grid, .photos-grid { grid-template-columns: 1fr; }
+      .form-row { flex-direction: column; }
+      .priv-bar { padding: 32px 24px; }
+      .role-chooser { flex-direction: column; }
+      .phone { width: 280px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="container header-inner">
+    <span class="logo" onclick="resetHome()">Cynth-ia.fr</span>
+    <div class="lang-btns">
+      <a class="back-link" href="../index.html#cynthia">← Portfolio</a>
+      <button onclick="setLang('en')" id="btn-en">🇺🇸 EN</button>
+      <button onclick="setLang('fr')" id="btn-fr" class="active">🇫🇷 FR</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <h1 id="h-title">Built on Trust. Visualized by AI.</h1>
+    <p id="h-desc">Transforming clinical reports into personalized recovery roadmaps. Securely hosted in France.</p>
+    <a href="#platform" class="btn-hero" id="h-btn">Explore the Platform</a>
+  </div>
+</section>
+
+<!-- PHOTOS -->
+<section class="photos-wrap">
+  <div class="container">
+    <div class="photos-grid">
+      <img src="https://images.pexels.com/photos/4506109/pexels-photo-4506109.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Physical therapy session">
+      <img src="https://images.pexels.com/photos/6111616/pexels-photo-6111616.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Recovering athlete">
+    </div>
+  </div>
+</section>
+
+<!-- PRIVACY BAR -->
+<section class="priv-wrap">
+  <div class="container">
+    <div class="priv-bar">
+      <h2 id="priv-title">The Sanctity of the Circle</h2>
+      <p id="priv-body">In compliance with French HDS laws, your adherence data is shared only between doctor and patient. Insurance companies are legally excluded from this loop, ensuring your recovery is private and protected from premium adjustments.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== NEW: PLATFORM FLOW ========== -->
+<section id="platform" class="flow-section">
+  <div class="container">
+    <!-- STEP 1: TRACK SELECTION -->
+    <div id="step-track">
+      <div class="step-indicator">
+        <div class="step-num">1</div>
+        <div class="step-label" id="sl-step1">Choose Your Track</div>
+      </div>
+      <div class="track-chooser">
+        <h2 id="tc-title">Which clinical track?</h2>
+        <p id="tc-sub">Cynth-ia.fr supports two specialized recovery pipelines. Select the one that fits your patient's needs.</p>
+        <div class="track-cards">
+          <div class="track-card" id="track-pt" onclick="selectTrack('pt')">
+            <div class="track-icon">🦴</div>
+            <h3 id="tc-pt-h">PT / Rehab</h3>
+            <p id="tc-pt-p">MRI & X-Ray reports parsed into 3D injury maps and tapered mobility reminders.</p>
+          </div>
+          <div class="track-card" id="track-pharma" onclick="selectTrack('pharma')">
+            <div class="track-icon">💊</div>
+            <h3 id="tc-ph-h">Pharma</h3>
+            <p id="tc-ph-p">Dose calculation by Age + Weight with strict medication tapering and reminder schedules.</p>
+          </div>
+        </div>
+        <div class="step-indicator" style="justify-content:center; margin-bottom: 12px;">
+          <div class="step-num">2</div>
+          <div class="step-label" id="sl-step2">Who are you?</div>
+        </div>
+        <div class="role-chooser">
+          <button class="role-btn" id="role-mdp" onclick="selectRole('mdp')">🩺 Medical Professional</button>
+          <button class="role-btn" id="role-patient" onclick="selectRole('patient')">🙋 Patient</button>
+        </div>
+        <button class="btn-ok" id="btn-enter-flow" onclick="enterFlow()">Enter Platform →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== MDP FLOW ========== -->
+<section id="mdp-flow" class="flow-section alt hidden">
+  <div class="container">
+
+    <!-- PT CLINICAL INPUT -->
+    <div id="panel-pt-input" class="flow-panel">
+      <div class="step-indicator">
+        <div class="step-num">3</div>
+        <div class="step-label" id="sl-clinical">Clinical Report Input</div>
+      </div>
+      <div class="clinical-panel">
+        <h3 id="ci-title">Patient Report: PT Track</h3>
+        <p class="subtitle" id="ci-sub">Review the auto-populated clinical summaries below. Edit or confirm before sending to the AI engine.</p>
+
+        <div class="form-row">
+          <div class="fg">
+            <label id="ci-xray-l">X-Ray Summary</label>
+            <textarea id="xray-text"></textarea>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="fg">
+            <label id="ci-mri-l">MRI Summary</label>
+            <textarea id="mri-text"></textarea>
+          </div>
+        </div>
+
+        <p style="font-size:13px; font-weight:700; color:var(--navy); margin:18px 0 10px;" id="ci-treat-l">Select Treatment Duration & Tier:</p>
+        <div class="treatment-opts">
+          <button class="opt-btn" id="opt-2w" onclick="selectOpt(this)">
+            <span class="opt-title" id="opt-2w-t">2-Week Strict Sprint</span>
+            <span class="opt-sub" id="opt-2w-s">2× daily reminders — acute post-op</span>
+          </button>
+          <button class="opt-btn" id="opt-4w" onclick="selectOpt(this)">
+            <span class="opt-title" id="opt-4w-t">4-Week Recommended</span>
+            <span class="opt-sub" id="opt-4w-s">5× weekly — active rehab</span>
+          </button>
+          <button class="opt-btn" id="opt-8w" onclick="selectOpt(this)">
+            <span class="opt-title" id="opt-8w-t">8-Week Moderate</span>
+            <span class="opt-sub" id="opt-8w-s">3× weekly — steady recovery</span>
+          </button>
+          <button class="opt-btn" id="opt-4m" onclick="selectOpt(this)">
+            <span class="opt-title" id="opt-4m-t">4-Month Normal</span>
+            <span class="opt-sub" id="opt-4m-s">1× weekly — long-term maintenance</span>
+          </button>
+        </div>
+
+        <div class="center mt24">
+          <button class="btn-ok" onclick="showApproval()" id="ci-ok-btn">OK — Generate AI Treatment Plan →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHARMA CLINICAL INPUT -->
+    <div id="panel-pharma-input" class="flow-panel">
+      <div class="step-indicator">
+        <div class="step-num">3</div>
+        <div class="step-label" id="sl-pharma-input">Prescription Input</div>
+      </div>
+      <div class="clinical-panel">
+        <h3 id="phi-title">Pharma Track: Prescription Engine</h3>
+        <p class="subtitle" id="phi-sub">Enter patient details and medication parameters. The AI will calculate a safe schedule.</p>
+        <div class="form-row">
+          <div class="fg" style="flex:2">
+            <label id="phi-drug-l">Medication Name</label>
+            <input type="text" value="Ibuprofen" id="phi-drug-v">
+          </div>
+          <div class="fg">
+            <label id="phi-dose-l">Dose (mg)</label>
+            <input type="number" value="600" id="phi-dose-v">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="fg">
+            <label id="phi-freq-l">Frequency / Day</label>
+            <input type="number" value="2" min="1" max="4">
+          </div>
+          <div class="fg">
+            <label id="phi-dur-l">Duration (Days)</label>
+            <input type="number" value="7">
+          </div>
+          <div class="fg">
+            <label id="phi-age-l">Patient Age</label>
+            <input type="number" value="34">
+          </div>
+          <div class="fg">
+            <label id="phi-wt-l">Weight (kg)</label>
+            <input type="number" value="72">
+          </div>
+        </div>
+        <div class="center mt24">
+          <button class="btn-ok" onclick="showApproval()" id="phi-ok-btn">OK — Generate AI Schedule →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- DOCTOR APPROVAL PANEL (shared by both tracks) -->
+    <div id="panel-approval" class="flow-panel">
+      <div class="step-indicator">
+        <div class="step-num">4</div>
+        <div class="step-label" id="sl-approve">Review & Sign</div>
+      </div>
+      <div class="approval-panel">
+        <div class="ai-tag"><div class="ai-dot"></div> <span id="ai-generated-label">AI Generated — Pending MDP Signature</span></div>
+
+        <!-- Plan block 1: Injury / Medication -->
+        <div class="plan-block" id="plan-block-pt">
+          <h4 id="pb-pt-title">PT Recovery Plan <span class="pill" id="pb-pt-pill">MCL Tear + Tibial Fracture</span></h4>
+          <div class="plan-row"><span class="lbl" id="pb-injury-l">Primary Injury</span><span class="val" id="pb-injury-v">Partial MCL Tear (Grade II) + Small Tibial Fracture</span></div>
+          <div class="plan-row"><span class="lbl" id="pb-phase-l">Protocol Phase</span><span class="val" id="pb-phase-v">Phase 1 — Protected Weight-Bearing (Weeks 1–2)</span></div>
+          <div class="plan-row"><span class="lbl" id="pb-ex-l">Prescribed Exercises</span><span class="val" id="pb-ex-v">Heel slides · Quad sets · Ankle pumps · Straight leg raises</span></div>
+          <div class="plan-row"><span class="lbl" id="pb-restrict-l">Restrictions</span><span class="val flag" id="pb-restrict-v">No full weight-bearing · No lateral pivoting · Brace required</span></div>
+          <div class="plan-row"><span class="lbl" id="pb-dur-l">Treatment Duration</span><span class="val" id="pb-dur-v">14 Days — Strict Tier (2× daily)</span></div>
+        </div>
+
+        <div class="plan-block" id="plan-block-pharma" style="display:none">
+          <h4 id="pb-ph-title">Pharma Schedule <span class="pill" id="pb-ph-pill">Ibuprofen 600mg</span></h4>
+          <div class="plan-row"><span class="lbl" id="pb-ph-drug-l">Medication</span><span class="val" id="pb-ph-drug-v">Ibuprofen 600mg</span></div>
+          <div class="plan-row"><span class="lbl" id="pb-ph-freq-l">Frequency</span><span class="val" id="pb-ph-freq-v">2× daily — Morning & Evening</span></div>
+          <div class="plan-row"><span class="lbl" id="pb-ph-food-l">Administration</span><span class="val" id="pb-ph-food-v">Take with food. Do not exceed 7 days without review.</span></div>
+          <div class="plan-row"><span class="lbl" id="pb-ph-flag-l">Risk Flag</span><span class="val flag" id="pb-ph-flag-v">⚠ Monitor for GI irritation at 600mg dose</span></div>
+        </div>
+
+        <!-- Reminder schedule -->
+        <div class="plan-block">
+          <h4 id="pb-sched-title">AI-Generated Reminder Schedule <span class="pill" id="pb-sched-pill">Week 1</span></h4>
+          <div class="schedule-grid" id="sched-grid">
+            <div class="day-chip"><div class="d-name" id="dc-mon">MON</div><div class="d-dose">08:00<br>20:00</div></div>
+            <div class="day-chip"><div class="d-name" id="dc-tue">TUE</div><div class="d-dose">08:00<br>20:00</div></div>
+            <div class="day-chip"><div class="d-name" id="dc-wed">WED</div><div class="d-dose">08:00<br>20:00</div></div>
+            <div class="day-chip"><div class="d-name" id="dc-thu">THU</div><div class="d-dose">08:00<br>20:00</div></div>
+            <div class="day-chip"><div class="d-name" id="dc-fri">FRI</div><div class="d-dose">08:00<br>20:00</div></div>
+            <div class="day-chip"><div class="d-name" id="dc-sat">SAT</div><div class="d-dose">08:00<br>20:00</div></div>
+            <div class="day-chip"><div class="d-name" id="dc-sun">SUN</div><div class="d-dose">08:00<br>20:00</div></div>
+          </div>
+        </div>
+
+        <!-- Sign block -->
+        <div class="sign-block">
+          <p id="sign-legal-text">By signing below, you confirm that you have reviewed this AI-generated treatment plan and take full medical responsibility for its deployment to the patient's adherence queue.</p>
+          <button class="btn-sign-ok" onclick="signPlan()" id="sign-ok-btn">✎ OK — Sign & Deploy Plan</button>
+          <div class="signed-badge" id="signed-confirm">
+            <span>✓</span> <span id="signed-text">Plan Signed & Queued. Patient notifications activated.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PATIENT APP FLOW ========== -->
+<section id="patient-flow" class="flow-section hidden">
+  <div class="container">
+    <div class="step-indicator">
+      <div class="step-num">3</div>
+      <div class="step-label" id="sl-patient-view">Your Recovery App</div>
+    </div>
+    <div class="demo-grid">
+      <div class="phone-outer">
+        <div class="phone">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+
+            <!-- Status bar -->
+            <div class="phone-status">
+              <span class="time">09:42</span>
+              <span>🔋 84%</span>
+            </div>
+
+            <!-- Notification 1: PT Reminder -->
+            <div class="notif-banner">
+              <div class="notif-icon tiffany">🦴</div>
+              <div class="notif-content">
+                <div class="notif-app" id="notif1-app">CYNTH-IA.FR</div>
+                <div class="notif-title" id="notif1-title">Morning Exercise Reminder</div>
+                <div class="notif-body" id="notif1-body">Heel slides · 2 sets of 10. MCL Protocol Day 3.</div>
+              </div>
+              <div class="notif-time">now</div>
+            </div>
+
+            <!-- Notification 2: Medicine -->
+            <div class="notif-banner">
+              <div class="notif-icon orange">💊</div>
+              <div class="notif-content">
+                <div class="notif-app" id="notif2-app">CYNTH-IA.FR</div>
+                <div class="notif-title" id="notif2-title">Morning Reminder</div>
+                <div class="notif-body" id="notif2-body">Medicine — Ibuprofen Morning: <strong>2× a day · 600mg</strong></div>
+              </div>
+              <div class="notif-time">09:41</div>
+            </div>
+
+            <!-- App header -->
+            <div class="app-header">
+              <div class="app-title" id="app-title">My Recovery</div>
+              <div class="app-sub" id="app-sub">MCL Tear + Tibial Fracture · Week 1 of 2</div>
+            </div>
+
+            <!-- Medicine card -->
+            <div class="med-card">
+              <div class="med-card-header">
+                <div class="med-pill-icon">💊</div>
+                <div>
+                  <div class="med-name" id="med-name">Ibuprofen</div>
+                  <div class="med-sub" id="med-sub">Anti-inflammatory · Morning dose</div>
+                </div>
+              </div>
+              <div class="med-dose-row">
+                <div class="med-dose-chip">
+                  <div class="dc-label" id="dc-dose-l">Dose</div>
+                  <div class="dc-val">600mg</div>
+                </div>
+                <div class="med-dose-chip">
+                  <div class="dc-label" id="dc-freq-l">Frequency</div>
+                  <div class="dc-val" id="dc-freq-v">2× / day</div>
+                </div>
+                <div class="med-dose-chip">
+                  <div class="dc-label" id="dc-dur-l">Duration</div>
+                  <div class="dc-val">7 days</div>
+                </div>
+              </div>
+              <button class="btn-taken" id="btn-taken-med">✓ Taken</button>
+            </div>
+
+            <!-- Adherence week -->
+            <div class="adh-section">
+              <div class="adh-title" id="adh-week-title">Week 1 — Adherence</div>
+              <div class="adh-week">
+                <div class="adh-day ok"><div class="ad-name" id="adh-d1">Day 1</div><div class="ad-status" id="adh-s1">OK</div></div>
+                <div class="adh-day ok"><div class="ad-name" id="adh-d2">Day 2</div><div class="ad-status" id="adh-s2">OK</div></div>
+                <div class="adh-day ok"><div class="ad-name" id="adh-d3">Day 3</div><div class="ad-status" id="adh-s3">OK</div></div>
+                <div class="adh-day ok"><div class="ad-name" id="adh-d4">Day 4</div><div class="ad-status" id="adh-s4">OK</div></div>
+                <div class="adh-day ok"><div class="ad-name" id="adh-d5">Day 5</div><div class="ad-status" id="adh-s5">OK</div></div>
+                <div class="adh-day ok"><div class="ad-name" id="adh-d6">Day 6</div><div class="ad-status" id="adh-s6">OK</div></div>
+                <div class="adh-day missed"><div class="ad-name" id="adh-d7">Day 7</div><div class="ad-status" id="adh-s7-label">Missed</div></div>
+              </div>
+              <div class="adh-legend">
+                <span class="ok-leg" id="leg-ok">Taken</span>
+                <span class="miss-leg" id="leg-missed">Missed</span>
+                <span class="pend-leg" id="leg-pending">Pending</span>
+              </div>
+            </div>
+
+          </div><!-- end phone-screen -->
+        </div><!-- end phone -->
+      </div>
+
+      <!-- Right column description -->
+      <div class="phone-desc">
+        <div>
+          <div class="section-badge">PATIENT APP</div>
+          <div class="demo-title" id="pa-title">Your Recovery, In Your Pocket</div>
+          <p class="demo-body" id="pa-body">Once the MDP signs the plan, Cynth-ia.fr activates a personalized app experience. Push notifications arrive at precise times. One tap confirms adherence and logs an immutable event to your HDS-certified record.</p>
+        </div>
+        <div class="phone-desc-item">
+          <div class="phone-desc-icon">🔔</div>
+          <div class="phone-desc-text">
+            <h4 id="pd1-title">Smart Notifications</h4>
+            <p id="pd1-body">Timed reminders for both exercises and medication — never generic, always personalized to your treatment tier.</p>
+          </div>
+        </div>
+        <div class="phone-desc-item">
+          <div class="phone-desc-icon">📊</div>
+          <div class="phone-desc-text">
+            <h4 id="pd2-title">Weekly Adherence View</h4>
+            <p id="pd2-body">Day-by-day visual log of your compliance. Day 7 missed? Your doctor sees it — and the AI adjusts the next week's messaging frequency.</p>
+          </div>
+        </div>
+        <div class="phone-desc-item">
+          <div class="phone-desc-icon">🔒</div>
+          <div class="phone-desc-text">
+            <h4 id="pd3-title">HDS Secured</h4>
+            <p id="pd3-body">All data stays on French soil. Legally, only you and your doctor can see this. Insurers are excluded by law.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== ORIGINAL DEMO SECTIONS (PRESERVED) ====== -->
+<section class="demo-section">
+  <div class="container">
+    <div class="demo-grid">
+      <div class="cta-card">
+        <div class="status-badge" id="s-status">Log Not Found</div>
+        <div class="cta-box">
+          <p id="s-cta-msg"><strong>Scheduled: 14:02</strong><br>Time for your post-op MCL mobilization. Heel slides, 2 sets of 10.</p>
+          <button class="btn-adhere" id="s-adhere">I've Done This</button>
+        </div>
+      </div>
+      <div>
+        <div class="section-badge">PATIENT TRACK</div>
+        <div class="demo-title" id="s-cta-title">Patient Adherence Hook</div>
+        <p class="demo-body" id="s-cta-body">Patients receive a time-sensitive secure token via email or push notification. One tap logs a success event in your HDS-certified database — an immutable record of adherence. We call this the 'Hook' because it turns a reminder into a verified clinical interaction.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="demo-section">
+  <div class="container">
+    <div class="demo-grid">
+      <div>
+        <div class="section-badge">MDP AUTHORITY</div>
+        <div class="demo-title" id="s-sign-title">Human-in-the-Loop: Sign & Queue</div>
+        <p class="demo-body" id="s-sign-body">The AI never talks to patients alone. Cynth-ia.fr drafts treatment plans based on MRI summaries or pharma inputs. The Medical Professional reviews drafts on this dashboard, then a digital signature commits the entire plan to the live messaging queue.</p>
+      </div>
+      <div class="queue-card">
+        <h4 id="s-dash-title">Verification Queue — Anonymized</h4>
+        <div class="draft-item">
+          <div><strong>#PT-751 (Knee / Strict)</strong><span id="s-p-text">14 Days, Tapered, Strict Start</span></div>
+          <div><button class="btn-edit" id="s-btn-edit1">Edit</button><button class="btn-approve" id="s-btn-approve1">Approve</button></div>
+        </div>
+        <div class="draft-item">
+          <div><strong>#RX-902 (NSAID / Moderate)</strong><span id="s-d-text">7 Days, 2× Daily, Dose: 400mg</span></div>
+          <div><button class="btn-edit" id="s-btn-edit2">Edit</button><button class="btn-approve" id="s-btn-approve2">Approve</button></div>
+        </div>
+        <div class="sign-footer"><button class="btn-sign" id="s-sign-all">Sign All Queued Plans</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="demo-section">
+  <div class="container">
+    <div class="demo-grid">
+      <div class="pharma-card">
+        <h4 id="s-ph-title">MDP Prescription Engine</h4>
+        <div class="form-row">
+          <div class="fg" style="flex:2"><label id="s-ph-drug">Medication Name</label><input type="text" placeholder="Ibuprofen, Prednisone…"></div>
+          <div class="fg" style="flex:1"><label id="s-ph-dose">Dose (mg)</label><input type="number" placeholder="400"></div>
+        </div>
+        <div class="form-row">
+          <div class="fg"><label id="s-ph-freq">Frequency / Day</label><input type="number" placeholder="2" min="1" max="4"></div>
+          <div class="fg"><label id="s-ph-dur">Duration (Days)</label><input type="number" placeholder="7"></div>
+        </div>
+        <button class="btn-calc" id="s-ph-btn">AI Calculation &amp; Suggestion</button>
+      </div>
+      <div>
+        <div class="section-badge">PHARMA TRACK</div>
+        <div class="demo-title" id="s-ph-d-title">Pharma Dosage Calculation</div>
+        <p class="demo-body" id="s-ph-d-body">This MDP input triggers the core drug logic. The backend calculates the suggested schedule based on Age + Weight variables and flags dosage risks in real-time. If the 'Medicine Reminders' track is activated, the strict 2-week taper default is applied unless overridden by clinical judgment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tiers-section">
+  <div class="container">
+    <div class="tiers-header">
+      <div class="section-badge">BEHAVIORAL TAPERING</div>
+      <div class="demo-title" id="s-tier-title">Adherence Tiers</div>
+      <p class="demo-body" id="s-tier-body">Messages mirror the healing process — high-touch at the start, tapering as the patient recovers.</p>
+    </div>
+    <div class="tiers-grid">
+      <div class="tier"><div class="t-label" id="t1-label">STRICT</div><div class="t-freq" id="t1-freq">2×/day</div><div class="t-desc" id="t1-desc">2-week sprint. Acute injury or post-op recovery.</div></div>
+      <div class="tier"><div class="t-label" id="t2-label">RECOMMENDED</div><div class="t-freq" id="t2-freq">5×/week</div><div class="t-desc" id="t2-desc">1–2 months. Active rehabilitation phase.</div></div>
+      <div class="tier"><div class="t-label" id="t3-label">NORMAL</div><div class="t-freq" id="t3-freq">1×/week</div><div class="t-desc" id="t3-desc">3–6 months. Long-term maintenance check-ins.</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Prototype de démonstration · données fictives · pas un dispositif médical · <a href="../index.html#cynthia" style="color:inherit">Carlos San Luis</a></p>
+  <p>© 2026 Cynth-ia.fr | HDS Sécurisé | <span style="color:#e91e63">French Tech 🇫🇷</span></p>
+</footer>
+
+<script>
+let currentLang = 'en';
+let selectedTrack = 'pt';
+let selectedRole = 'mdp';
+
+/* ===== TRANSLATIONS ===== */
+const T = {
+  en: {
+    hTitle:"Built on Trust. Visualized by AI.",
+    hDesc:"Transforming clinical reports into personalized recovery roadmaps. Securely hosted in France.",
+    hBtn:"Explore the Platform",
+    privTitle:"The Sanctity of the Circle",
+    privBody:"In compliance with French HDS laws, your adherence data is shared only between doctor and patient. Insurance companies are legally excluded from this loop, ensuring your recovery is private and protected from premium adjustments.",
+    /* Step labels */
+    slStep1:"Choose Your Track", slStep2:"Who are you?",
+    slClinical:"Clinical Report Input", slApprove:"Review & Sign",
+    slPatientView:"Your Recovery App", slPharmaInput:"Prescription Input",
+    slEnter:"Enter Platform →", slMdp:"🩺 Medical Professional", slPatient:"🙋 Patient",
+    /* Track chooser */
+    tcTitle:"Which clinical track?",
+    tcSub:"Cynth-ia.fr supports two specialized recovery pipelines. Select the one that fits your patient's needs.",
+    tcPtH:"PT / Rehab", tcPtP:"MRI & X-Ray reports parsed into 3D injury maps and tapered mobility reminders.",
+    tcPhH:"Pharma", tcPhP:"Dose calculation by Age + Weight with strict medication tapering and reminder schedules.",
+    /* Clinical input PT */
+    ciTitle:"Patient Report: PT Track", ciSub:"Review the auto-populated clinical summaries below. Edit or confirm before sending to the AI engine.",
+    ciXrayL:"X-Ray Summary", ciMriL:"MRI Summary", ciTreatL:"Select Treatment Duration & Tier:",
+    xrayText:"X-RAY FINDINGS — Right Knee\n\nSmall linear cortical irregularity noted at the anteromedial tibial plateau, consistent with a non-displaced tibial cortical fracture. No significant joint space narrowing. Soft tissue swelling present medially. No foreign bodies. Alignment maintained.\n\nImpression: Non-displaced small tibial fracture. Clinical correlation advised.",
+    mriText:"MRI FINDINGS — Right Knee (3T, with contrast)\n\nMedial collateral ligament (MCL): Partial-thickness tear identified at the mid-substance level. Approximately 40–50% of fibres disrupted. Grade II injury. Surrounding soft-tissue edema noted.\n\nTibia: Bone marrow edema adjacent to the previously noted cortical irregularity. No complete fracture line on MRI.\n\nAnterior cruciate ligament: Intact.\nMedial meniscus: No tear identified.\nPatellofemoral joint: Normal.\n\nImpression: Grade II partial MCL tear with associated tibial bone contusion/micro-fracture.",
+    opt2wT:"2-Week Strict Sprint", opt2wS:"2× daily reminders — acute post-op",
+    opt4wT:"4-Week Recommended", opt4wS:"5× weekly — active rehab",
+    opt8wT:"8-Week Moderate", opt8wS:"3× weekly — steady recovery",
+    opt4mT:"4-Month Normal", opt4mS:"1× weekly — long-term maintenance",
+    ciOkBtn:"OK — Generate AI Treatment Plan →",
+    /* Pharma input */
+    phiTitle:"Pharma Track: Prescription Engine",
+    phiSub:"Enter patient details and medication parameters. The AI will calculate a safe schedule.",
+    phiDrugL:"Medication Name", phiDoseL:"Dose (mg)", phiFreqL:"Frequency / Day",
+    phiDurL:"Duration (Days)", phiAgeL:"Patient Age", phiWtL:"Weight (kg)",
+    phiOkBtn:"OK — Generate AI Schedule →",
+    /* Approval */
+    aiGeneratedLabel:"AI Generated — Pending MDP Signature",
+    pbPtTitle:"PT Recovery Plan", pbPtPill:"MCL Tear + Tibial Fracture",
+    pbInjuryL:"Primary Injury", pbInjuryV:"Partial MCL Tear (Grade II) + Small Tibial Fracture",
+    pbPhaseL:"Protocol Phase", pbPhaseV:"Phase 1 — Protected Weight-Bearing (Weeks 1–2)",
+    pbExL:"Prescribed Exercises", pbExV:"Heel slides · Quad sets · Ankle pumps · Straight leg raises",
+    pbRestrictL:"Restrictions", pbRestrictV:"No full weight-bearing · No lateral pivoting · Brace required",
+    pbDurL:"Treatment Duration", pbDurV:"14 Days — Strict Tier (2× daily)",
+    pbPhTitle:"Pharma Schedule", pbPhPill:"Ibuprofen 600mg",
+    pbPhDrugL:"Medication", pbPhDrugV:"Ibuprofen 600mg",
+    pbPhFreqL:"Frequency", pbPhFreqV:"2× daily — Morning & Evening",
+    pbPhFoodL:"Administration", pbPhFoodV:"Take with food. Do not exceed 7 days without review.",
+    pbPhFlagL:"Risk Flag", pbPhFlagV:"⚠ Monitor for GI irritation at 600mg dose",
+    pbSchedTitle:"AI-Generated Reminder Schedule", pbSchedPill:"Week 1",
+    dcMon:"MON", dcTue:"TUE", dcWed:"WED", dcThu:"THU", dcFri:"FRI", dcSat:"SAT", dcSun:"SUN",
+    signLegalText:"By signing below, you confirm that you have reviewed this AI-generated treatment plan and take full medical responsibility for its deployment to the patient's adherence queue.",
+    signOkBtn:"✎ OK — Sign & Deploy Plan",
+    signedText:"Plan Signed & Queued. Patient notifications activated.",
+    /* Patient app */
+    paTitle:"Your Recovery, In Your Pocket",
+    paBody:"Once the MDP signs the plan, Cynth-ia.fr activates a personalized app experience. Push notifications arrive at precise times. One tap confirms adherence and logs an immutable event to your HDS-certified record.",
+    notif1App:"CYNTH-IA.FR", notif1Title:"Morning Exercise Reminder", notif1Body:"Heel slides · 2 sets of 10. MCL Protocol Day 3.",
+    notif2App:"CYNTH-IA.FR", notif2Title:"Morning Reminder", notif2Body:"Medicine — Ibuprofen Morning:",
+    appTitle:"My Recovery", appSub:"MCL Tear + Tibial Fracture · Week 1 of 2",
+    medName:"Ibuprofen", medSub:"Anti-inflammatory · Morning dose",
+    dcDoseL:"Dose", dcFreqL:"Frequency", dcFreqV:"2× / day", dcDurL:"Duration",
+    btnTakenMed:"✓ Taken",
+    adhWeekTitle:"Week 1 — Adherence",
+    adh:["Day 1","Day 2","Day 3","Day 4","Day 5","Day 6","Day 7"],
+    adhStatus:["OK","OK","OK","OK","OK","OK","Missed"],
+    legOk:"Taken", legMissed:"Missed", legPending:"Pending",
+    pd1Title:"Smart Notifications", pd1Body:"Timed reminders for both exercises and medication — never generic, always personalized to your treatment tier.",
+    pd2Title:"Weekly Adherence View", pd2Body:"Day-by-day visual log of your compliance. Day 7 missed? Your doctor sees it — and the AI adjusts the next week's messaging frequency.",
+    pd3Title:"HDS Secured", pd3Body:"All data stays on French soil. Legally, only you and your doctor can see this. Insurers are excluded by law.",
+    /* Original sections */
+    sStatus:"Log Not Found",
+    sCtaMsg:"<strong>Scheduled: 14:02</strong><br>Time for your post-op MCL mobilization. Heel slides, 2 sets of 10.",
+    sAdhere:"I've Done This", sCtaTitle:"Patient Adherence Hook",
+    sCtaBody:"Patients receive a time-sensitive secure token via email or push notification. One tap logs a success event in your HDS-certified database — an immutable record of adherence.",
+    sSignTitle:"Human-in-the-Loop: Sign & Queue",
+    sSignBody:"The AI never talks to patients alone. Cynth-ia.fr drafts treatment plans based on MRI summaries or pharma inputs. The MDP reviews drafts, then a signature commits the plan to the live messaging queue.",
+    sDashTitle:"Verification Queue — Anonymized",
+    sPText:"14 Days, Tapered, Strict Start", sDText:"7 Days, 2× Daily, Dose: 400mg",
+    sEdit:"Edit", sApprove:"Approve", sSignAll:"Sign All Queued Plans",
+    sPhTitle:"MDP Prescription Engine",
+    sPhDrug:"Medication Name", sPhDose:"Dose (mg)", sPhFreq:"Frequency / Day", sPhDur:"Duration (Days)",
+    sPhBtn:"AI Calculation & Suggestion",
+    sPhDTitle:"Pharma Dosage Calculation",
+    sPhDBody:"This MDP input triggers the core drug logic. The backend calculates the suggested schedule based on Age + Weight variables and flags dosage risks in real-time.",
+    sTierTitle:"Adherence Tiers",
+    sTierBody:"Messages mirror the healing process — high-touch at the start, tapering as the patient recovers.",
+    t1L:"STRICT", t1F:"2×/day", t1D:"2-week sprint. Acute injury or post-op.",
+    t2L:"RECOMMENDED", t2F:"5×/week", t2D:"1–2 months. Active rehabilitation.",
+    t3L:"NORMAL", t3F:"1×/week", t3D:"3–6 months. Maintenance check-ins."
+  },
+  fr: {
+    hTitle:"Bâti sur la Confiance. Visualisé par l'IA.",
+    hDesc:"Transformer les rapports cliniques en feuilles de route de récupération. Hébergé en toute sécurité en France.",
+    hBtn:"Explorer la Plateforme",
+    privTitle:"La Sanctité du Cercle",
+    privBody:"Conformément aux lois HDS françaises, vos données d'adhérence ne sont partagées qu'entre le médecin et le patient. Les assureurs sont légalement exclus, protégeant votre vie privée et vos primes.",
+    slStep1:"Choisir votre parcours", slStep2:"Qui êtes-vous ?",
+    slClinical:"Saisie du rapport clinique", slApprove:"Réviser & Signer",
+    slPatientView:"Votre application de récupération", slPharmaInput:"Saisie de prescription",
+    slEnter:"Accéder à la plateforme →", slMdp:"🩺 Professionnel de santé", slPatient:"🙋 Patient",
+    tcTitle:"Quel parcours clinique ?",
+    tcSub:"Cynth-ia.fr prend en charge deux pipelines de récupération spécialisés. Sélectionnez celui qui correspond aux besoins de votre patient.",
+    tcPtH:"Kinésithérapie / Rééducation", tcPtP:"Rapports IRM et radiographies traduits en cartes 3D et rappels de mobilité progressifs.",
+    tcPhH:"Pharmacie", tcPhP:"Calcul de dose selon l'âge + le poids avec une dégressivité stricte et des rappels de prise.",
+    ciTitle:"Rapport patient : Parcours Kiné", ciSub:"Vérifiez les résumés cliniques ci-dessous. Éditez ou confirmez avant d'envoyer au moteur IA.",
+    ciXrayL:"Résumé de la radiographie", ciMriL:"Résumé de l'IRM", ciTreatL:"Sélectionner la durée et le niveau de traitement :",
+    xrayText:"RÉSULTATS RADIOGRAPHIQUES — Genou droit\n\nPetite irrégularité corticale linéaire au niveau du plateau tibial antéromédial, compatible avec une fracture corticale tibiale non déplacée. Pas de rétrécissement significatif de l'espace articulaire. Gonflement des tissus mous en médial. Pas de corps étranger. Alignement maintenu.\n\nConclusion : Petite fracture tibiale non déplacée. Corrélation clinique recommandée.",
+    mriText:"RÉSULTATS IRM — Genou droit (3T, avec contraste)\n\nLigament collatéral médial (LCM) : Déchirure partielle identifiée au niveau de la substance moyenne. Environ 40 à 50 % des fibres rompues. Lésion de grade II. Œdème des tissus mous environnants.\n\nTibia : Œdème de la moelle osseuse adjacent à l'irrégularité corticale. Pas de ligne de fracture complète visible à l'IRM.\n\nLigament croisé antérieur : Intact.\nMénisque médial : Aucune déchirure identifiée.\nArticulation fémoro-patellaire : Normale.\n\nConclusion : Déchirure partielle de grade II du LCM avec contusion osseuse tibiale associée.",
+    opt2wT:"Sprint strict de 2 semaines", opt2wS:"2× par jour — post-op aigu",
+    opt4wT:"Recommandé sur 4 semaines", opt4wS:"5× par semaine — rééducation active",
+    opt8wT:"Modéré sur 8 semaines", opt8wS:"3× par semaine — récupération progressive",
+    opt4mT:"Normal sur 4 mois", opt4mS:"1× par semaine — maintenance long terme",
+    ciOkBtn:"OK — Générer le plan de traitement IA →",
+    phiTitle:"Parcours Pharmacie : Moteur de prescription",
+    phiSub:"Saisissez les données du patient et les paramètres du médicament. L'IA calculera un calendrier sécurisé.",
+    phiDrugL:"Nom du médicament", phiDoseL:"Dose (mg)", phiFreqL:"Fréquence / Jour",
+    phiDurL:"Durée (jours)", phiAgeL:"Âge du patient", phiWtL:"Poids (kg)",
+    phiOkBtn:"OK — Générer le calendrier IA →",
+    aiGeneratedLabel:"Généré par l'IA — En attente de signature MDP",
+    pbPtTitle:"Plan de récupération kiné", pbPtPill:"Déchirure LCM + Fracture tibiale",
+    pbInjuryL:"Blessure principale", pbInjuryV:"Déchirure partielle LCM (Grade II) + Petite fracture tibiale",
+    pbPhaseL:"Phase du protocole", pbPhaseV:"Phase 1 — Appui partiel protégé (Semaines 1–2)",
+    pbExL:"Exercices prescrits", pbExV:"Heel slides · Contractions quadriceps · Pompes cheville · Élévations jambe tendue",
+    pbRestrictL:"Restrictions", pbRestrictV:"Pas d'appui complet · Pas de pivot latéral · Attelle obligatoire",
+    pbDurL:"Durée du traitement", pbDurV:"14 Jours — Niveau strict (2× par jour)",
+    pbPhTitle:"Calendrier pharmacie", pbPhPill:"Ibuprofène 600mg",
+    pbPhDrugL:"Médicament", pbPhDrugV:"Ibuprofène 600mg",
+    pbPhFreqL:"Fréquence", pbPhFreqV:"2× par jour — Matin & Soir",
+    pbPhFoodL:"Administration", pbPhFoodV:"Prendre avec de la nourriture. Ne pas dépasser 7 jours sans réévaluation.",
+    pbPhFlagL:"Alerte de risque", pbPhFlagV:"⚠ Surveiller les irritations gastro-intestinales à 600mg",
+    pbSchedTitle:"Calendrier de rappels généré par l'IA", pbSchedPill:"Semaine 1",
+    dcMon:"LUN", dcTue:"MAR", dcWed:"MER", dcThu:"JEU", dcFri:"VEN", dcSat:"SAM", dcSun:"DIM",
+    signLegalText:"En signant ci-dessous, vous confirmez avoir examiné ce plan de traitement généré par l'IA et assumez l'entière responsabilité médicale de son déploiement dans la file d'adhérence du patient.",
+    signOkBtn:"✎ OK — Signer & Déployer le plan",
+    signedText:"Plan signé et mis en file. Notifications patient activées.",
+    paTitle:"Votre récupération, dans votre poche",
+    paBody:"Une fois le plan signé par le MDP, Cynth-ia.fr active une expérience applicative personnalisée. Les notifications push arrivent à des heures précises. Un seul tap confirme l'adhérence et enregistre un événement immuable dans votre dossier HDS certifié.",
+    notif1App:"CYNTH-IA.FR", notif1Title:"Rappel exercices du matin", notif1Body:"Heel slides · 2 séries de 10. Protocole LCM Jour 3.",
+    notif2App:"CYNTH-IA.FR", notif2Title:"Rappel du matin", notif2Body:"Médicament — Ibuprofène Matin :",
+    appTitle:"Ma Récupération", appSub:"Déchirure LCM + Fracture tibiale · Semaine 1 sur 2",
+    medName:"Ibuprofène", medSub:"Anti-inflammatoire · Dose du matin",
+    dcDoseL:"Dose", dcFreqL:"Fréquence", dcFreqV:"2× / jour", dcDurL:"Durée",
+    btnTakenMed:"✓ Pris",
+    adhWeekTitle:"Semaine 1 — Adhérence",
+    adh:["Jour 1","Jour 2","Jour 3","Jour 4","Jour 5","Jour 6","Jour 7"],
+    adhStatus:["OK","OK","OK","OK","OK","OK","Raté"],
+    legOk:"Pris", legMissed:"Raté", legPending:"En attente",
+    pd1Title:"Notifications intelligentes", pd1Body:"Rappels programmés pour les exercices et les médicaments — jamais génériques, toujours personnalisés selon votre niveau de traitement.",
+    pd2Title:"Vue hebdomadaire d'adhérence", pd2Body:"Journal visuel jour par jour de votre conformité. Jour 7 manqué ? Votre médecin le voit — et l'IA ajuste la fréquence de la semaine suivante.",
+    pd3Title:"Sécurisé HDS", pd3Body:"Toutes les données restent sur le sol français. Légalement, seuls vous et votre médecin pouvez y accéder. Les assureurs sont exclus par la loi.",
+    sStatus:"Journal Introuvable",
+    sCtaMsg:"<strong>Prévu : 14:02</strong><br>Heel Slides LCM, 2 séries de 10.",
+    sAdhere:"J'ai Fait Ça", sCtaTitle:"Le 'Hook' d'Adhérence",
+    sCtaBody:"Les patients reçoivent un token temporaire sécurisé. Un seul tap enregistre un événement de succès dans la base HDS certifiée — traçabilité irréfutable.",
+    sSignTitle:"Autorité 'Sign & Queue'",
+    sSignBody:"L'IA ne contacte jamais les patients seule. Le MDP examine les plans générés sur ce tableau de bord, puis une signature numérique valide et déploie la file de messages.",
+    sDashTitle:"File de Vérification — Anonymisée",
+    sPText:"14 Jours, Dégressif, Démarrage Strict", sDText:"7 Jours, 2×/Jour, Dose : 400mg",
+    sEdit:"Modifier", sApprove:"Approuver", sSignAll:"Signer Tous les Plans",
+    sPhTitle:"Moteur de Prescription MDP",
+    sPhDrug:"Nom du Médicament", sPhDose:"Dose (mg)", sPhFreq:"Fréquence / Jour", sPhDur:"Durée (Jours)",
+    sPhBtn:"Calcul & Suggestion d'IA",
+    sPhDTitle:"Calcul de Dosage",
+    sPhDBody:"Déclenche la logique médicamenteuse centrale. Calcule le calendrier selon Âge + Poids et signale les risques en temps réel.",
+    sTierTitle:"Niveaux d'Adhérence",
+    sTierBody:"Les messages reflètent le processus de guérison — intensifs au début, progressivement réduits.",
+    t1L:"STRICT", t1F:"2×/jour", t1D:"Sprint de 2 semaines. Blessure aiguë ou post-op.",
+    t2L:"RECOMMANDÉ", t2F:"5×/semaine", t2D:"1–2 mois. Phase active de rééducation.",
+    t3L:"NORMAL", t3F:"1×/semaine", t3D:"3–6 mois. Suivi de maintenance."
+  }
+};
+
+function resetHome() {
+  // Show the track/role chooser
+  document.getElementById('step-track').classList.remove('hidden');
+  // Hide all flow panels
+  document.getElementById('mdp-flow').classList.add('hidden');
+  document.getElementById('patient-flow').classList.add('hidden');
+  document.getElementById('panel-pt-input').classList.remove('active');
+  document.getElementById('panel-pharma-input').classList.remove('active');
+  document.getElementById('panel-approval').classList.remove('active');
+  // Reset selections
+  selectTrack('pt');
+  selectRole('mdp');
+  // Reset signed state
+  document.getElementById('signed-confirm').classList.remove('show');
+  document.getElementById('sign-ok-btn').style.display = '';
+  // Scroll to very top
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function setLang(l) {
+  currentLang = l;
+  const t = T[l];
+  document.getElementById('btn-en').classList.toggle('active', l==='en');
+  document.getElementById('btn-fr').classList.toggle('active', l==='fr');
+
+  // Hero
+  document.getElementById('h-title').innerText = t.hTitle;
+  document.getElementById('h-desc').innerText = t.hDesc;
+  document.getElementById('h-btn').innerText = t.hBtn;
+  // Priv
+  document.getElementById('priv-title').innerText = t.privTitle;
+  document.getElementById('priv-body').innerText = t.privBody;
+  // Step labels
+  document.getElementById('sl-step1').innerText = t.slStep1;
+  document.getElementById('sl-step2').innerText = t.slStep2;
+  document.getElementById('sl-clinical').innerText = t.slClinical;
+  document.getElementById('sl-approve').innerText = t.slApprove;
+  document.getElementById('sl-patient-view').innerText = t.slPatientView;
+  document.getElementById('sl-pharma-input').innerText = t.slPharmaInput;
+  document.getElementById('btn-enter-flow').innerText = t.slEnter;
+  document.getElementById('role-mdp').innerText = t.slMdp;
+  document.getElementById('role-patient').innerText = t.slPatient;
+  // Track
+  document.getElementById('tc-title').innerText = t.tcTitle;
+  document.getElementById('tc-sub').innerText = t.tcSub;
+  document.getElementById('tc-pt-h').innerText = t.tcPtH;
+  document.getElementById('tc-pt-p').innerText = t.tcPtP;
+  document.getElementById('tc-ph-h').innerText = t.tcPhH;
+  document.getElementById('tc-ph-p').innerText = t.tcPhP;
+  // Clinical
+  document.getElementById('ci-title').innerText = t.ciTitle;
+  document.getElementById('ci-sub').innerText = t.ciSub;
+  document.getElementById('ci-xray-l').innerText = t.ciXrayL;
+  document.getElementById('ci-mri-l').innerText = t.ciMriL;
+  document.getElementById('ci-treat-l').innerText = t.ciTreatL;
+  document.getElementById('xray-text').value = t.xrayText;
+  document.getElementById('mri-text').value = t.mriText;
+  document.getElementById('opt-2w-t').innerText = t.opt2wT;
+  document.getElementById('opt-2w-s').innerText = t.opt2wS;
+  document.getElementById('opt-4w-t').innerText = t.opt4wT;
+  document.getElementById('opt-4w-s').innerText = t.opt4wS;
+  document.getElementById('opt-8w-t').innerText = t.opt8wT;
+  document.getElementById('opt-8w-s').innerText = t.opt8wS;
+  document.getElementById('opt-4m-t').innerText = t.opt4mT;
+  document.getElementById('opt-4m-s').innerText = t.opt4mS;
+  document.getElementById('ci-ok-btn').innerText = t.ciOkBtn;
+  // Pharma input
+  document.getElementById('phi-title').innerText = t.phiTitle;
+  document.getElementById('phi-sub').innerText = t.phiSub;
+  document.getElementById('phi-drug-l').innerText = t.phiDrugL;
+  document.getElementById('phi-dose-l').innerText = t.phiDoseL;
+  document.getElementById('phi-freq-l').innerText = t.phiFreqL;
+  document.getElementById('phi-dur-l').innerText = t.phiDurL;
+  document.getElementById('phi-age-l').innerText = t.phiAgeL;
+  document.getElementById('phi-wt-l').innerText = t.phiWtL;
+  document.getElementById('phi-ok-btn').innerText = t.phiOkBtn;
+  // Approval
+  document.getElementById('ai-generated-label').innerText = t.aiGeneratedLabel;
+  document.getElementById('pb-pt-title').childNodes[0].textContent = t.pbPtTitle + ' ';
+  document.getElementById('pb-pt-pill').innerText = t.pbPtPill;
+  document.getElementById('pb-injury-l').innerText = t.pbInjuryL;
+  document.getElementById('pb-injury-v').innerText = t.pbInjuryV;
+  document.getElementById('pb-phase-l').innerText = t.pbPhaseL;
+  document.getElementById('pb-phase-v').innerText = t.pbPhaseV;
+  document.getElementById('pb-ex-l').innerText = t.pbExL;
+  document.getElementById('pb-ex-v').innerText = t.pbExV;
+  document.getElementById('pb-restrict-l').innerText = t.pbRestrictL;
+  document.getElementById('pb-restrict-v').innerText = t.pbRestrictV;
+  document.getElementById('pb-dur-l').innerText = t.pbDurL;
+  document.getElementById('pb-dur-v').innerText = t.pbDurV;
+  document.getElementById('pb-ph-title').childNodes[0].textContent = t.pbPhTitle + ' ';
+  document.getElementById('pb-ph-pill').innerText = t.pbPhPill;
+  document.getElementById('pb-ph-drug-l').innerText = t.pbPhDrugL;
+  document.getElementById('pb-ph-drug-v').innerText = t.pbPhDrugV;
+  document.getElementById('pb-ph-freq-l').innerText = t.pbPhFreqL;
+  document.getElementById('pb-ph-freq-v').innerText = t.pbPhFreqV;
+  document.getElementById('pb-ph-food-l').innerText = t.pbPhFoodL;
+  document.getElementById('pb-ph-food-v').innerText = t.pbPhFoodV;
+  document.getElementById('pb-ph-flag-l').innerText = t.pbPhFlagL;
+  document.getElementById('pb-ph-flag-v').innerText = t.pbPhFlagV;
+  document.getElementById('pb-sched-title').childNodes[0].textContent = t.pbSchedTitle + ' ';
+  document.getElementById('pb-sched-pill').innerText = t.pbSchedPill;
+  document.getElementById('dc-mon').innerText = t.dcMon;
+  document.getElementById('dc-tue').innerText = t.dcTue;
+  document.getElementById('dc-wed').innerText = t.dcWed;
+  document.getElementById('dc-thu').innerText = t.dcThu;
+  document.getElementById('dc-fri').innerText = t.dcFri;
+  document.getElementById('dc-sat').innerText = t.dcSat;
+  document.getElementById('dc-sun').innerText = t.dcSun;
+  document.getElementById('sign-legal-text').innerText = t.signLegalText;
+  document.getElementById('sign-ok-btn').innerText = t.signOkBtn;
+  document.getElementById('signed-text').innerText = t.signedText;
+  // Patient app
+  document.getElementById('pa-title').innerText = t.paTitle;
+  document.getElementById('pa-body').innerText = t.paBody;
+  document.getElementById('notif1-app').innerText = t.notif1App;
+  document.getElementById('notif1-title').innerText = t.notif1Title;
+  document.getElementById('notif1-body').innerText = t.notif1Body;
+  document.getElementById('notif2-app').innerText = t.notif2App;
+  document.getElementById('notif2-title').innerText = t.notif2Title;
+  document.getElementById('notif2-body').innerHTML = t.notif2Body + ' <strong>2× a day · 600mg</strong>';
+  document.getElementById('app-title').innerText = t.appTitle;
+  document.getElementById('app-sub').innerText = t.appSub;
+  document.getElementById('med-name').innerText = t.medName;
+  document.getElementById('med-sub').innerText = t.medSub;
+  document.getElementById('dc-dose-l').innerText = t.dcDoseL;
+  document.getElementById('dc-freq-l').innerText = t.dcFreqL;
+  document.getElementById('dc-freq-v').innerText = t.dcFreqV;
+  document.getElementById('dc-dur-l').innerText = t.dcDurL;
+  document.getElementById('btn-taken-med').innerText = t.btnTakenMed;
+  document.getElementById('adh-week-title').innerText = t.adhWeekTitle;
+  for(let i=1;i<=7;i++){
+    document.getElementById('adh-d'+i).innerText = t.adh[i-1];
+    const sEl = document.getElementById('adh-s'+i+'-label') || document.getElementById('adh-s'+i);
+    if(sEl) sEl.innerText = t.adhStatus[i-1];
+  }
+  document.getElementById('leg-ok').innerText = t.legOk;
+  document.getElementById('leg-missed').innerText = t.legMissed;
+  document.getElementById('leg-pending').innerText = t.legPending;
+  document.getElementById('pd1-title').innerText = t.pd1Title;
+  document.getElementById('pd1-body').innerText = t.pd1Body;
+  document.getElementById('pd2-title').innerText = t.pd2Title;
+  document.getElementById('pd2-body').innerText = t.pd2Body;
+  document.getElementById('pd3-title').innerText = t.pd3Title;
+  document.getElementById('pd3-body').innerText = t.pd3Body;
+  // Original sections
+  document.getElementById('s-status').innerText = t.sStatus;
+  document.getElementById('s-cta-msg').innerHTML = t.sCtaMsg;
+  document.getElementById('s-adhere').innerText = t.sAdhere;
+  document.getElementById('s-cta-title').innerText = t.sCtaTitle;
+  document.getElementById('s-cta-body').innerText = t.sCtaBody;
+  document.getElementById('s-sign-title').innerText = t.sSignTitle;
+  document.getElementById('s-sign-body').innerText = t.sSignBody;
+  document.getElementById('s-dash-title').innerText = t.sDashTitle;
+  document.getElementById('s-p-text').innerText = t.sPText;
+  document.getElementById('s-d-text').innerText = t.sDText;
+  document.getElementById('s-btn-edit1').innerText = t.sEdit;
+  document.getElementById('s-btn-edit2').innerText = t.sEdit;
+  document.getElementById('s-btn-approve1').innerText = t.sApprove;
+  document.getElementById('s-btn-approve2').innerText = t.sApprove;
+  document.getElementById('s-sign-all').innerText = t.sSignAll;
+  document.getElementById('s-ph-title').innerText = t.sPhTitle;
+  document.getElementById('s-ph-drug').innerText = t.sPhDrug;
+  document.getElementById('s-ph-dose').innerText = t.sPhDose;
+  document.getElementById('s-ph-freq').innerText = t.sPhFreq;
+  document.getElementById('s-ph-dur').innerText = t.sPhDur;
+  document.getElementById('s-ph-btn').innerText = t.sPhBtn;
+  document.getElementById('s-ph-d-title').innerText = t.sPhDTitle;
+  document.getElementById('s-ph-d-body').innerText = t.sPhDBody;
+  document.getElementById('s-tier-title').innerText = t.sTierTitle;
+  document.getElementById('s-tier-body').innerText = t.sTierBody;
+  document.getElementById('t1-label').innerText = t.t1L;
+  document.getElementById('t1-freq').innerText = t.t1F;
+  document.getElementById('t1-desc').innerText = t.t1D;
+  document.getElementById('t2-label').innerText = t.t2L;
+  document.getElementById('t2-freq').innerText = t.t2F;
+  document.getElementById('t2-desc').innerText = t.t2D;
+  document.getElementById('t3-label').innerText = t.t3L;
+  document.getElementById('t3-freq').innerText = t.t3F;
+  document.getElementById('t3-desc').innerText = t.t3D;
+  // Refill textareas if empty
+  if(!document.getElementById('xray-text').value) {
+    document.getElementById('xray-text').value = t.xrayText;
+    document.getElementById('mri-text').value = t.mriText;
+  }
+}
+
+function selectTrack(t) {
+  selectedTrack = t;
+  document.getElementById('track-pt').classList.toggle('selected', t==='pt');
+  document.getElementById('track-pharma').classList.toggle('selected', t==='pharma');
+}
+
+function selectRole(r) {
+  selectedRole = r;
+  document.getElementById('role-mdp').classList.toggle('selected', r==='mdp');
+  document.getElementById('role-patient').classList.toggle('selected', r==='patient');
+}
+
+function enterFlow() {
+  // Hide track step
+  document.getElementById('step-track').classList.add('hidden');
+
+  if(selectedRole === 'patient') {
+    document.getElementById('patient-flow').classList.remove('hidden');
+    document.getElementById('mdp-flow').classList.add('hidden');
+    document.getElementById('patient-flow').scrollIntoView({behavior:'smooth'});
+    return;
+  }
+
+  // MDP flow
+  document.getElementById('mdp-flow').classList.remove('hidden');
+  document.getElementById('patient-flow').classList.add('hidden');
+
+  // Show correct input panel
+  document.getElementById('panel-pt-input').classList.toggle('active', selectedTrack==='pt');
+  document.getElementById('panel-pharma-input').classList.toggle('active', selectedTrack==='pharma');
+  document.getElementById('panel-approval').classList.remove('active');
+
+  // Fill textareas with default report
+  const t = T[currentLang];
+  if(!document.getElementById('xray-text').value) {
+    document.getElementById('xray-text').value = t.xrayText;
+    document.getElementById('mri-text').value = t.mriText;
+  }
+
+  document.getElementById('mdp-flow').scrollIntoView({behavior:'smooth'});
+}
+
+function selectOpt(btn) {
+  document.querySelectorAll('.opt-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+
+function showApproval() {
+  // Hide input panels
+  document.getElementById('panel-pt-input').classList.remove('active');
+  document.getElementById('panel-pharma-input').classList.remove('active');
+  // Show correct plan block
+  document.getElementById('plan-block-pt').style.display = selectedTrack==='pt' ? '' : 'none';
+  document.getElementById('plan-block-pharma').style.display = selectedTrack==='pharma' ? '' : 'none';
+  // Show approval
+  document.getElementById('panel-approval').classList.add('active');
+  document.getElementById('panel-approval').scrollIntoView({behavior:'smooth'});
+  // Reset signed state
+  document.getElementById('signed-confirm').classList.remove('show');
+  document.getElementById('sign-ok-btn').style.display = '';
+}
+
+function signPlan() {
+  document.getElementById('sign-ok-btn').style.display = 'none';
+  document.getElementById('signed-confirm').classList.add('show');
+}
+
+// Init
+window.addEventListener('DOMContentLoaded', () => {
+  selectTrack('pt');
+  selectRole('mdp');
+  const t = T['en'];
+  document.getElementById('xray-text').value = t.xrayText;
+  document.getElementById('mri-text').value = t.mriText;
+  // Fix adherence day 7 status ID
+  const d7 = document.querySelector('.adh-week .adh-day.missed .ad-status');
+  if(d7) d7.id = 'adh-s7-label';
+  setLang('fr');
+});
+</script>
+</body>
+</html>

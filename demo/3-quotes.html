@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr" data-lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Quote Request — AssurDemo</title>
+<meta name="description" content="Build plan: home, car and legal-protection quote requests on Power Pages with Dataverse rate tables, PDF quotes and advisor callback." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="demo.css" />
+<link rel="stylesheet" href="mock.css" />
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="../index.html">CSL</a>
+  <span class="crumbs"><a href="index.html">AssurDemo</a> / <span class="en">3. Quote request</span><span class="fr">3. Demande de devis</span></span>
+  <div class="toggles"><button class="tbtn" id="langBtn" aria-label="Switch language">EN</button><button class="tbtn" id="themeBtn" aria-label="Toggle dark mode">◐</button></div>
+</div></header>
+
+<div class="hero"><div class="wrap">
+  <div class="eyebrow"><span class="en">Module 3 of 6</span><span class="fr">Module 3 sur 6</span></div>
+  <h1><span class="en">Quote request: home, car, legal protection</span><span class="fr">Demande de devis : habitation, auto, protection juridique</span></h1>
+  <p class="en">A guided form asks only the questions that matter for the chosen product. It shows an indicative price, emails a PDF quote, and lets the customer ask an advisor to call back.</p>
+  <p class="fr">Un formulaire guidé ne pose que les questions utiles au produit choisi. Il affiche un prix indicatif, envoie un devis PDF par e-mail, et permet au client de demander le rappel d'un conseiller.</p>
+  <div class="chips"><span class="chip plan"><span class="en">Build plan</span><span class="fr">Plan de réalisation</span></span><span class="chip">Power Pages</span><span class="chip">Dataverse</span><span class="chip">Power Automate</span><span class="chip">Word templates</span></div>
+</div></div>
+
+<main class="wrap">
+  <h2><span class="en">Interface preview</span><span class="fr">Aperçu de l'interface</span></h2>
+  <span class="mocklabel"><span class="en">Mockup of the planned interface. Real screenshots will replace it once built.</span><span class="fr">Maquette de l'interface prévue. Elle sera remplacée par de vraies captures une fois réalisée.</span></span>
+  <div class="shots">
+    <figure class="shot">
+      <div class="phone"><div class="scr">
+        <div class="sb"><span>10:05</span><span>5G ▮▮▮</span></div>
+        <div class="m-top"><span class="m-logo">A</span><div>Demande de devis<small>Étape 1 sur 3</small></div></div>
+        <div class="m-body">
+          <div class="m-step"><span class="on"></span><span></span><span></span></div>
+          <div class="m-h">Quel produit vous intéresse ?</div>
+          <p class="m-sub">Réponse en 2 minutes, sans engagement.</p>
+          <div class="m-prod">
+            <div><svg viewBox="0 0 24 24" fill="none" stroke="#1f5fbf" stroke-width="2"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></svg>Habitation</div>
+            <div class="sel"><svg viewBox="0 0 24 24" fill="none" stroke="#1f5fbf" stroke-width="2"><path d="M5 16l1.5-5a2 2 0 012-1.4h7a2 2 0 012 1.4L19 16M4 16h16v3H4z"/><circle cx="7.5" cy="19" r="1.5"/><circle cx="16.5" cy="19" r="1.5"/></svg>Auto <span class="m-bd in" style="margin-left:auto">Sélectionné</span></div>
+            <div><svg viewBox="0 0 24 24" fill="none" stroke="#1f5fbf" stroke-width="2"><path d="M12 3v18M5 7h14M7 7l-3 7a3 3 0 006 0zM17 7l-3 7a3 3 0 006 0z"/></svg>Protection juridique</div>
+          </div>
+          <div class="m-btn" style="margin-top:22px">Continuer</div>
+        </div>
+      </div></div>
+      <figcaption><span class="en">Step 1: the customer picks a product. The chatbot can open this page with the product preselected.</span><span class="fr">Étape 1 : le client choisit un produit. Le chatbot peut ouvrir cette page avec le produit présélectionné.</span></figcaption>
+    </figure>
+    <figure class="shot">
+      <div class="phone"><div class="scr">
+        <div class="sb"><span>10:06</span><span>5G ▮▮▮</span></div>
+        <div class="m-top"><span class="m-logo">A</span><div>Devis Auto<small>Étape 2 sur 3</small></div></div>
+        <div class="m-body">
+          <div class="m-step"><span class="on"></span><span class="on"></span><span></span></div>
+          <div class="m-h">Votre véhicule</div>
+          <div class="m-l">Marque et modèle</div><div class="m-in">Peugeot 208</div>
+          <div class="m-row" style="gap:8px"><div style="flex:1"><div class="m-l">Année</div><div class="m-in">2021</div></div><div style="flex:1"><div class="m-l">Permis depuis</div><div class="m-in">03/2012</div></div></div>
+          <div class="m-l">Coefficient bonus-malus</div><div class="m-in f">0,68</div>
+          <div class="m-l">Usage</div><div class="m-qr"><span class="on">Privé</span><span>Trajet travail</span><span>Professionnel</span></div>
+          <div class="m-l">Stationnement la nuit</div><div class="m-in">Garage fermé ▾</div>
+          <div class="m-btn">Calculer mon tarif</div>
+        </div>
+      </div></div>
+      <figcaption><span class="en">Step 2: only the questions for that product, checked as they're typed.</span><span class="fr">Étape 2 : uniquement les questions du produit, contrôlées à la saisie.</span></figcaption>
+    </figure>
+    <figure class="shot">
+      <div class="phone"><div class="scr">
+        <div class="sb"><span>10:07</span><span>5G ▮▮▮</span></div>
+        <div class="m-top"><span class="m-logo">A</span><div>Votre estimation<small>Étape 3 sur 3</small></div></div>
+        <div class="m-body">
+          <div class="m-step"><span class="on"></span><span class="on"></span><span class="on"></span></div>
+          <div class="m-card" style="text-align:center;padding:12px">
+            <div class="m-muted">Formule Auto Tiers +</div>
+            <div class="m-price">38,40 €<small> /mois</small></div>
+            <div class="m-bd wa" style="display:inline-block">Tarif indicatif, non contractuel</div>
+          </div>
+          <ul class="m-check"><li>Responsabilité civile</li><li>Bris de glace</li><li>Vol et incendie</li><li>Assistance 0 km</li></ul>
+          <div class="m-btn">Recevoir mon devis PDF</div>
+          <div class="m-btn2">Être rappelé par un conseiller</div>
+          <div class="m-fine">Devis n° DEV-2026-01133 · enregistré dans votre espace</div>
+        </div>
+      </div></div>
+      <figcaption><span class="en">Step 3: an indicative price from the rate tables, a PDF quote, or a callback.</span><span class="fr">Étape 3 : un prix indicatif issu des grilles tarifaires, un devis PDF ou un rappel.</span></figcaption>
+    </figure>
+  </div>
+
+  <h2><span class="en">Questions per product</span><span class="fr">Questions par produit</span></h2>
+  <div class="grid3">
+    <div class="card"><h3><span class="en">Home</span><span class="fr">Habitation</span></h3>
+      <ul class="en"><li>House or flat</li><li>Floor area and number of rooms</li><li>Postcode</li><li>Owner or tenant</li><li>Value of contents</li></ul>
+      <ul class="fr"><li>Maison ou appartement</li><li>Surface et nombre de pièces</li><li>Code postal</li><li>Propriétaire ou locataire</li><li>Valeur du mobilier</li></ul></div>
+    <div class="card"><h3><span class="en">Car</span><span class="fr">Auto</span></h3>
+      <ul class="en"><li>Vehicle make, model and year</li><li>Date the licence was issued</li><li>No-claims bonus (bonus-malus)</li><li>Use: private or commuting</li><li>Overnight parking</li></ul>
+      <ul class="fr"><li>Marque, modèle et année du véhicule</li><li>Date d'obtention du permis</li><li>Coefficient bonus-malus</li><li>Usage : privé ou trajet travail</li><li>Stationnement de nuit</li></ul></div>
+    <div class="card"><h3><span class="en">Legal protection</span><span class="fr">Protection juridique</span></h3>
+      <ul class="en"><li>Household members</li><li>Level of cover: essential or full</li><li>Areas covered: housing, work, consumer disputes</li></ul>
+      <ul class="fr"><li>Composition du foyer</li><li>Niveau de garantie : essentiel ou intégral</li><li>Domaines : logement, travail, consommation</li></ul></div>
+  </div>
+
+  <h2><span class="en">Build steps</span><span class="fr">Étapes de réalisation</span></h2>
+  <ol class="steps en">
+    <li><b>Data model</b><span class="d">A <code>Quote request</code> table with a product choice, status, indicative premium and a link to the contact, plus columns for each product. A choice column drives which questions appear.</span></li>
+    <li><b>Rate tables the business can edit</b><span class="d">A Dataverse table holds base rates and factors per product (area, age, bonus-malus, level of cover). The business changes prices without touching code.</span></li>
+    <li><b>Multi-step form in Power Pages</b><span class="d">Step 1: choose the product. Step 2: that product's questions only. Step 3: contact details and consent. Signed-in customers can save a draft and come back to it.</span></li>
+    <li><b>Validation</b><span class="d">Required fields, realistic ranges, postcode format and plain-language error messages. Bad data never reaches the database.</span></li>
+    <li><b>Price calculation</b><span class="d">When a request is created, a flow looks up the rate table and calculates an indicative premium. The price is clearly marked "indicative, not a contract".</span></li>
+    <li><b>PDF quote</b><span class="d">Power Automate fills a Word template, converts it to PDF, emails it to the customer and saves it in their personal space.</span></li>
+    <li><b>Hand over to sales</b><span class="d">If the customer clicks "call me back", a task goes to the advisor queue with the full quote attached.</span></li>
+    <li><b>Chatbot shortcut</b><span class="d">The chatbot's "get a quote" topic opens this form with the product already selected.</span></li>
+  </ol>
+  <ol class="steps fr">
+    <li><b>Modèle de données</b><span class="d">Une table <code>Demande de devis</code> avec le choix du produit, le statut, la prime indicative et le lien au contact, plus les colonnes propres à chaque produit. Une colonne de choix détermine les questions affichées.</span></li>
+    <li><b>Grilles tarifaires modifiables par le métier</b><span class="d">Une table Dataverse contient tarifs de base et coefficients par produit (surface, âge, bonus-malus, niveau de garantie). Le métier ajuste les prix sans toucher au code.</span></li>
+    <li><b>Formulaire multi-étapes Power Pages</b><span class="d">Étape 1 : le produit. Étape 2 : uniquement ses questions. Étape 3 : coordonnées et consentement. Un client connecté peut enregistrer un brouillon et y revenir.</span></li>
+    <li><b>Contrôles de saisie</b><span class="d">Champs obligatoires, valeurs réalistes, format du code postal et messages d'erreur compréhensibles. Les mauvaises données n'arrivent jamais en base.</span></li>
+    <li><b>Calcul du prix</b><span class="d">À la création de la demande, un flux consulte la grille et calcule une prime indicative. Le prix est clairement marqué « indicatif, non contractuel ».</span></li>
+    <li><b>Devis PDF</b><span class="d">Power Automate remplit un modèle Word, le convertit en PDF, l'envoie au client et le range dans son espace personnel.</span></li>
+    <li><b>Transmission aux commerciaux</b><span class="d">Si le client clique sur « être rappelé », une tâche part vers la file des conseillers avec le devis complet.</span></li>
+    <li><b>Raccourci depuis le chatbot</b><span class="d">La rubrique « demander un devis » du chatbot ouvre ce formulaire avec le produit déjà sélectionné.</span></li>
+  </ol>
+
+  <div class="note en">The prices are fictional. Real insurance pricing is an actuarial job. The point here is the mechanism: rules stored as data, a clear calculation, and a clean handover to an advisor.</div>
+  <div class="note fr">Les prix sont fictifs. La vraie tarification relève des actuaires. L'intérêt ici est le mécanisme : des règles stockées comme des données, un calcul lisible et une transmission propre au conseiller.</div>
+
+  <h2><span class="en">What the video will show</span><span class="fr">Ce que montrera la vidéo</span></h2>
+  <p class="lead en">A car quote from start to finish, the PDF arriving by email, a rate changed in the table and the new price appearing, and the callback task in the advisor app.</p>
+  <p class="lead fr">Un devis auto de bout en bout, le PDF reçu par e-mail, un tarif modifié dans la grille et le nouveau prix qui s'affiche, et la tâche de rappel dans l'application conseiller.</p>
+
+  <nav class="pager">
+    <a href="2-secure-login.html"><small><span class="en">Previous</span><span class="fr">Précédent</span></small><span class="en">← 2. Secure login</span><span class="fr">← 2. Connexion sécurisée</span></a>
+    <a class="next" href="4-upload-files.html"><small><span class="en">Next</span><span class="fr">Suivant</span></small><span class="en">4. File upload →</span><span class="fr">4. Dépôt de fichiers →</span></a>
+  </nav>
+</main>
+<footer>© Carlos San Luis · <a href="index.html">AssurDemo</a></footer>
+<script src="demo.js"></script>
+</body>
+</html>
