@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fr" data-lang="fr" data-discret-demo>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Discret — Carlos San Luis</title>
+<meta name="description" content="Discret: a browser extension that blurs personal data during screen sharing and copies CRM values in one click. Live demo." />
+<link rel="stylesheet" href="../demo/demo.css" />
+<link rel="stylesheet" href="ext/content.css" />
+<style>
+.try{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:14px 0 16px}
+.tgl{display:inline-flex;align-items:center;gap:10px;padding:10px 20px;border-radius:999px;border:0;background:#2a446f;color:#fff;font:600 15px "Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",Arial,sans-serif;cursor:pointer}
+.tgl:hover{background:#263e65}
+.tgl[aria-pressed="true"]{background:#c62828}
+.tgl[aria-pressed="true"]:hover{background:#a61f1f}
+.hint{font-size:14px;color:var(--ink-2)}
+kbd{font:12px Consolas,monospace;background:var(--surface-2);border:1px solid var(--line);border-radius:4px;padding:1px 6px;color:var(--ink)}
+.demo-grid{display:grid;grid-template-columns:1fr 260px;gap:16px;align-items:start}
+@media (max-width:900px){.demo-grid{grid-template-columns:1fr}}
+.hist{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:14px}
+.hist h3{font-size:14px;margin:0 0 8px}
+.hist ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.hist li{border:1px solid var(--line);border-radius:8px;padding:6px 8px;font-size:13px}
+.hist li b{display:block;font:12px Consolas,monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hist li span{font-size:11.5px;color:var(--accent-2);font-weight:600}
+.hist p{font-size:13px;color:var(--ink-2);margin:0}
+/* fictional CRM screen: always light, like the real app */
+.crm{--c-line:#e1dfdd;background:#faf9f8;color:#242424;border:1px solid #d6d6d6;border-radius:12px;overflow:hidden;font:13px/1.4 "Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",Arial,sans-serif;box-shadow:var(--shadow)}
+.crm-bar{display:flex;align-items:center;gap:10px;background:#1b1a19;color:#fff;padding:8px 14px;font-weight:600}
+.crm-bar small{font-weight:400;color:#c8c6c4}
+.crm-bar .who{margin-left:auto;width:26px;height:26px;border-radius:50%;background:#2a446f;display:grid;place-items:center;font-size:11px}
+.crm-head{background:#fff;padding:14px 18px;border-bottom:1px solid var(--c-line)}
+.crm-head h4{margin:0;font-size:18px;font-weight:600}
+.crm-head p{margin:2px 0 0;color:#605e5c}
+.crm-tabs{display:flex;gap:18px;background:#fff;padding:0 18px;border-bottom:1px solid var(--c-line)}
+.crm-tabs span{padding:9px 0;color:#605e5c}
+.crm-tabs .on{color:#242424;font-weight:600;box-shadow:inset 0 -2px 0 #2a446f}
+.crm-body{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:12px}
+@media (max-width:700px){.crm-body{grid-template-columns:1fr}}
+.crm-sec{background:#fff;border:1px solid var(--c-line);border-radius:8px;padding:12px 14px}
+.crm-sec.wide{grid-column:1/-1}
+.crm-sec h5{margin:0 0 8px;font-size:14px;font-weight:600}
+.fld{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;padding:4px 0}
+@media (max-width:520px){.fld{grid-template-columns:1fr;gap:2px}}
+.fld label{color:#605e5c}
+.fld input,.fld textarea{width:100%;box-sizing:border-box;border:1px solid transparent;border-radius:4px;padding:5px 8px;font:inherit;color:#242424;background:#f5f5f5}
+.fld input:hover,.fld textarea:hover{border-color:#8a8886}
+.fld textarea{resize:vertical;min-height:58px}
+.fld .ro{padding:5px 8px}
+.crm table{width:100%;border-collapse:collapse}
+.crm th,.crm td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--c-line);white-space:nowrap}
+.crm th{font-weight:600;color:#605e5c;font-size:12px}
+.tbl{overflow-x:auto}
+.note{background:#f5f5f5;border-radius:6px;padding:8px 10px;margin-top:6px}
+.note small{color:#605e5c}
+.fake{font-size:12.5px;color:var(--ink-2);margin:8px 0 0}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.steps li{counter-increment:s;display:flex;gap:10px;align-items:flex-start}
+.steps li::before{content:counter(s);flex:none;display:grid;place-items:center;width:24px;height:24px;border-radius:7px;background:var(--accent-soft);color:var(--accent);font:700 12.5px "Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",Arial,sans-serif}
+.dl{display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:10px 20px;border-radius:999px;background:#2a446f;color:#fff;font-weight:600;text-decoration:none}
+.dl:hover{background:#263e65}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="../index.html">CSL</a>
+  <span class="crumbs"><a href="../index.html#discret">Portfolio</a> / Discret</span>
+  <div class="toggles"><button class="tbtn" id="langBtn" aria-label="Switch language">EN</button><button class="tbtn" id="themeBtn" aria-label="Toggle dark mode">◐</button></div>
+</div></header>
+
+<div class="hero"><div class="wrap">
+  <div class="eyebrow"><span class="en">Personal project · Browser extension</span><span class="fr">Projet personnel · Extension navigateur</span></div>
+  <h1><span class="en">Discret: no personal data on a shared screen</span><span class="fr">Discret : aucune donnée personnelle sur un écran partagé</span></h1>
+  <p class="en">CRM users share their screen all day: in Teams calls, trainings, demos and bug reports. Discret blurs e-mails, phone numbers, IBANs, card numbers and social security numbers in one keystroke, and copies any value in one click, without revealing it.</p>
+  <p class="fr">Les utilisateurs d'un CRM partagent leur écran toute la journée : réunions Teams, formations, démos, signalements de bugs. Discret floute e-mails, téléphones, IBAN, cartes bancaires et numéros de sécurité sociale d'un raccourci, et copie n'importe quelle valeur en un clic, sans l'afficher.</p>
+  <div class="chips"><span class="chip plan">Prototype v0.1</span><span class="chip">JavaScript</span><span class="chip">Manifest V3</span><span class="chip">Edge / Chrome</span><span class="chip">Dynamics 365</span><span class="chip"><span class="en">Any web app</span><span class="fr">Toute application web</span></span></div>
+</div></div>
+
+<main class="wrap">
+  <h2><span class="en">Try it</span><span class="fr">Essayez-le</span></h2>
+  <p class="lead en">This page runs the extension's real detection and masking code on a fictional CRM case. Turn masking on, then hover a field and click <b>⧉</b>, or <kbd>Alt</kbd> + click any value.</p>
+  <p class="lead fr">Cette page exécute le vrai code de détection et de masquage de l'extension sur un dossier CRM fictif. Activez le masquage, puis survolez un champ et cliquez sur <b>⧉</b>, ou faites <kbd>Alt</kbd> + clic sur une valeur.</p>
+  <div class="try">
+    <button class="tgl" id="toggle" aria-pressed="false"><span class="en">Turn masking on</span><span class="fr">Activer le masquage</span></button>
+    <span class="hint"><span class="en">Shortcut</span><span class="fr">Raccourci</span> <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd></span>
+  </div>
+
+  <div class="demo-grid">
+    <div class="crm" aria-label="Fictional CRM case">
+      <div class="crm-bar">Dynamics 365 <small>| <span class="en">Customer Service</span><span class="fr">Service clientèle</span></small><span class="who">AD</span></div>
+      <div class="crm-head">
+        <h4><span class="en">Cancel home insurance contract</span><span class="fr">Résiliation contrat habitation</span></h4>
+        <p><span class="en">Case</span><span class="fr">Incident</span> · <span data-id="ticketnumber">CAS-01482-X7Y8</span> · <span class="en">Priority: normal</span><span class="fr">Priorité : normale</span></p>
+      </div>
+      <div class="crm-tabs"><span class="on"><span class="en">Summary</span><span class="fr">Résumé</span></span><span><span class="en">Details</span><span class="fr">Détails</span></span><span><span class="en">Related</span><span class="fr">Associés</span></span></div>
+      <div class="crm-body">
+        <div class="crm-sec">
+          <h5><span class="en">Customer</span><span class="fr">Client</span></h5>
+          <div class="fld"><label for="f1"><span class="en">Name</span><span class="fr">Nom</span></label><input id="f1" data-id="fullname.fieldControl-text-box-text" value="Julie Martin"></div>
+          <div class="fld"><label for="f2">E-mail</label><input id="f2" data-id="emailaddress1.fieldControl-mail-text-input" value="j.martin@example.com"></div>
+          <div class="fld"><label for="f3"><span class="en">Business phone</span><span class="fr">Téléphone</span></label><input id="f3" data-id="telephone1.fieldControl-phone-text-input" value="02 99 12 34 56"></div>
+          <div class="fld"><label for="f4">Mobile</label><input id="f4" data-id="mobilephone.fieldControl-phone-text-input" value="+33 6 12 34 56 78"></div>
+          <div class="fld"><label for="f5"><span class="en">Address</span><span class="fr">Adresse</span></label><input id="f5" data-id="address1_composite.fieldControl-text-box-text" value="12 rue de la Monnaie, 35000 Rennes"></div>
+        </div>
+        <div class="crm-sec">
+          <h5><span class="en">Contract</span><span class="fr">Contrat</span></h5>
+          <div class="fld"><label for="f6"><span class="en">Policy number</span><span class="fr">N° de contrat</span></label><input id="f6" data-id="new_policynumber.fieldControl-text-box-text" value="HAB-2026-004512"></div>
+          <div class="fld"><label for="f7">IBAN</label><input id="f7" data-id="new_iban.fieldControl-text-box-text" value="FR76 3000 6000 0112 3456 7890 189"></div>
+          <div class="fld"><label for="f8"><span class="en">Social security no.</span><span class="fr">N° sécurité sociale</span></label><input id="f8" data-id="new_nir.fieldControl-text-box-text" value="1 85 05 78 006 084 91"></div>
+          <div class="fld"><label><span class="en">Card on file</span><span class="fr">Carte enregistrée</span></label><span class="ro">4111 1111 1111 1111</span></div>
+        </div>
+        <div class="crm-sec wide">
+          <h5>Description</h5>
+          <div class="fld"><label for="f9"><span class="en">Customer request</span><span class="fr">Demande du client</span></label><textarea id="f9" data-id="description.fieldControl-text-box-text">La cliente déménage et demande la résiliation au 30/11. Elle préfère être rappelée au 06 98 76 54 32 après 18 h, ou par e-mail à julie.martin.perso@example.org.</textarea></div>
+          <div class="note"><small>Note · Agent AD · 09:42</small><br>Conjoint également assuré : Marc Martin, n° SS 2 92 03 75 116 042 78, joignable au 07 11 22 33 44.</div>
+        </div>
+        <div class="crm-sec wide">
+          <h5><span class="en">Related contacts</span><span class="fr">Contacts associés</span></h5>
+          <div class="tbl"><table>
+            <thead><tr><th><span class="en">Name</span><span class="fr">Nom</span></th><th>E-mail</th><th><span class="en">Phone</span><span class="fr">Téléphone</span></th><th><span class="en">City</span><span class="fr">Ville</span></th></tr></thead>
+            <tbody>
+              <tr><td col-id="fullname">Julie Martin</td><td col-id="emailaddress1">j.martin@example.com</td><td col-id="telephone1">02 99 12 34 56</td><td col-id="address1_city">Rennes</td></tr>
+              <tr><td col-id="fullname">Marc Martin</td><td col-id="emailaddress1">m.martin@example.net</td><td col-id="telephone1">07 11 22 33 44</td><td col-id="address1_city">Rennes</td></tr>
+              <tr><td col-id="fullname">Agence Rennes Centre</td><td col-id="emailaddress1">rennes.centre@example.fr</td><td col-id="telephone1">02 99 00 11 22</td><td col-id="address1_city">Rennes</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="hist" aria-live="polite">
+      <h3><span class="en">Recent copies</span><span class="fr">Copies récentes</span></h3>
+      <ul id="hist"></ul>
+      <p id="histEmpty"><span class="en">Nothing copied yet.</span><span class="fr">Rien de copié pour l'instant.</span></p>
+      <p style="margin-top:10px;font-size:12px"><span class="en">In the extension this list lives in the toolbar popup, in memory only.</span><span class="fr">Dans l'extension, cette liste est dans la fenêtre de la barre d'outils, en mémoire uniquement.</span></p>
+    </aside>
+  </div>
+  <p class="fake"><span class="en">Fictional case and data. The IBAN, card and social security numbers are standard test values.</span><span class="fr">Dossier et données fictifs. L'IBAN, la carte et les numéros de sécurité sociale sont des valeurs de test.</span></p>
+
+  <h2><span class="en">What it does</span><span class="fr">Ce que fait l'extension</span></h2>
+  <div class="grid3">
+    <div class="card"><h3><span class="en">Masks personal data</span><span class="fr">Masque les données personnelles</span></h3><p class="en">Finds e-mails, phone numbers, IBANs (checksum), card numbers (Luhn) and French social security numbers (key check) in fields, grids, notes and free text, plus known Dynamics fields by name. One shortcut blurs them all. Hover tooltips are hidden too.</p><p class="fr">Repère e-mails, téléphones, IBAN (clé de contrôle), cartes bancaires (Luhn) et numéros de sécurité sociale (clé) dans les champs, grilles, notes et textes libres, ainsi que les champs Dynamics connus par leur nom. Un raccourci les floute tous. Les infobulles sont masquées aussi.</p></div>
+    <div class="card"><h3><span class="en">Copies in one click</span><span class="fr">Copie en un clic</span></h3><p class="en">A ⧉ button appears on every field. Alt + click copies any value. It works while masked, so an agent can paste a customer's e-mail into another tool during a call without showing it.</p><p class="fr">Un bouton ⧉ apparaît sur chaque champ. Alt + clic copie n'importe quelle valeur. Cela fonctionne même masqué : un agent peut coller l'e-mail d'un client dans un autre outil pendant un appel, sans l'afficher.</p></div>
+    <div class="card"><h3><span class="en">Works beyond Dynamics</span><span class="fr">Au-delà de Dynamics</span></h3><p class="en">Add any web app in the settings. Right-click a field to always mask it on that site. Because it runs in the browser, it needs no deployment in the CRM and no wait for a release.</p><p class="fr">Ajoutez n'importe quelle application web dans les réglages. Un clic droit sur un champ le masque toujours sur ce site. Comme tout se passe dans le navigateur, rien à déployer dans le CRM ni de mise en production à attendre.</p></div>
+  </div>
+
+  <h2><span class="en">How it is built</span><span class="fr">Construction</span></h2>
+  <div class="grid2">
+    <div class="card">
+      <ul class="en">
+        <li><b>Manifest V3</b> extension for Edge and Chrome, in plain JavaScript with no dependencies.</li>
+        <li><b>Safe on React apps:</b> it adds data attributes and overlays only, and never rewrites the page structure that Dynamics 365 manages.</li>
+        <li><b>Least privilege:</b> runs on <code>*.dynamics.com</code> only; other sites need the user's explicit approval, one by one.</li>
+        <li><b>Tested:</b> unit tests for every detector, including false positives on case numbers, GUIDs, dates and barcodes.</li>
+        <li><b>Bilingual</b> French / English interface.</li>
+      </ul>
+      <ul class="fr">
+        <li>Extension <b>Manifest V3</b> pour Edge et Chrome, en JavaScript pur, sans dépendance.</li>
+        <li><b>Sans risque pour les applications React :</b> elle ajoute seulement des attributs et des calques, sans jamais réécrire la structure de page gérée par Dynamics 365.</li>
+        <li><b>Moindre privilège :</b> active uniquement sur <code>*.dynamics.com</code> ; tout autre site demande l'accord explicite de l'utilisateur, site par site.</li>
+        <li><b>Testée :</b> tests unitaires pour chaque détecteur, y compris les faux positifs (numéros d'incident, GUID, dates, codes-barres).</li>
+        <li>Interface <b>bilingue</b> français / anglais.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="en">Privacy by design</span><span class="fr">Confidentialité dès la conception</span></h3>
+      <p class="en">Nothing leaves the browser: no server, no analytics. Copied values stay in session memory and disappear when the browser closes. Saved settings hold field selectors, never values. That matters in insurance, health and any GDPR-sensitive service.</p>
+      <p class="fr">Rien ne quitte le navigateur : pas de serveur, pas de mesure d'audience. Les valeurs copiées restent en mémoire de session et disparaissent à la fermeture du navigateur. Les réglages enregistrent des sélecteurs de champs, jamais des valeurs. Essentiel en assurance, en santé et dans tout service soumis au RGPD.</p>
+    </div>
+  </div>
+
+  <h2><span class="en">Install the prototype</span><span class="fr">Installer le prototype</span></h2>
+  <ol class="steps en">
+    <li>Download the zip below and extract it to a folder.</li>
+    <li>In Edge, open <code>edge://extensions</code> (Chrome: <code>chrome://extensions</code>) and turn on <b>Developer mode</b>.</li>
+    <li>Click <b>Load unpacked</b> and select the extracted folder.</li>
+    <li>Open a Dynamics 365 app and press <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd>.</li>
+  </ol>
+  <ol class="steps fr">
+    <li>Téléchargez le zip ci-dessous et décompressez-le dans un dossier.</li>
+    <li>Dans Edge, ouvrez <code>edge://extensions</code> (Chrome : <code>chrome://extensions</code>) et activez le <b>mode développeur</b>.</li>
+    <li>Cliquez sur <b>Charger l'extension non empaquetée</b> et choisissez le dossier décompressé.</li>
+    <li>Ouvrez une application Dynamics 365 et appuyez sur <kbd>Alt</kbd> + <kbd>Maj</kbd> + <kbd>M</kbd>.</li>
+  </ol>
+  <a class="dl" href="discret-0.1.0.zip" download><span class="en">Download Discret 0.1.0 (zip)</span><span class="fr">Télécharger Discret 0.1.0 (zip)</span></a>
+</main>
+
+<script src="../demo/demo.js"></script>
+<script src="ext/messages.js"></script>
+<script src="chrome-stub.js"></script>
+<script src="ext/detect.js"></script>
+<script src="ext/content.js"></script>
+<script>
+(function () {
+  const btn = document.getElementById('toggle');
+  const setUi = (on) => btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+  const label = () => {
+    const on = btn.getAttribute('aria-pressed') === 'true';
+    btn.querySelector('.en').textContent = on ? 'Turn masking off' : 'Turn masking on';
+    btn.querySelector('.fr').textContent = on ? 'Désactiver le masquage' : 'Activer le masquage';
+  };
+  const toggle = () => chrome.storage.local.get({ masking: false }).then(({ masking }) => chrome.storage.local.set({ masking: !masking }));
+  btn.addEventListener('click', toggle);
+  document.addEventListener('keydown', (e) => {
+    if (e.altKey && e.shiftKey && (e.key === 'M' || e.key === 'm' || e.code === 'KeyM')) { e.preventDefault(); toggle(); }
+  });
+
+  const ul = document.getElementById('hist'), empty = document.getElementById('histEmpty');
+  const typeName = (k) => chrome.i18n.getMessage(k ? 'type_' + k : 'value');
+  const mask = (v) => (v.length <= 4 ? '••••' : v.slice(0, 2) + '•'.repeat(Math.min(10, v.length - 4)) + v.slice(-2));
+  function renderHist(history) {
+    ul.replaceChildren();
+    empty.hidden = history.length > 0;
+    for (const h of history) {
+      const li = document.createElement('li');
+      const b = document.createElement('b'); b.textContent = mask(h.value);
+      const s = document.createElement('span'); s.textContent = typeName(h.kind);
+      li.append(b, s);
+      ul.appendChild(li);
+    }
+  }
+  chrome.storage.onChanged.addListener((changes, area) => {
+    if (area === 'local' && changes.masking) { setUi(changes.masking.newValue); label(); }
+    if (area === 'session' && changes.history) renderHist(changes.history.newValue);
+  });
+  renderHist([]);
+  // Shareable link that opens the page already masked: index.html#masque
+  if (/^#mas(que|ked)$/.test(location.hash)) chrome.storage.local.set({ masking: true });
+})();
+</script>
+</body>
+</html>
